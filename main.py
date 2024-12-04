@@ -4,7 +4,7 @@ from evolutionary.algorithm import EvolutionaryAlgorithm
 
 def main():
     # Step 1: Retrieve log
-    
+
     log_file_name = None
     #log_file_name = 'arkanoid_log_2024_12_02_12_18_40.pkl'
     elements_per_frame = load_elements_per_frame(log_file_name)
@@ -13,10 +13,11 @@ def main():
     ea = EvolutionaryAlgorithm(elements_per_frame)
 
     # Step 3: Run the evolutionary algorithm
-    best_objects = ea.run()
+    best_individuals = ea.run()
 
     # Step 4: Output results
-    for obj in best_objects:
+    print('best_individual:')
+    for obj in best_individuals[0].objects:
         print(obj)
 
 if __name__ == "__main__":
