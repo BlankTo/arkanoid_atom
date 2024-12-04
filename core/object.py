@@ -17,22 +17,6 @@ class Rule:
 
         return self
 
-    def validate(self, realization, element2): #TODO: create realization class, then modify and complete
-        
-        last = realization[-1]
-        triggered = all(event.check(last, [element2]) for event in self.events)
-        if not triggered:
-            return 'all_k'
-
-        v0 = last.properties[self.property_name] #TODO: correct property_name - properties relation
-        v1 = element2.properties[self.property_name] #  by using realization properties, by adding hardcoded checks or by adding the to the original elements
-
-        if self.coefficient == 0: return 'all_k' if v1 == v0 else 'no'
-        
-        # k computation and check #TODO
-
-        return ... # returning 'no', 'all_k' or a set of possible k values
-
     def __repr__(self):
         return f"({self.events}) -> {self.property_name}1 = {self.property_name}0 + ({self.coefficient}) * k"
 

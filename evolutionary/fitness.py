@@ -1,6 +1,6 @@
 import itertools
 
-from core.sequence_validator import SequenceValidator
+from core.realization import Realization
 
 
 class FitnessEvaluator:
@@ -13,9 +13,9 @@ class FitnessEvaluator:
             total_score = 0
 
             # Generate sequences for the individual
-            for sequence in FitnessEvaluator.generate_sequences(frames, individual):
+            for realization in FitnessEvaluator.generate_sequences(frames, individual):
 
-                sequence_length = len(sequence)
+                sequence_length = realization.length()
                 total_score += sequence_length
                 if sequence_length == len(frames): total_score +=  len(frames)
 
@@ -38,20 +38,18 @@ class FitnessEvaluator:
     @staticmethod
     def generate_sequences(frames, individual): #TODO: finish, check and correct, especially yield
 
-        possible_sequences = [([e1, e2], 2) for e1, e2 in itertools.product(frames[0], frames[1]) if SequenceValidator.validate([e1, e2], individual)]
-
-        while possible_sequences:
-
-            considered_sequence, offset = possible_sequences.pop(0)
-
-            if offset == len(frames): yield considered_sequence
-
-            stop_sequence = True
-            for e in frames[offset]:
-                new_sequence = considered_sequence + [e]
-                if SequenceValidator.validate(new_sequence, individual):
-                    possible_sequences.append((new_sequence, offset + 1))
-                    stop_sequence = False
+        for obj in individual.objects:
             
-            if stop_sequence:
-                yield considered_sequence
+            possible_realizations = []
+            for e0 in frames[0]: possible_realizations.append((Realization([e0], obj), 1))
+
+            while possible_realizations:
+
+                considered_realization, offset = possible_realizations.pop(0)
+
+                for e1_i, e1 in enumerate(frames[offset]):
+
+                    new_realization = considered_realization.validate(e1, frames[offset][:e1_i] + frames[offset][e1_i+1:])
+                    
+                    if new_realization is None: yield considered_realization
+                    else: possible_realizations.append((new_realization, offset + 1))
