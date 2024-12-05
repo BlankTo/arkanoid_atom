@@ -44,7 +44,7 @@ class FitnessEvaluator:
         #TODO: try to invert the check, all_combinations checked on all individual
 
         for i, obj in enumerate(individual.objects):
-            print(f'object {i}/{len(individual.objects)}')
+            #print(f'object {i}/{len(individual.objects)}')
             #print(obj)
 
             if len(obj.rules) > 0:

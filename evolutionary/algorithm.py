@@ -52,7 +52,7 @@ class EvolutionaryAlgorithm:
 
             # Log
             best_fitness = fitness_scores[0][1] if fitness_scores else 0
-            print(f"Generation {generation}: Best fitness = {best_fitness}")
+            print(f"----------------------------\nGeneration {generation}/{self.max_generations}\n Best individual:\n{self.population[0]}\nwith fitness: {best_fitness}")
 
         # Return the best individuals
         return self.population[:10]

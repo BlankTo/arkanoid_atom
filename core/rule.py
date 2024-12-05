@@ -17,6 +17,27 @@ class Rule:
         self.coefficient = random.choice(coefficient_pool)
 
         return self
+    
+    def add_trigger(self, event_pool):
+
+        self.events.append(random.choice([e for e in event_pool if e not in self.events]))
+
+    def modify_trigger(self, event_pool):
+
+        removed = self.events.pop(random.randint(0, len(self.events) - 1))
+        self.events.append(random.choice([e for e in event_pool if e not in self.events and e != removed]))
+
+    def remove_trigger(self):
+
+        self.events.pop(random.randint(0, len(self.events) - 1))
+
+    def modify_property_class(self, property_pool):
+
+        self.property_class = random.choice([p for p in property_pool if p != self.property_class])
+
+    def modify_coefficient(self, coefficient_pool):
+
+        self.coefficient = random.choice([c for c in coefficient_pool if c != self.coefficient])
 
     def __repr__(self):
         return f"({self.events}) -> {self.property_class.name()}1 = {self.property_class.name()}0 + ({self.coefficient}) * k"

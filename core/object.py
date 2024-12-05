@@ -15,6 +15,16 @@ class Object:
 
         return self
     
+    #TODO add constraints on diverse rules
+    
+    def add_new_rule(self, event_pool, property_pool, coefficient_pool):
+
+        self.rules.append(Rule().initialize(event_pool, property_pool, coefficient_pool))
+
+    def remove_rule(self):
+
+        self.rules.pop(random.randint(0, len(self.rules) - 1))
+    
     def get_properties_class(self):
         return [rule.property_class for rule in self.rules]
 
