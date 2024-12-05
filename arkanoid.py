@@ -33,10 +33,19 @@ class Game:
 
         self.elements['environment'] = {
             'id': 0,
-            'pos': (grid_width // 2, grid_height // 2),
-            'shape': (grid_width // 2, grid_height // 2),
-            'hitbox': ((0, 0), (grid_width - 1, grid_height - 1)),
-            'color': (0, 0, 0)
+            'pos_x': grid_width // 2,
+            'pos_y': grid_height // 2,
+            'shape_x': grid_width // 2,
+            'shape_y': grid_height // 2,
+            'hitbox_tl_x': 0,
+            'hitbox_tl_y': 0,
+            'hitbox_br_x': grid_width - 1,
+            'hitbox_br_y': grid_height - 1,
+            'color_r': 0,
+            'color_g': 0,
+            'color_b': 0,
+            'color_state': 0,
+            'never_hit': True,
         }
 
         self.init_grid()
@@ -82,13 +91,19 @@ class Game:
 
         self.elements['wall_left'] = {
             'id': 5,
-            'pos': (1, math.floor(grid_height / 2)),
-            'shape': (1, math.floor(grid_height / 2)),
-            'hitbox': ((0, 3), (2, grid_height - 4)),
-            'color': (0, 255, 50),
-            'state': {
-                'color_state': 0,
-            }
+            'pos_x': 1,
+            'pos_y': math.floor(grid_height / 2),
+            'shape_x': 1,
+            'shape_y': math.floor(grid_height / 2),
+            'hitbox_tl_x': 0,
+            'hitbox_tl_y': 3,
+            'hitbox_br_x': 2,
+            'hitbox_br_y': grid_height - 4,
+            'color_r': 0,
+            'color_g': 255,
+            'color_b': 50,
+            'color_state': 0,
+            'never_hit': True,
         }
 
         self.grid[grid_width - 3:grid_width, 3:grid_height - 3] = 6 # right wall
@@ -98,13 +113,19 @@ class Game:
 
         self.elements['wall_right'] = {
             'id': 6,
-            'pos': (grid_width - 2, math.floor(grid_height / 2)),
-            'shape': (1, math.floor(grid_height / 2)),
-            'hitbox': ((grid_width - 3, 3), (grid_width - 1, grid_height - 4)),
-            'color': (0, 255, 100),
-            'state': {
-                'color_state': 0,
-            }
+            'pos_x': grid_width - 2,
+            'pos_y': math.floor(grid_height / 2),
+            'shape_x': 1,
+            'shape_y': math.floor(grid_height / 2),
+            'hitbox_tl_x': grid_width - 3,
+            'hitbox_tl_y': 3,
+            'hitbox_br_x': grid_width - 1,
+            'hitbox_br_y': grid_height - 4,
+            'color_r': 0,
+            'color_g': 255,
+            'color_b': 100,
+            'color_state': 0,
+            'never_hit': True,
         }
 
         self.grid[3:grid_width - 3, 0:3] = 7 # top wall
@@ -114,13 +135,19 @@ class Game:
 
         self.elements['wall_top'] = {
             'id': 7,
-            'pos': (math.floor(grid_width / 2), 1),
-            'shape': (math.floor(grid_width / 2), 1),
-            'hitbox': ((3, 0), (grid_width - 4, 2)),
-            'color': (0, 255, 150),
-            'state': {
-                'color_state': 0,
-            }
+            'pos_x': math.floor(grid_width / 2),
+            'pos_y': 1,
+            'shape_x': math.floor(grid_width / 2),
+            'shape_y': 1,
+            'hitbox_tl_x': 3,
+            'hitbox_tl_y': 0,
+            'hitbox_br_x': grid_width - 4,
+            'hitbox_br_y': 2,
+            'color_r': 0,
+            'color_g': 255,
+            'color_b': 150,
+            'color_state': 0,
+            'never_hit': True,
         }
 
         self.grid[3:grid_width - 3, grid_height - 3:grid_height] = 8 # bottom wall
@@ -130,13 +157,19 @@ class Game:
 
         self.elements['wall_bottom'] = {
             'id': 8,
-            'pos': (math.floor(grid_width / 2), grid_height - 2),
-            'shape': (math.floor(grid_width / 2), 1),
-            'hitbox': ((3, grid_height - 3), (grid_width - 4, grid_height - 1)),
-            'color': (0, 255, 150),
-            'state': {
-                'color_state': 0,
-            }
+            'pos_x': math.floor(grid_width / 2),
+            'pos_y': grid_height - 2,
+            'shape_x': math.floor(grid_width / 2),
+            'shape_y': 1,
+            'hitbox_tl_x': 3,
+            'hitbox_tl_y': grid_height - 3,
+            'hitbox_br_x': grid_width - 4,
+            'hitbox_br_y': grid_height - 1,
+            'color_r': 0,
+            'color_g': 255,
+            'color_b': 150,
+            'color_state': 0,
+            'never_hit': True,
         }
 
 
@@ -154,13 +187,19 @@ class Game:
             
             self.elements[f'brick_{i}'] = {
                 'id': i + 9,
-                'pos': brick_pos,
-                'shape': (self.brick_halfwidth, self.brick_halfheight),
-                'hitbox': ((brick_pos[0] - self.brick_halfwidth, brick_pos[1] - self.brick_halfheight), (brick_pos[0] + self.brick_halfwidth, brick_pos[1] + self.brick_halfheight)),
-                'color': (255, 255, 255),
-                'state': {
-                    'never_hit': True,
-                },
+                'pos_x': brick_pos[0],
+                'pos_y': brick_pos[1],
+                'shape_x': self.brick_halfwidth,
+                'shape_y': self.brick_halfheight,
+                'hitbox_tl_x': brick_pos[0] - self.brick_halfwidth,
+                'hitbox_tl_y': brick_pos[1] - self.brick_halfheight,
+                'hitbox_br_x': brick_pos[0] + self.brick_halfwidth,
+                'hitbox_br_y': brick_pos[1] + self.brick_halfheight,
+                'color_r': 255,
+                'color_g': 255,
+                'color_b': 255,
+                'color_state': 0,
+                'never_hit': True,
             }
 
 
@@ -170,11 +209,11 @@ class Game:
         brick_pos = self.brick_positions[brick_id]
 
         if False:
-        #if self.elements[f'brick_{brick_id}']['state']['never_hit']: # first hit change color, the second destroy the brick
+        #if self.elements[f'brick_{brick_id}']['never_hit']: # first hit change color, the second destroy the brick
 
             self.r[brick_pos[0] - self.brick_halfwidth:brick_pos[0] + self.brick_halfwidth + 1, brick_pos[1] - self.brick_halfheight:brick_pos[1] + self.brick_halfheight + 1] = 0
 
-            self.elements[f'brick_{brick_id}']['state']['never_hit'] = False
+            self.elements[f'brick_{brick_id}']['never_hit'] = False
 
             self.event_log.append({
                 'description': 'change_color',
@@ -200,30 +239,30 @@ class Game:
         match(id):
 
             case 5: # wall_left
-                color_state = self.elements['wall_left']['state']['color_state'] + 1
+                color_state = self.elements['wall_left']['color_state'] + 1
                 if color_state == 3: color_state = 0
-                self.elements['wall_left']['state']['color_state'] = color_state
+                self.elements['wall_left']['color_state'] = color_state
 
                 self.r[0:3, 3:grid_height - 3] = 100 * color_state
 
             case 6: # wall_right
-                color_state = self.elements['wall_right']['state']['color_state'] + 1
+                color_state = self.elements['wall_right']['color_state'] + 1
                 if color_state == 3: color_state = 0
-                self.elements['wall_right']['state']['color_state'] = color_state
+                self.elements['wall_right']['color_state'] = color_state
 
                 self.r[grid_width - 3:grid_width, 3:grid_height - 3] = 100 * color_state
 
             case 7: # wall_top
-                color_state = self.elements['wall_top']['state']['color_state'] + 1
+                color_state = self.elements['wall_top']['color_state'] + 1
                 if color_state == 3: color_state = 0
-                self.elements['wall_top']['state']['color_state'] = color_state
+                self.elements['wall_top']['color_state'] = color_state
 
                 self.r[3:grid_width - 3, 0:3] = 100 * color_state
 
             case 8: # wall_bottom
-                color_state = self.elements['wall_bottom']['state']['color_state'] + 1
+                color_state = self.elements['wall_bottom']['color_state'] + 1
                 if color_state == 3: color_state = 0
-                self.elements['wall_bottom']['state']['color_state'] = color_state
+                self.elements['wall_bottom']['color_state'] = color_state
 
                 self.r[3:grid_width - 3, grid_height - 3:grid_height] = 100 * color_state
 
@@ -242,10 +281,19 @@ class Game:
         self.draw_paddle()
         self.elements['paddle_center'] = {
             'id': 3,
-            'pos': (self.paddle_x, self.paddle_y),
-            'shape': (self.paddle_halfwidth, self.paddle_halfheight),
-            'hitbox': ((self.paddle_x - self.paddle_halfwidth, self.paddle_y - self.paddle_halfheight), (self.paddle_x + self.paddle_halfwidth, self.paddle_y + self.paddle_halfheight)),
-            'color': (0, 0, 255)
+            'pos_x': self.paddle_x,
+            'pos_y': self.paddle_y,
+            'shape_x': self.paddle_halfwidth,
+            'shape_y': self.paddle_halfheight,
+            'hitbox_tl_x': self.paddle_x - self.paddle_halfwidth,
+            'hitbox_tl_y': self.paddle_y - self.paddle_halfheight,
+            'hitbox_br_x': self.paddle_x + self.paddle_halfwidth,
+            'hitbox_br_y': self.paddle_y + self.paddle_halfheight,
+            'color_r': 0,
+            'color_g': 0,
+            'color_b': 255,
+            'color_state': 0,
+            'never_hit': True,
         }
 
 
@@ -265,8 +313,12 @@ class Game:
                     self.paddle_old_x = self.paddle_x
                     self.paddle_x += self.paddle_speed
 
-            self.elements['paddle_center']['pos'] = (self.paddle_x, self.paddle_y)
-            self.elements['paddle_center']['hitbox'] = ((self.paddle_x - self.paddle_halfwidth, self.paddle_y - self.paddle_halfheight), (self.paddle_x + self.paddle_halfwidth, self.paddle_y + self.paddle_halfheight))
+            self.elements['paddle_center']['pos_x'] = self.paddle_x
+            self.elements['paddle_center']['pos_y'] = self.paddle_y
+            self.elements['paddle_center']['hitbox_tl_x'] = self.paddle_x - self.paddle_halfwidth
+            self.elements['paddle_center']['hitbox_tl_y'] = self.paddle_y - self.paddle_halfheight
+            self.elements['paddle_center']['hitbox_br_x'] = self.paddle_x + self.paddle_halfwidth
+            self.elements['paddle_center']['hitbox_br_y'] = self.paddle_y + self.paddle_halfheight
 
     def draw_paddle(self):
 
@@ -287,10 +339,19 @@ class Game:
         self.draw_ball()
         self.elements['ball'] = {
             'id': 1,
-            'pos': (self.ball_x, self.ball_y),
-            'shape': (self.ball_radius, self.ball_radius),
-            'hitbox': ((self.ball_x - self.ball_radius, self.ball_y - self.ball_radius), (self.ball_x + self.ball_radius, self.ball_y + self.ball_radius)),
-            'color': (255, 0, 0)
+            'pos_x': self.ball_x,
+            'pos_y': self.ball_y,
+            'shape_x': self.ball_radius,
+            'shape_y': self.ball_radius,
+            'hitbox_tl_x': self.ball_x - self.ball_radius,
+            'hitbox_tl_y': self.ball_y - self.ball_radius,
+            'hitbox_br_x': self.ball_x + self.ball_radius,
+            'hitbox_br_y': self.ball_y + self.ball_radius,
+            'color_r': 255,
+            'color_g': 0,
+            'color_b': 0,
+            'color_state': 0,
+            'never_hit': True,
         }
 
 
@@ -356,8 +417,12 @@ class Game:
 
         ######
 
-        self.elements['ball']['pos'] = (self.ball_x, self.ball_y)
-        self.elements['ball']['hitbox'] = ((self.ball_x - self.ball_radius, self.ball_y - self.ball_radius), (self.ball_x + self.ball_radius, self.ball_y + self.ball_radius))
+        self.elements['ball']['pos_x'] = self.ball_x
+        self.elements['ball']['pos_y'] = self.ball_y
+        self.elements['ball']['hitbox_tl_x'] = self.ball_x - self.ball_radius
+        self.elements['ball']['hitbox_tl_y'] = self.ball_y - self.ball_radius
+        self.elements['ball']['hitbox_br_x'] = self.ball_x + self.ball_radius
+        self.elements['ball']['hitbox_br_y'] = self.ball_y + self.ball_radius
 
     def draw_ball(self):
 

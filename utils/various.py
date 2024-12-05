@@ -12,7 +12,7 @@ class ID_generator:
         self.prev_id += 1
         return self.prev_id
     
-def load_elements_per_frame(log_file_name= None):
+def load_elements_per_frame(log_file_name= None, properties_to_load= None):
 
     if log_file_name is None: # use last saved
         log_files_name = os.listdir('logs/arkanoid_logs')
@@ -30,7 +30,8 @@ def load_elements_per_frame(log_file_name= None):
         elements = []
         for description, elem_props in frame['elements'].items():
 
-            elem = Element(elem_props['id'], description, elem_props)
+            if properties_to_load is None: elem = Element(elem_props['id'], description, elem_props)
+            else: elem = Element(elem_props['id'], description, {k: v for k, v in elem_props.items() if k in properties_to_load})
             elements.append(elem)
 
         elements_per_frame.append(elements)

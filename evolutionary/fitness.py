@@ -37,11 +37,15 @@ class FitnessEvaluator:
         return scores
 
     @staticmethod
-    def generate_sequences(frames, individual): #TODO: finish, check and correct, especially yield
+    def generate_sequences(frames, individual):
+        
+        #TODO: finish, check and correct, especially yield
+        
+        #TODO: try to invert the check, all_combinations checked on all individual
 
         for i, obj in enumerate(individual.objects):
             print(f'object {i}/{len(individual.objects)}')
-            print(obj)
+            #print(obj)
 
             if len(obj.rules) > 0:
             
@@ -49,12 +53,28 @@ class FitnessEvaluator:
                 for e0 in frames[0]: possible_realizations.append((Realization(obj, [e0]), 1))
 
                 while possible_realizations:
+                    
+                    #print('--')
+                    #for rr in possible_realizations: print(rr)
+                    #print(len(possible_realizations))
+                    #if len(possible_realizations) > 36: exit(0)
 
                     considered_realization, offset = possible_realizations.pop(0)
 
-                    for e1_i, e1 in enumerate(frames[offset]):
+                    if offset == len(frames): yield considered_realization
+                    elif len(frames[offset]) == 0: yield considered_realization
+                    else:
 
-                        new_realization = considered_realization.validate(e1, frames[offset][:e1_i] + frames[offset][e1_i+1:])
-                        
-                        if new_realization is None: yield considered_realization
-                        else: possible_realizations.append((new_realization, offset + 1))
+                        #print(offset)
+
+                        element_added = False
+
+                        for e1_i, e1 in enumerate(frames[offset]):
+
+                            new_realization = considered_realization.validate(e1, frames[offset][:e1_i] + frames[offset][e1_i+1:])
+                            
+                            if new_realization is not None:
+                                possible_realizations.append((new_realization, offset + 1))
+                                element_added = True
+
+                        if not element_added: yield considered_realization
