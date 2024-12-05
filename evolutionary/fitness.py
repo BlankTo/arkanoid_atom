@@ -9,7 +9,8 @@ class FitnessEvaluator:
 
         scores = []
 
-        for individual in population:
+        for i, individual in enumerate(population):
+            print(f'individual {i+1}/{len(population)}')
             total_score = 0
 
             # Generate sequences for the individual
@@ -38,18 +39,22 @@ class FitnessEvaluator:
     @staticmethod
     def generate_sequences(frames, individual): #TODO: finish, check and correct, especially yield
 
-        for obj in individual.objects:
+        for i, obj in enumerate(individual.objects):
+            print(f'object {i}/{len(individual.objects)}')
+            print(obj)
+
+            if len(obj.rules) > 0:
             
-            possible_realizations = []
-            for e0 in frames[0]: possible_realizations.append((Realization([e0], obj), 1))
+                possible_realizations = []
+                for e0 in frames[0]: possible_realizations.append((Realization(obj, [e0]), 1))
 
-            while possible_realizations:
+                while possible_realizations:
 
-                considered_realization, offset = possible_realizations.pop(0)
+                    considered_realization, offset = possible_realizations.pop(0)
 
-                for e1_i, e1 in enumerate(frames[offset]):
+                    for e1_i, e1 in enumerate(frames[offset]):
 
-                    new_realization = considered_realization.validate(e1, frames[offset][:e1_i] + frames[offset][e1_i+1:])
-                    
-                    if new_realization is None: yield considered_realization
-                    else: possible_realizations.append((new_realization, offset + 1))
+                        new_realization = considered_realization.validate(e1, frames[offset][:e1_i] + frames[offset][e1_i+1:])
+                        
+                        if new_realization is None: yield considered_realization
+                        else: possible_realizations.append((new_realization, offset + 1))

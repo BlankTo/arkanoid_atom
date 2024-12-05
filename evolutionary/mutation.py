@@ -1,8 +1,10 @@
 import random
-from evolutionary.individual import Individual
+from core.individual import Individual
 
 
 def mutate(population, population_size, id_generator, event_pool, property_pool, coefficient_pool):
+
+    raise NotImplementedError('mutate')
 
     new_population = []
 

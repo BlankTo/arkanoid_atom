@@ -1,6 +1,6 @@
 import random
 
-from core.object import Object, Rule
+from core.object import Object
 
 class Individual:
 

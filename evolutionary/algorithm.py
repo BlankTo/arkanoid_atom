@@ -1,4 +1,4 @@
-from evolutionary.individual import Individual
+from core.individual import Individual
 from evolutionary.fitness import FitnessEvaluator
 from evolutionary.mutation import mutate
 from core.events import (
@@ -6,6 +6,11 @@ from core.events import (
     Contact_With_Something_B,
     Contact_With_Something_L,
     Contact_With_Something_R,
+)
+from core.property import (
+    Property,
+    Speed_x,
+    Speed_y,
 )
 from utils.various import ID_generator
 
@@ -23,7 +28,7 @@ class EvolutionaryAlgorithm:
             Contact_With_Something_L(),
             Contact_With_Something_R(),
         ]
-        self.property_pool = ["vx", "vy"]
+        self.property_pool = [Speed_x, Speed_y]
         self.coefficient_pool = [-2, -1, 0, 1, 2]
 
         self.initialize_population()
