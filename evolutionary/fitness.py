@@ -13,12 +13,22 @@ class FitnessEvaluator:
             print(f'individual {i+1}/{len(population)}')
             total_score = 0
 
+            elements_usage = []
+
             # Generate sequences for the individual
             for realization in FitnessEvaluator.generate_sequences(frames, individual):
 
+                #TODO give points only when there is an event (?)
+
                 sequence_length = realization.length()
                 total_score += sequence_length
-                if sequence_length == len(frames): total_score +=  len(frames)
+                if sequence_length == len(frames) - 1: total_score +=  len(frames)
+
+                for i, e in enumerate(realization.sequence):
+                    if i < len(elements_usage):
+                        if e.id in elements_usage[i].keys(): elements_usage[i][e.id].add(realization.reference_object.id)
+                        else: elements_usage[i][e.id] = set([realization.reference_object.id])
+                    else: elements_usage.append({e.id: set([realization.reference_object.id])})
 
             # Penalize individual and object complexity
             total_score -= len(individual.objects)
@@ -28,7 +38,19 @@ class FitnessEvaluator:
 
             #TODO: Penalize objects that are never used in any sequence
 
-            #TODO: Penalize for not explained elements
+            # elements usage
+
+            objs_id_used = set()
+
+            for i in range(min(len(frames), len(elements_usage))):
+                total_score -= (len(frames[i]) - len(elements_usage[i].keys())) * 10
+
+                for objs_associated_to_elem in elements_usage[i].values():
+                    if len(objs_associated_to_elem) > 1: total_score -= pow(len(objs_associated_to_elem), 2)
+                    for obj_id in objs_associated_to_elem: objs_id_used.add(obj_id)
+
+            for obj in individual.objects:
+                if obj.id not in objs_id_used: total_score -= 10
 
             # Assign fitness
             individual.fitness = total_score
@@ -38,10 +60,6 @@ class FitnessEvaluator:
 
     @staticmethod
     def generate_sequences(frames, individual):
-        
-        #TODO: finish, check and correct, especially yield
-        
-        #TODO: try to invert the check, all_combinations checked on all individual
 
         for i, obj in enumerate(individual.objects):
             #print(f'object {i}/{len(individual.objects)}')
