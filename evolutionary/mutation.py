@@ -7,7 +7,7 @@ def mutate_one(new_id, base_individual, event_pool, property_pool, coefficient_p
 
     #print(f'mutating ind_{base_individual.id} into ind_{new_id}')
 
-    new_ind = Individual(id= new_id, object_id_generator= ID_generator(), objects= base_individual.objects) #TODO check deepcopying, done in Individual.__init__
+    new_ind = Individual(id= new_id, object_id_generator= ID_generator(), objects= base_individual.objects) # Deepcopying done in Individual.__init__
 
     mutate_what = ['add_obj']
 

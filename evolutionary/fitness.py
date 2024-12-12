@@ -26,15 +26,13 @@ class FitnessEvaluator:
     @staticmethod
     def evaluate(population, frames):
 
-        scores = []
-
         for ind_i, individual in enumerate(population):
-
-            print(f'individual {ind_i+1}/{len(population)}')
+            #print('--------------------------------')
+            print(f'individual {ind_i+1}/{len(population)}') # - id: {individual.id}')
 
             if individual.fitness is not None: continue
-            
-            total_score = 0
+
+            individual_score = 0
 
             elements_usage = [{} for _ in range(len(frames))]
 
@@ -42,13 +40,14 @@ class FitnessEvaluator:
             for i_o, obj in enumerate(individual.objects):
                 #print(f'object {i_o+1}/{len(individual.objects)}: {obj}')
 
-                best_total_difference = math.inf
-                best_score = 0
+                best_object_score = -math.inf
                 best_sequence = None
 
                 for e0, (e1_i, e1) in itertools.product(frames[0], enumerate(frames[1])):
 
                     #if e0.description != 'ball' or e1.description != 'ball': continue
+
+                    #print(f'{e0.id} -> {e0.description}, {e1.id} -> {e1.description}')
 
                     sequence = [e0, e1]
                     current_others = frames[1][:e1_i] + frames[1][e1_i+1:]
@@ -63,18 +62,12 @@ class FitnessEvaluator:
                     for event in [Contact_With_Something_T, Contact_With_Something_B, Contact_With_Something_L, Contact_With_Something_R]:
                         if event.check(e0, e1, current_others): events[1].append(event)
 
-                    total_difference = 0
-                    score = 0
+                    object_score = 0
 
                     for frame_id in range(2, len(frames) - 1):
 
-                        properties_changes = {}
                         triggered_rules = []
-
-                        #print('properties:')
-                        #for kk, vv in properties.items():
-                        #    print((kk.name(), vv))
-                        #print('modified properties:')
+                        properties_changes = {}
 
                         for rule in obj.rules:
 
@@ -88,6 +81,8 @@ class FitnessEvaluator:
                                 #print((property_class.name(), coeff))
                                 if property_class in properties_changes.keys(): properties_changes[property_class] += coeff
                                 else: properties_changes[property_class] = coeff
+
+                        n_triggered = sum(triggered_rules)
 
                         cc = 0
 
@@ -111,56 +106,46 @@ class FitnessEvaluator:
                         for property_class, change in base_properties_changes.items():
                             properties[property_class] += change
 
-                        best_difference = math.inf
+                        best_score = -math.inf
                         best_idx = None
 
                         for e_i, e in enumerate(frames[frame_id]):
 
-                            #if e.description != 'ball': continue
-
-                            #from core.property import Pos_x, Pos_y
-                            #print(sequence)
-                            #print(f'{e} vs {(properties[Pos_x], properties[Pos_y])}')
-
-                            difference = 0
+                            score = 0
+                            total_diff = 0
 
                             for property_class, value in e.properties.items():
+                                total_diff += abs(properties[property_class] - value)
 
-                                difference += abs(properties[property_class] - value)
+                            score -= total_diff
 
-                                if cc and abs(properties[property_class] - value) == 0: score += 100
+                            if cc:
+                                print(f'{n_triggered} rule triggered -> {[r for i_r, r in enumerate(obj.rules) if triggered_rules[i_r]]}')
+                                print(f'from {sequence[-1]} to {e}')
+                                if total_diff == 0:
+                                    score += 10 * n_triggered
+                                    print(f'cc != 0 and diff == 0 -> score + {10 * n_triggered}')
+                                else:
+                                    score -= 10 * n_triggered
+                                    print(f'cc != 0 and diff != 0 -> score - {10 * n_triggered}')
 
-                            if difference < best_difference:
-                                best_difference = difference
+                            if score > best_score:
+                                best_score = score
                                 best_idx = e_i
 
-                            #print(f'diff: {difference}')
-
-                        if len(events[frame_id - 1]) > 0 and len(properties_changes.keys()) > 0:
-
-                            if best_difference == 0 and cc:
-                                #print('correct prediction after event')
-                                score += 100 #at least one event, for evaluation
-                                score += sum(triggered_rules) * 10
-                            else:
-                                score -= sum(triggered_rules) * 10
+                        if n_triggered and cc == 0:
+                            best_score -= 10 * n_triggered
+                            print(f'n_triggered and cc == 0 -> score - {10 * n_triggered}')
 
                         sequence.append(frames[frame_id][best_idx])
                         current_others = frames[frame_id][:best_idx] + frames[frame_id][best_idx+1:]
 
-                        total_difference += best_difference
-                        
-                        if len(events[frame_id - 1]) > 0: score -= best_difference #at least one event, for evaluation
-
-                        #print(f'total_diff: {total_difference}')
-                        #print(events_bring_changes)
-                        #print(f'chosen sequence: {sequence}')
-                        #if events_bring_changes: exit()
-                        #print('----------------------------------------------')
+                        object_score += best_score
 
                         # TODO: re-initialize properties or maintain the predicted ones (i expect a divergence in the second case)
 
-                        properties = {k: v for k, v in sequence[-1].properties.items()}
+                        for k, v in sequence[-1].properties.items(): properties[k] = v
+                        #re-initializing k_dict means that the rules' coefficient work with property(i-1) instead of property(0)
                         k_dict = {Speed_x: Speed_x.compute(sequence[-2], sequence[-1], current_others), Speed_y: Speed_y.compute(sequence[-2], sequence[-1], current_others)}
                         properties[Speed_x] = k_dict[Speed_x]
                         properties[Speed_y] = k_dict[Speed_y]
@@ -168,39 +153,50 @@ class FitnessEvaluator:
                         events.append([])
                         for event in [Contact_With_Something_T, Contact_With_Something_B, Contact_With_Something_L, Contact_With_Something_R]:
                             if event.check(sequence[-2], sequence[-1], current_others): events[frame_id].append(event)
+
+                    #print('sequence')
+                    #print([e.id for e in sequence])
+                    #print((total_difference, total_score))
+                    #print('-------------------------------------------')
                             
-                    if total_difference < best_total_difference:
-                        best_total_difference = total_difference
+                    if object_score > best_object_score:
+                        best_object_score = object_score
                         best_sequence = sequence
-                        best_score = score
-                    elif total_difference == best_total_difference and score > best_score:
-                        best_total_difference = total_difference
-                        best_sequence = sequence
-                        best_score = score
 
+                #print('best_sequence')
 
-                print('best_sequence')
-                print(best_sequence)
-                print(f'total_difference: {total_difference}')
-
-                total_score -= best_total_difference
-                total_score += best_score
-
-                frame_id = 0
+                all_the_same = True
+                first = best_sequence[0].description
                 for e in best_sequence:
+                    if e.description != first:
+                        all_the_same = False
+                        break
+                if all_the_same: print(f'all the sequence is {first}')
+                else: print([e.description for e in best_sequence])
+                
+                #print(best_sequence)
+                #print(f'best_total_score: {best_total_score}')
+
+                individual_score += best_object_score
+
+                for frame_id, e in enumerate(best_sequence):
                     if e.id in elements_usage[frame_id].keys(): elements_usage[frame_id][e.id].append(obj.id)
                     else: elements_usage[frame_id][e.id] = [obj.id]
 
+            unique_element_frame_considered = 0
+            element_frame_repetitions = 0
             for eu in elements_usage:
-                total_score += len(eu.keys())
-                #if len(eu.keys()) > 0: print(f'+{len(eu.keys())}')
-                for e_id, objs_id_list in eu.items():
-                    if len(objs_id_list) > 1:
-                        total_score -= len(objs_id_list)
-                        #print(f'-{len(objs_id_list)}')
+                unique_element_frame_considered += len(eu.keys())
+                for _, objs_id_list in eu.items():
+                    if len(objs_id_list) > 1: element_frame_repetitions += len(objs_id_list) - 1
+            
+            individual_score += unique_element_frame_considered
+            print(f'unique_element_frame_considered: {unique_element_frame_considered}')
 
-            #scores.append((individual, total_score))
-            individual.fitness = total_score
+            individual_score -= element_frame_repetitions
+            print(f'element_frame_repetitions: {element_frame_repetitions}')
+
+            individual.fitness = individual_score
         
         #exit()
 
@@ -215,59 +211,81 @@ if __name__ == '__main__':
     #    print(frame)
     #exit()
     debug_population = [
-#        Individual(0, ID_generator(), [
-#            Object(0, [
-#                Rule([Contact_With_Something_T], Speed_y, -2),
-#                Rule([Contact_With_Something_B], Speed_y, -2),
-#                Rule([Contact_With_Something_L], Speed_x, -2),
-#                Rule([Contact_With_Something_R], Speed_x, -2),
-#                ]),
-#            ]),
-
-#        Individual(1, ID_generator(), [
-#            Object(0, [
-#                Rule([Contact_With_Something_T], Speed_y, 2),
-#                Rule([Contact_With_Something_B], Speed_y, -2),
-#                Rule([Contact_With_Something_L], Speed_x, -2),
-#                Rule([Contact_With_Something_R], Speed_x, -2),
-#                ]),
-#            ]),
-
-        Individual(2, ID_generator(), [
+        Individual(0, ID_generator(), [
             Object(0, [
-                Rule([Contact_With_Something_T], Speed_x, 2),
+                Rule([Contact_With_Something_T], Speed_y, -2),
                 Rule([Contact_With_Something_B], Speed_y, -2),
                 Rule([Contact_With_Something_L], Speed_x, -2),
                 Rule([Contact_With_Something_R], Speed_x, -2),
                 ]),
             ]),
 
-#        Individual(3, ID_generator(), [
-#            Object(0, [
-#                Rule([Contact_With_Something_T], Speed_y, 2),
-#                Rule([Contact_With_Something_B], Speed_y, -2),
-#                Rule([Contact_With_Something_L], Speed_x, 2),
-#                Rule([Contact_With_Something_R], Speed_x, -2),
-#                ]),
-#            Object(1, [
-#                Rule([Contact_With_Something_T], Speed_y, 0),
-#                Rule([Contact_With_Something_B], Speed_y, 0),
-#                Rule([Contact_With_Something_L], Speed_x, 0),
-#                Rule([Contact_With_Something_R], Speed_x, 0),
-#                ]),
-#            ]),
+        Individual(1, ID_generator(), [
+            Object(0, [
+                Rule([Contact_With_Something_T], Speed_y, 2),
+                Rule([Contact_With_Something_B], Speed_y, -2),
+                Rule([Contact_With_Something_L], Speed_x, -2),
+                Rule([Contact_With_Something_R], Speed_x, -2),
+                ]),
+            ]),
 
-#        Individual(4, ID_generator(), [
-#            Object(0, [
-#                Rule([Contact_With_Something_T], Speed_y, 2),
-#                Rule([Contact_With_Something_B], Speed_y, -2),
-#                Rule([Contact_With_Something_L], Speed_x, 2),
-#                Rule([Contact_With_Something_R], Speed_x, -2),
-#                ]),
-#            Object(1, []),
-#            ]),
+        Individual(2, ID_generator(), [
+            Object(0, [
+                Rule([Contact_With_Something_T], Speed_x, -2),
+                Rule([Contact_With_Something_B], Speed_y, -2),
+                Rule([Contact_With_Something_L], Speed_x, -2),
+                Rule([Contact_With_Something_R], Speed_x, -2),
+                ]),
+            ]),
+
+        Individual(3, ID_generator(), [
+            Object(0, [
+                Rule([Contact_With_Something_T], Speed_y, 2),
+                Rule([Contact_With_Something_B], Speed_y, -2),
+                Rule([Contact_With_Something_L], Speed_x, 2),
+                Rule([Contact_With_Something_R], Speed_x, -2),
+                ]),
+            Object(1, [
+                Rule([Contact_With_Something_T], Speed_y, 0),
+                Rule([Contact_With_Something_B], Speed_y, 0),
+                Rule([Contact_With_Something_L], Speed_x, 0),
+                Rule([Contact_With_Something_R], Speed_x, 0),
+                ]),
+            ]),
+
+        Individual(4, ID_generator(), [
+            Object(0, [
+                Rule([Contact_With_Something_T], Speed_y, 2),
+                Rule([Contact_With_Something_B], Speed_y, -2),
+                Rule([Contact_With_Something_L], Speed_x, 2),
+                Rule([Contact_With_Something_R], Speed_x, -2),
+                ]),
+            Object(1, []),
+            ]),
+
+        Individual(5, ID_generator(), [
+            Object(0, [
+                Rule([Contact_With_Something_T], Speed_y, -2),
+                ]),
+            ]),
+
+        Individual(6, ID_generator(), [
+            Object(0, [
+                Rule([Contact_With_Something_T], Speed_y, -2),
+                Rule([Contact_With_Something_B], Speed_y, -2),
+                ]),
+            ]),
+
+        Individual(7, ID_generator(), [
+            Object(0, [
+                Rule([Contact_With_Something_T], Speed_y, -2),
+                Rule([Contact_With_Something_B], Speed_y, -2),
+                Rule([Contact_With_Something_L], Speed_x, -2),
+                ]),
+            ]),
 
         ]
     FitnessEvaluator.evaluate(debug_population, frames)
     for ind in debug_population:
+        print('------------------------------')
         print(f'ind_{ind.id}:\n{ind}\n>> fitness: {ind.fitness}')
