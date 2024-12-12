@@ -5,6 +5,8 @@ from utils.various import ID_generator
 
 def mutate_one(new_id, base_individual, event_pool, property_pool, coefficient_pool):
 
+    #print(f'mutating ind_{base_individual.id} into ind_{new_id}')
+
     new_ind = Individual(id= new_id, object_id_generator= ID_generator(), objects= base_individual.objects) #TODO check deepcopying, done in Individual.__init__
 
     mutate_what = ['add_obj']
@@ -61,9 +63,9 @@ def mutate(population, population_size, id_generator, event_pool, property_pool,
     new_population = []
 
     for individual in population:
-        
-        new_population.append(individual)
         new_population.append(mutate_one(id_generator(), individual, event_pool, property_pool, coefficient_pool))
+
+    new_population = [p for p in population] + new_population
 
     #TODO: Crossover (?)
 

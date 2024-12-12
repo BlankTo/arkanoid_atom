@@ -3,41 +3,131 @@
 class Property:
 
     @staticmethod
-    def compute(elem0, elem1, other_elements1):
-        raise NotImplementedError('subclass have to implement "compute" function')
-    
-    @staticmethod
-    def effects(prop_value, properties):
-        raise NotImplementedError('subclass have to implement "effect" function')
+    def compute(previous, current, current_others):
+        raise NotImplementedError()
 
     @staticmethod
+    def effects(property_values):
+        raise NotImplementedError()
+    
+    @staticmethod
+    def get_dependant_properties():
+        raise NotImplementedError()
+    
+    @staticmethod
     def name():
-        raise NotImplementedError('subclass have to implement "name" function')
+        raise NotImplementedError()
+
+class Pos_x(Property):
+
+    @staticmethod
+    def compute(previous, current, current_others): return current.properties[Pos_x]
+    
+    @staticmethod
+    def effects(properties): return {}
+    
+    @staticmethod
+    def get_dependant_properties(): return []
+    
+    @staticmethod
+    def name(): return 'pos_x'
+
+class Pos_y(Property):
+
+    @staticmethod
+    def compute(previous, current, current_others): return current.properties[Pos_y]
+    
+    @staticmethod
+    def effects(properties): return {}
+    
+    @staticmethod
+    def get_dependant_properties(): return []
+    
+    @staticmethod
+    def name(): return 'pos_y'
+
+class Hitbox_tl_x(Property):
+
+    @staticmethod
+    def compute(previous, current, current_others): return current.properties[Hitbox_tl_x]
+    
+    @staticmethod
+    def effects(properties): return {}
+    
+    @staticmethod
+    def get_dependant_properties(): return []
+    
+    @staticmethod
+    def name(): return 'hitbox_tl_x'
+
+class Hitbox_tl_y(Property):
+
+    @staticmethod
+    def compute(previous, current, current_others): return current.properties[Hitbox_tl_y]
+    
+    @staticmethod
+    def effects(properties): return {}
+    
+    @staticmethod
+    def get_dependant_properties(): return []
+    
+    @staticmethod
+    def name(): return 'hitbox_tl_y'
+
+class Hitbox_br_x(Property):
+
+    @staticmethod
+    def compute(previous, current, current_others): return current.properties[Hitbox_br_x]
+    
+    @staticmethod
+    def effects(properties): return {}
+    
+    @staticmethod
+    def get_dependant_properties(): return []
+    
+    @staticmethod
+    def name(): return 'hitbox_br_x'
+
+class Hitbox_br_y(Property):
+
+    @staticmethod
+    def compute(previous, current, current_others): return current.properties[Hitbox_br_y]
+    
+    @staticmethod
+    def effects(properties): return {}
+    
+    @staticmethod
+    def get_dependant_properties(): return []
+    
+    @staticmethod
+    def name(): return 'hitbox_br_y'
 
 class Speed_x(Property):
 
     @staticmethod
-    def compute(elem0, elem1, other_elements1):
-        return elem1.properties['pos_x'] - elem0.properties['pos_x']
+    def compute(previous, current, current_others): return current.properties[Pos_x] - previous.properties[Pos_x]
     
     @staticmethod
-    def effects(prop_value, properties):
-        return {'pos_x': prop_value, 'hitbox_tl_x': prop_value, 'hitbox_br_x': prop_value}
+    def effects(properties):
+        return {Pos_x: properties[Speed_x], Hitbox_tl_x: properties[Speed_x], Hitbox_br_x: properties[Speed_x]}
     
     @staticmethod
-    def name():
-        return 'vx'
+    def get_dependant_properties(): return [Pos_x, Hitbox_tl_x, Hitbox_br_x]
+    
+    @staticmethod
+    def name(): return 'vx'
 
 class Speed_y(Property):
 
     @staticmethod
-    def compute(elem0, elem1, other_elements1):
-        return elem1.properties['pos_y'] - elem0.properties['pos_y']
+    def compute(previous, current, current_others): return current.properties[Pos_y] - previous.properties[Pos_y]
     
     @staticmethod
-    def effects(prop_value, properties):
-        return {'pos_y': prop_value, 'hitbox_tl_y': prop_value, 'hitbox_br_y': prop_value}
+    def effects(properties):
+        return {Pos_y: properties[Speed_y], Hitbox_tl_y: properties[Speed_y], Hitbox_br_y: properties[Speed_y]}
     
     @staticmethod
-    def name():
-        return 'vy'
+    def get_dependant_properties(): return [Pos_y, Hitbox_tl_y, Hitbox_br_y]
+    
+    @staticmethod
+    def name(): return 'vy'

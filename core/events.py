@@ -1,49 +1,84 @@
+from core.property import Pos_x, Pos_y, Hitbox_tl_x, Hitbox_tl_y, Hitbox_br_x, Hitbox_br_y
+
 class SingleTargetEvent:
-    def check(self, element0, element1, other_elements1) -> bool:
+
+    @staticmethod
+    def check(previous, current, current_others) -> bool:
         raise NotImplementedError("Subclasses must implement this method.")
-    def __repr__(self):
+
+    @staticmethod
+    def name():
+        raise NotImplementedError("Subclasses must implement this method.")
+    
+    @staticmethod
+    def id():
         raise NotImplementedError("Subclasses must implement this method.")
 
 class Contact_With_Something_T(SingleTargetEvent):
-    def check(self, element0, element1, other_elements1) -> bool:
-        hb1 = ((element1.properties['hitbox_tl_x'], element1.properties['hitbox_tl_y']), (element1.properties['hitbox_br_x'], element1.properties['hitbox_br_y']))
-        for oe in other_elements1:
-            hb2 = ((oe.properties['hitbox_tl_x'], oe.properties['hitbox_tl_y']), (oe.properties['hitbox_br_x'], oe.properties['hitbox_br_y']))
-            if (hb1[1][1] + 1 == hb2[0][1] and hb1[0][0] < hb2[1][0] and hb1[1][0] > hb2[0][0]):
-                return True
-        return False
-    def __repr__(self):
-        return "contact_top"
 
-class Contact_With_Something_B(SingleTargetEvent):
-    def check(self, element0, element1, other_elements1) -> bool:
-        hb1 = ((element1.properties['hitbox_tl_x'], element1.properties['hitbox_tl_y']), (element1.properties['hitbox_br_x'], element1.properties['hitbox_br_y']))
-        for oe in other_elements1:
-            hb2 = ((oe.properties['hitbox_tl_x'], oe.properties['hitbox_tl_y']), (oe.properties['hitbox_br_x'], oe.properties['hitbox_br_y']))
+    @staticmethod
+    def check(previous, current, current_others) -> bool:
+        hb1 = ((current.properties[Hitbox_tl_x], current.properties[Hitbox_tl_y]), (current.properties[Hitbox_br_x], current.properties[Hitbox_br_y]))
+        for oe in current_others:
+            hb2 = ((oe.properties[Hitbox_tl_x], oe.properties[Hitbox_tl_y]), (oe.properties[Hitbox_br_x], oe.properties[Hitbox_br_y]))
             if (hb1[0][1] - 1 == hb2[1][1] and hb1[0][0] < hb2[1][0] and hb1[1][0] > hb2[0][0]):
                 return True
         return False
-    def __repr__(self):
-        return "contact_bottom"
+
+    @staticmethod
+    def name(): return 'contact_top'
+    
+    @staticmethod
+    def id(): return 1
+
+class Contact_With_Something_B(SingleTargetEvent):
+
+    @staticmethod
+    def check(previous, current, current_others) -> bool:
+        hb1 = ((current.properties[Hitbox_tl_x], current.properties[Hitbox_tl_y]), (current.properties[Hitbox_br_x], current.properties[Hitbox_br_y]))
+        for oe in current_others:
+            hb2 = ((oe.properties[Hitbox_tl_x], oe.properties[Hitbox_tl_y]), (oe.properties[Hitbox_br_x], oe.properties[Hitbox_br_y]))
+            if (hb1[1][1] + 1 == hb2[0][1] and hb1[0][0] < hb2[1][0] and hb1[1][0] > hb2[0][0]):
+                #print(f'contact between bottom side of {current}({hb1}) and {oe}({hb2})')
+                return True
+        return False
+
+    @staticmethod
+    def name(): return 'contact_bottom'
+    
+    @staticmethod
+    def id(): return 2
 
 class Contact_With_Something_L(SingleTargetEvent):
-    def check(self, element0, element1, other_elements1) -> bool:
-        hb1 = ((element1.properties['hitbox_tl_x'], element1.properties['hitbox_tl_y']), (element1.properties['hitbox_br_x'], element1.properties['hitbox_br_y']))
-        for oe in other_elements1:
-            hb2 = ((oe.properties['hitbox_tl_x'], oe.properties['hitbox_tl_y']), (oe.properties['hitbox_br_x'], oe.properties['hitbox_br_y']))
+
+    @staticmethod
+    def check(previous, current, current_others) -> bool:
+        hb1 = ((current.properties[Hitbox_tl_x], current.properties[Hitbox_tl_y]), (current.properties[Hitbox_br_x], current.properties[Hitbox_br_y]))
+        for oe in current_others:
+            hb2 = ((oe.properties[Hitbox_tl_x], oe.properties[Hitbox_tl_y]), (oe.properties[Hitbox_br_x], oe.properties[Hitbox_br_y]))
             if (hb1[0][0] - 1 == hb2[1][0] and hb1[0][1] < hb2[1][1] and hb1[1][1] > hb2[0][1]):
                 return True
         return False
-    def __repr__(self):
-        return "contact_left"
+
+    @staticmethod
+    def name(): return 'contact_left'
+    
+    @staticmethod
+    def id(): return 3
 
 class Contact_With_Something_R(SingleTargetEvent):
-    def check(self, element0, element1, other_elements1) -> bool:
-        hb1 = ((element1.properties['hitbox_tl_x'], element1.properties['hitbox_tl_y']), (element1.properties['hitbox_br_x'], element1.properties['hitbox_br_y']))
-        for oe in other_elements1:
-            hb2 = ((oe.properties['hitbox_tl_x'], oe.properties['hitbox_tl_y']), (oe.properties['hitbox_br_x'], oe.properties['hitbox_br_y']))
+
+    @staticmethod
+    def check(previous, current, current_others) -> bool:
+        hb1 = ((current.properties[Hitbox_tl_x], current.properties[Hitbox_tl_y]), (current.properties[Hitbox_br_x], current.properties[Hitbox_br_y]))
+        for oe in current_others:
+            hb2 = ((oe.properties[Hitbox_tl_x], oe.properties[Hitbox_tl_y]), (oe.properties[Hitbox_br_x], oe.properties[Hitbox_br_y]))
             if (hb1[1][0] + 1 == hb2[0][0] and hb1[0][1] < hb2[1][1] and hb1[1][1] > hb2[0][1]):
                 return True
         return False
-    def __repr__(self):
-        return "contact_right"
+
+    @staticmethod
+    def name(): return 'contact_right'
+    
+    @staticmethod
+    def id(): return 4

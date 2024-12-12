@@ -27,6 +27,11 @@ class Object:
     
     def get_properties_class(self):
         return [rule.property_class for rule in self.rules]
+    
+    def unique(self):
+        ss = ''
+        for r in self.rules: ss += r.unique()
+        return ss
 
     def __repr__(self):
         ss = f"Object_{self.id} - Rules:"

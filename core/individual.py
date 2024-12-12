@@ -1,6 +1,7 @@
 import random
 
 from core.object import Object
+from core.rule import Rule
 
 class Individual:
 
@@ -8,8 +9,10 @@ class Individual:
 
         self.id = id
         self.object_id_generator = object_id_generator
-        if objects is not None:
-            self.objects = [Object(id= self.object_id_generator(), rules= [rule for rule in obj.rules]) for obj in objects]
+
+        if objects is None: self.objects = []
+        else: self.objects = [Object(id= self.object_id_generator(), rules= [Rule([e for e in rule.events], rule.property_class, rule.coefficient) for rule in obj.rules]) for obj in objects]
+        
         self.fitness = None
 
     def initialize(self, event_pool, property_pool, coefficient_pool) -> 'Individual':
@@ -27,6 +30,11 @@ class Individual:
     def remove_object(self):
 
         self.objects.pop(random.randint(0, len(self.objects) - 1))
+
+    def unique(self):
+        ss = ''
+        for o in self.objects: ss += o.unique()
+        return ss
 
     def __repr__(self) -> str:
         ss = ''

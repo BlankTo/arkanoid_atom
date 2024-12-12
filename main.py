@@ -9,8 +9,12 @@ def main():
     #log_file_name = 'arkanoid_log_2024_12_02_12_18_40.pkl'
     elements_per_frame = load_elements_per_frame(log_file_name, ['pos_x', 'pos_y', 'hitbox_tl_x', 'hitbox_tl_y', 'hitbox_br_x', 'hitbox_br_y'])
 
+    #for i, frame in enumerate(elements_per_frame):
+    #    print(f'frame_{i}:\n{frame}')
+    #exit()
+
     # Step 2: Initialize the evolutionary algorithm
-    ea = EvolutionaryAlgorithm(elements_per_frame)
+    ea = EvolutionaryAlgorithm(elements_per_frame, population_size= 10, max_generations= 100, survival_rate= 0.2)
 
     # Step 3: Run the evolutionary algorithm
     best_individuals = ea.run()
