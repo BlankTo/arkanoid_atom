@@ -119,6 +119,8 @@ class FitnessEvaluator:
 
                             score -= total_diff
 
+                            if n_triggered == 0 and len(events[frame_id - 1]) > 0 and total_diff == 0: score += 10
+
                             if cc:
                                 print(f'{n_triggered} rule triggered -> {[r for i_r, r in enumerate(obj.rules) if triggered_rules[i_r]]}')
                                 print(f'from {sequence[-1]} to {e}')
@@ -282,6 +284,10 @@ if __name__ == '__main__':
                 Rule([Contact_With_Something_B], Speed_y, -2),
                 Rule([Contact_With_Something_L], Speed_x, -2),
                 ]),
+            ]),
+
+        Individual(8, ID_generator(), [
+            Object(0, []),
             ]),
 
         ]
