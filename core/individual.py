@@ -14,6 +14,7 @@ class Individual:
         else: self.objects = [Object(id= self.object_id_generator(), rules= [Rule([e for e in rule.events], rule.property_class, rule.coefficient) for rule in obj.rules]) for obj in objects]
         
         self.fitness = None
+        self.sequences = None
 
     def initialize(self, event_pool, property_pool, coefficient_pool) -> 'Individual':
 

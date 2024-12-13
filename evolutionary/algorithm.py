@@ -51,24 +51,21 @@ class EvolutionaryAlgorithm:
             FitnessEvaluator.evaluate(self.population, self.frames)
             self.population = [individual for individual in sorted(self.population, key=lambda x: x.fitness, reverse=True)]
 
+
+
+            print(f"----------------------------\n----------------------------\nGeneration {generation}/{self.max_generations}")
+            print('population:')
+            for ii in self.population:
+                print('---------------------------')
+                print(f'ind_{ii.id}: {ii} - score: {ii.fitness}')
+            #exit()
+
+
             # Selection
             survivors = self.population[: int(self.population_size * self.survival_rate)]
-            
-            #for ss in survivors:
-            #    print(f'ind_{ss.id}: {ss} - score: {ss.fitness}')
-            #exit()
 
             # Reproduction
             self.population = mutate(survivors, self.population_size, self.individual_id_generator, self.event_pool, self.property_pool, self.coefficient_pool)
-
-            #print('--------------------------------\n--------------------------------')
-            #for ind in self.population:
-            #    print(f'ind_{ind.id}: {ind} - score: {ind.fitness}')
-            #exit()
-
-            # Log
-            best_individual = survivors[0]
-            print(f"----------------------------\nGeneration {generation}/{self.max_generations}\n Best individual:\n{best_individual}\nwith fitness: {best_individual.fitness}")
-
+            
         # Return the best individuals
         return self.population[:10]
