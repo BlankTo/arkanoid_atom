@@ -54,11 +54,16 @@ class EvolutionaryAlgorithm:
 
 
             print(f"----------------------------\n----------------------------\nGeneration {generation}/{self.max_generations}")
-            print('population:')
-            for ii in self.population:
-                print('---------------------------')
-                print(f'ind_{ii.id}: {ii} - score: {ii.fitness}')
-            #exit()
+
+            print('best_individual:')
+            best = self.population[0]
+            print(f'ind_{best.id}: {best} - score: {best.fitness}')
+
+            #print('population:')
+            #for ii in self.population:
+            #    print('---------------------------')
+            #    print(f'ind_{ii.id}: {ii} - score: {ii.fitness}')
+            ##exit()
 
 
             # Selection

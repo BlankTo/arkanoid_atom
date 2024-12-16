@@ -55,6 +55,7 @@ def mutate_one(new_id, base_individual, event_pool, property_pool, coefficient_p
             random.choice(all_rules).modify_property_class(property_pool)
         case 'modify_rule_coefficient':
             random.choice(all_rules).modify_coefficient(coefficient_pool)
+        #TODO: add fusion and division of rules and objects
 
     return new_ind
 

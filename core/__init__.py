@@ -6,7 +6,6 @@ from .events import (
     Contact_With_Something_R,
 )
 from .object import Object
-from .realization import Realization
 from .individual import Individual
 from .property import Property, Speed_x, Speed_y
 from .rule import Rule

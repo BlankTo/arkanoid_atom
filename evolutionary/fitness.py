@@ -33,6 +33,7 @@ class FitnessEvaluator:
 
             object_score = 0
             sequences[obj.id] = []
+            rule_not_used = {rule: True for rule in obj.rules}
 
             for e0, (e1_i, e1) in itertools.product(frames[0], enumerate(frames[1])):
 
@@ -68,6 +69,10 @@ class FitnessEvaluator:
                         properties[property_class] += coeff * properties[property_class]
                         cc += coeff * properties[property_class]
 
+                    if sum(triggered_rules) > 0 and cc:
+                        for rule, triggered in zip(obj.rules, triggered_rules):
+                            if triggered: rule_not_used[rule] = False
+
                     #
 
                     base_properties_changes = {}
@@ -101,7 +106,12 @@ class FitnessEvaluator:
 
                             if sum(triggered_rules) > 0:
 
-                                if cc == 0: element_score -= 100
+                                if cc == 0:
+                                    
+                                    element_score -= 100
+
+                                    if total_diff == 0: object_score += 10
+
                                 else: pass
                             
                             else: pass
@@ -117,7 +127,6 @@ class FitnessEvaluator:
                     elem_added = frames[frame_id][best_element_idx]
 
                     sequence.append(elem_added)
-                    element_assignment[frame_id][elem_added.id].append(obj.id)
 
                     current_others = frames[frame_id][:best_element_idx] + frames[frame_id][best_element_idx+1:]
                     properties = {property_class: property_class.compute(sequence[-2], sequence[-1], current_others) for property_class in considered_properties}
@@ -130,19 +139,34 @@ class FitnessEvaluator:
 
                 #TODO: other sequence_score adjustment
 
-                sequences[obj.id].append((sequence, sequence_score))
+                if sequence_score == 0:
+                    object_score += 100
+                    
+                    for frame_id, e in enumerate(sequence): element_assignment[frame_id][e.id].append(obj.id)
 
-                object_score += sequence_score
+                    sequences[obj.id].append((sequence, sequence_score))
+
+                    object_score += sequence_score
 
             #TODO: other object_score adjustments
+
+            object_score -= sum(rule_not_used.values()) * 100
             
             individual_score += object_score
+
+        #TODO: other individual_score adjustments
+
+        for frame in element_assignment:
+            for e_assignment in frame.values():
+                rep = len(e_assignment)
+                if rep == 0: individual_score -= 10
+                elif rep > 1: individual_score -= pow(len(e_assignment), 2)
 
         individual.fitness = individual_score
         individual.sequences = sequences
     
     @staticmethod
-    def evaluate_2(population, frames):
+    def evaluate(population, frames):
 
         for ind_i, individual in enumerate(population):
             #print('--------------------------------')
@@ -152,7 +176,7 @@ class FitnessEvaluator:
                 FitnessEvaluator.generate_sequences(individual, frames)
 
     @staticmethod
-    def evaluate(population, frames):
+    def evaluate_old(population, frames):
 
         for ind_i, individual in enumerate(population):
             #print('--------------------------------')
@@ -370,9 +394,9 @@ if __name__ == '__main__':
 
         Individual(3, ID_generator(), [
             Object(0, [
-                Rule([Contact_With_Something_T], Speed_y, 2),
+                Rule([Contact_With_Something_T], Speed_y, -2),
                 Rule([Contact_With_Something_B], Speed_y, -2),
-                Rule([Contact_With_Something_L], Speed_x, 2),
+                Rule([Contact_With_Something_L], Speed_x, -2),
                 Rule([Contact_With_Something_R], Speed_x, -2),
                 ]),
             Object(1, [
@@ -385,9 +409,9 @@ if __name__ == '__main__':
 
         Individual(4, ID_generator(), [
             Object(0, [
-                Rule([Contact_With_Something_T], Speed_y, 2),
+                Rule([Contact_With_Something_T], Speed_y, -2),
                 Rule([Contact_With_Something_B], Speed_y, -2),
-                Rule([Contact_With_Something_L], Speed_x, 2),
+                Rule([Contact_With_Something_L], Speed_x, -2),
                 Rule([Contact_With_Something_R], Speed_x, -2),
                 ]),
             Object(1, []),
@@ -419,7 +443,7 @@ if __name__ == '__main__':
             ]),
 
         ]
-    FitnessEvaluator.evaluate_2(debug_population, frames)
+    FitnessEvaluator.evaluate(debug_population, frames)
     for ind in debug_population:
         print('=========================')
         print('=========================')
