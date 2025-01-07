@@ -172,12 +172,10 @@ def main():
             }),
         ],
     ]
-    population = euristic_initialization(debug_patches_per_frame)
-    #population = euristic_initialization(patches_per_frame)
+    #population = euristic_initialization(debug_patches_per_frame, debug= True)
+    population = euristic_initialization(patches_per_frame[:100])
     
     print('\n\n=====================================\ndebug_end\n=====================================\n')
-
-    print('--------------\n')
 
     scores = []
     for ind_id, ind in enumerate(population):
@@ -191,15 +189,14 @@ def main():
 
     for ind_id, ind, score in population:
         print(f'\n--------------\nind_{ind_id}:\n--------------')
-        for obj_id, obj in ind.object_dict.items():
-            if obj_id != 1:
+        for obj_id in ind.object_dict.keys():
                 print(f'\nobj_{obj_id}')
 
                 for frame_id, frame_dict in ind.object_info[obj_id].items():
                     if frame_dict['present']:
                         print(f'frame {frame_id} - patch: {frame_dict["patch"]}\n- unexplained: {frame_dict["unexplained"]}\n- events: {frame_dict["events"]}')
                     else:
-                        print(f'frame {frame_id} - patch not present - unexplained: {frame_dict["unexplained"]}\n- events: {frame_dict["events"]}')
+                        print(f'frame {frame_id} - patch not present\n- unexplained: {frame_dict["unexplained"]}\n- events: {frame_dict["events"]}')
 
         print(f'score: {score}')
 

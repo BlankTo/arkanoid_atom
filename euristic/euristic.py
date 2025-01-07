@@ -19,7 +19,7 @@ def compute_diff(pred, patch):
     return diff
 
 
-def euristic_initialization(patches_per_frame):
+def euristic_initialization(patches_per_frame, debug= False):
 
     ind_id_generator = ID_generator()
     obj_id_generator = ID_generator()
@@ -31,13 +31,14 @@ def euristic_initialization(patches_per_frame):
 
     #
 
-    print(f'initial population: {population}')
-    print(f'initial present_objects:')
-    for obj_id, obj in present_objects.items():
-        print(f'\tobj_{obj_id}: {obj}')
-    print(f'initial not_present_objects:')
-    for obj_id, obj in not_present_objects.items():
-        print(f'\tobj_{obj_id}: {obj}')
+    if debug:
+        print(f'initial population: {population}')
+        print(f'initial present_objects:')
+        for obj_id, obj in present_objects.items():
+            print(f'\tobj_{obj_id}: {obj}')
+        print(f'initial not_present_objects:')
+        for obj_id, obj in not_present_objects.items():
+            print(f'\tobj_{obj_id}: {obj}')
 
     #
 
@@ -45,21 +46,20 @@ def euristic_initialization(patches_per_frame):
         if frame_id == 0: continue
         print(f'\n{frame_id}/{len(patches_per_frame)} - population: {len(population.keys())}')
 
-        #
-
-        print(f'population: {population}')
-        print(f'present_objects:')
-        for obj_id, obj in present_objects.items():
-            print(f'\tobj_{obj_id}: {obj}')
-        print(f'not_present_objects:')
-        for obj_id, obj in not_present_objects.items():
-            print(f'\tobj_{obj_id}: {obj}')
-
         unassigned_objects = [obj_id for obj_id in present_objects.keys()] # all present objects of all individuals (some are shared between individuals)
         unassigned_patches = {ind_id: [p for p in patches] for ind_id in population.keys()} # list of unassigned patches for each individual
 
-        print(f'unassigned_objects: {unassigned_objects}')
-        print(f'unassigned_patches: {unassigned_patches}')
+        if debug:
+            print(f'population: {population}')
+            print(f'present_objects:')
+            for obj_id, obj in present_objects.items():
+                print(f'\tobj_{obj_id}: {obj}')
+            print(f'not_present_objects:')
+            for obj_id, obj in not_present_objects.items():
+                print(f'\tobj_{obj_id}: {obj}')
+
+            print(f'unassigned_objects: {unassigned_objects}')
+            print(f'unassigned_patches: {unassigned_patches}')
 
         #
 
@@ -345,9 +345,25 @@ def euristic_initialization(patches_per_frame):
 
         # rule inference and check #here
 
-        #
+        ## rule creation and maybe aggregation
+        # when a new unexplained is added
+        # 1) Check if a rule already explain it, if yes skip this part
+        # 2) Check for events in frames[-n:] and unexplained in frames[-n:-1] and create a rule with combinations of them as cause (each rule create a new individual with that rule)
+        # 3) Leave the default (no rule and unexplained unexplained) untouched (indipendently of previous individual creation)
+        # 4) (future) check rule equality between objects and form classes (if all the objects in two classes are the same, fuse them) with the common rules (rules in different classes could still count as one for the scoring)
 
         # scoring and pruning (#here expand in order to use events and rules for scoring)
+
+        # score = n°(unexplained) - n°(unexplained explained by rules) - n°(rules)
+        # or
+        # score = (n°(unexplained) - n°(unexplained explained by rules), n°(rules))
+
+        ## think about leaving more space to the pruning
+        # second chances or more
+        # or
+        # keeping the n best individuals
+        # or
+        # evaluate the score in different ways (no rule n° malus, invert scoring rules unexplained, or similar)
 
         best_score = math.inf
         scores = []
@@ -399,4 +415,9 @@ def euristic_initialization(patches_per_frame):
 
 
 
-## (i+1) = a * (i) + b * (i) + c, a in [0, 1], b in [-2, -1, 0, 1, 2], c in [0, 1], avoiding (a=1, b=0, c=0) ?
+## (i+1) = b * (i) + c, a in [-2, -1, 0, 1, 2], b in [-1, 0, 1] or ∀R
+# -2v+b # inversione velocizzata
+# -v+b # inversione con b=0
+# b # start o stop
+# v+b # modifica velocita con b!=0
+# 2v+b # speed-up
