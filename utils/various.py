@@ -1,28 +1,36 @@
 import os
 import pickle
 
-from core.element import Element
-from core.property import Pos_x, Pos_y, Hitbox_tl_x, Hitbox_tl_y, Hitbox_br_x, Hitbox_br_y
+from core.patch import Patch
+from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 
 class ID_generator:
 
-    def __init__(self):
-        self.prev_id = -1
+    def __init__(self, init_id= -1):
+        self.prev_id = init_id
 
     def __call__(self) -> int:
         self.prev_id += 1
         return self.prev_id
     
-property_dict = {
-    'pos_x': Pos_x,
-    'pos_y': Pos_y,
-    'hitbox_tl_x': Hitbox_tl_x,
-    'hitbox_tl_y': Hitbox_tl_y,
-    'hitbox_br_x': Hitbox_br_x,
-    'hitbox_br_y': Hitbox_br_y,
-}
+    def copy(self): return ID_generator(self.prev_id)
+
+
+
+# future update: a method to extract patches with properties from images instead of convert_properties 
+
+def convert_properties(elem_props):
+
+    properties = {
+        Pos_x: elem_props['pos_x'],
+        Pos_y: elem_props['pos_y'],
+        Shape_x: elem_props['pos_x'] - elem_props['hitbox_tl_x'],
+        Shape_y: elem_props['pos_y'] - elem_props['hitbox_tl_y'],
+    }
+
+    return properties
     
-def load_elements_per_frame(log_file_name= None, properties_to_load= None, descriptions_to_exclude= ['environment']):
+def load_patches_per_frame(log_file_name= None, descriptions_to_exclude= ['environment']):
 
     if log_file_name is None: # use last saved
         log_files_name = os.listdir('logs/arkanoid_logs')
@@ -34,15 +42,15 @@ def load_elements_per_frame(log_file_name= None, properties_to_load= None, descr
         log = pickle.load(log_file)
     print(f'{log_file_path} loaded')
 
-    elements_per_frame = []
+    patches_per_frame = []
     for frame in log:
 
-        elements = []
+        patches = []
         for description, elem_props in frame['elements'].items():
             if description in descriptions_to_exclude: continue
             
-            elements.append(Element(elem_props['id'], description, {property_dict[k]: v for k, v in elem_props.items() if k in properties_to_load}))
+            patches.append(Patch(description, convert_properties(elem_props)))
 
-        elements_per_frame.append(elements)
+        patches_per_frame.append(patches)
 
-    return elements_per_frame
+    return patches_per_frame

@@ -1,43 +1,26 @@
-import random
 
-from core.object import Object
-from core.rule import Rule
+
+class FormingIndividual:
+
+    def __init__(self, objects_id, events, unassigned_patches):
+        self.objects_id = [ob_id for ob_id in objects_id]
+        self.events = {k: [ev for ev in v] for k, v in events.items()}
+        self.unassigned_patches = [up for up in unassigned_patches]
 
 class Individual:
 
-    def __init__(self, id, object_id_generator, objects= None):
+    def __init__(self, object_dict, events, last_frame_id):
 
-        self.id = id
-        self.object_id_generator = object_id_generator
+        self.object_dict = {obj_id: obj for obj_id, obj in object_dict.items()}
 
-        if objects is None: self.objects = []
-        else: self.objects = [Object(id= self.object_id_generator(), rules= [Rule([e for e in rule.events], rule.property_class, rule.coefficient) for rule in obj.rules]) for obj in objects]
-        
-        self.fitness = None
-        self.sequences = None
+        self.object_info = {}
+        for obj_id, current_obj in object_dict.items():
+            frame_dict = {}
+            for frame_id in range(0, last_frame_id):
+                if frame_id in current_obj.frames_id:
+                    frame_dict[frame_id] = {'present': True, 'unexplained': current_obj.unexplained[frame_id] if frame_id in current_obj.unexplained.keys() else [], 'events': events[(frame_id, obj_id)] if (frame_id, obj_id) in events.keys() else [], 'patch': object_dict[obj_id].sequence[object_dict[obj_id].frames_id.index(frame_id)]}
+                else:
+                    frame_dict[frame_id] = {'present': False, 'unexplained': current_obj.unexplained[frame_id] if frame_id in current_obj.unexplained.keys() else [], 'events': events[(frame_id, obj_id)] if (frame_id, obj_id) in events.keys() else [], 'patch': None}
+            self.object_info[obj_id] = frame_dict
 
-    def initialize(self, event_pool, property_pool, coefficient_pool) -> 'Individual':
-
-        n_obj = random.randint(1, 3)
-        self.objects = [Object(id= self.object_id_generator()).initialize(event_pool, property_pool, coefficient_pool) for _ in range(n_obj)]
-        return self
-    
-    #TODO add constraints on diverse objects
-    
-    def add_new_object(self, event_pool, property_pool, coefficient_pool):
-
-        self.objects.append(Object(id= self.object_id_generator()).initialize(event_pool, property_pool, coefficient_pool))
-
-    def remove_object(self):
-
-        self.objects.pop(random.randint(0, len(self.objects) - 1))
-
-    def unique(self):
-        ss = ''
-        for o in self.objects: ss += o.unique()
-        return ss
-
-    def __repr__(self) -> str:
-        ss = ''
-        for obj in self.objects: ss += f'{obj}\n'
-        return ss
+    def objects_id(self): return self.object_dict.keys()

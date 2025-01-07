@@ -1,28 +1,221 @@
-from utils.various import load_elements_per_frame
-from core.element import Element
-from evolutionary.algorithm import EvolutionaryAlgorithm
+from utils.various import load_patches_per_frame
+from euristic import euristic_initialization
 
 def main():
-    # Step 1: Retrieve log
+    
+    ## Retrieve log and convert each patch in each frame to anonymous Patch objects
 
     log_file_name = None
-    #log_file_name = 'arkanoid_log_2024_12_02_12_18_40.pkl'
-    elements_per_frame = load_elements_per_frame(log_file_name, ['pos_x', 'pos_y', 'hitbox_tl_x', 'hitbox_tl_y', 'hitbox_br_x', 'hitbox_br_y'])
+    patches_per_frame = load_patches_per_frame(log_file_name)
 
-    #for i, frame in enumerate(elements_per_frame[:-100]):
-    #    print(f'frame_{i}: {frame}')
-    #exit()
+    ## Definition of possible sequences and euristic population
 
-    # Step 2: Initialize the evolutionary algorithm
-    ea = EvolutionaryAlgorithm(elements_per_frame, population_size= 10, max_generations= 100, survival_rate= 0.2)
+    from core.patch import Patch
+    from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 
-    # Step 3: Run the evolutionary algorithm
-    best_individuals = ea.run()
+    debug_patches_per_frame_0 = [
+        [ # frame 0
+            Patch('ball', {
+                Pos_x: 3,
+                Pos_y: 1,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall', {
+                Pos_x: 5,
+                Pos_y: 3,
+                Shape_x: 0,
+                Shape_y: 2,
+            }),
+        ],
+        [ # frame 1
+            Patch('ball', {
+                Pos_x: 4,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall', {
+                Pos_x: 5,
+                Pos_y: 3,
+                Shape_x: 0,
+                Shape_y: 2,
+            }),
+        ],
+        [ # frame 2
+            Patch('ball', {
+                Pos_x: 3,
+                Pos_y: 3,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall', {
+                Pos_x: 5,
+                Pos_y: 3,
+                Shape_x: 0,
+                Shape_y: 2,
+            }),
+        ],
+        [ # frame 2
+            Patch('ball', {
+                Pos_x: 2,
+                Pos_y: 4,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall', {
+                Pos_x: 5,
+                Pos_y: 3,
+                Shape_x: 0,
+                Shape_y: 2,
+            }),
+        ],
+    ]
 
-    # Step 4: Output results
-    print('best_individual:')
-    for obj in best_individuals[0].objects:
-        print(obj)
+    debug_patches_per_frame = [
+        [ # frame 0
+            Patch('ball_a', {
+                Pos_x: 4,
+                Pos_y: 3,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('ball_b', {
+                Pos_x: 4,
+                Pos_y: 1,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall_a', {
+                Pos_x: 6,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 1,
+            }),
+            Patch('wall_b', {
+                Pos_x: 1,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 1,
+            }),
+        ],
+        [ # frame 1
+            Patch('ball_a', {
+                Pos_x: 3,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('ball_b', {
+                Pos_x: 5,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall_a', {
+                Pos_x: 6,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 1,
+            }),
+            Patch('wall_b', {
+                Pos_x: 1,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 1,
+            }),
+        ],
+        [ # frame 2
+            Patch('ball_a', {
+                Pos_x: 2,
+                Pos_y: 1,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('ball_b', {
+                Pos_x: 4,
+                Pos_y: 3,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall_a', {
+                Pos_x: 6,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 1,
+            }),
+            Patch('wall_b', {
+                Pos_x: 1,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 1,
+            }),
+        ],
+        [ # frame 3
+            Patch('ball_a', {
+                Pos_x: 3,
+                Pos_y: 0,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('ball_b', {
+                Pos_x: 3,
+                Pos_y: 4,
+                Shape_x: 0,
+                Shape_y: 0,
+            }),
+            Patch('wall_a', {
+                Pos_x: 6,
+                Pos_y: 2,
+                Shape_x: 0,
+                Shape_y: 1,
+            }),
+        ],
+    ]
+    population = euristic_initialization(debug_patches_per_frame)
+    #population = euristic_initialization(patches_per_frame)
+    
+    print('\n\n=====================================\ndebug_end\n=====================================\n')
+
+    print('--------------\n')
+
+    scores = []
+    for ind_id, ind in enumerate(population):
+        score = 0
+        for obj_id in ind.object_dict.keys():
+            for frame_dict in ind.object_info[obj_id].values():
+                score += len(frame_dict['unexplained'])
+        scores.append((ind_id, ind, score))
+    
+    population = [(ind_id, ind, score) for ind_id, ind, score in sorted(scores, key= lambda x: x[2], reverse= True)]
+
+    for ind_id, ind, score in population:
+        print(f'\n--------------\nind_{ind_id}:\n--------------')
+        for obj_id, obj in ind.object_dict.items():
+            if obj_id != 1:
+                print(f'\nobj_{obj_id}')
+
+                for frame_id, frame_dict in ind.object_info[obj_id].items():
+                    if frame_dict['present']:
+                        print(f'frame {frame_id} - patch: {frame_dict["patch"]}\n- unexplained: {frame_dict["unexplained"]}\n- events: {frame_dict["events"]}')
+                    else:
+                        print(f'frame {frame_id} - patch not present - unexplained: {frame_dict["unexplained"]}\n- events: {frame_dict["events"]}')
+
+        print(f'score: {score}')
+
+    return
+
+    initial_population = euristic_initialization(patches_per_frame)
+
+    # evolutionary algorithm
+
+
+
+    # Output results
+
+
+
+    return
 
 if __name__ == "__main__":
     main()
