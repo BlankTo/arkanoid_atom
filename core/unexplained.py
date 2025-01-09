@@ -5,7 +5,13 @@ from core.patch import Patch
 class UnexplainedChange:
     pass
 
-class PropertyChange(UnexplainedChange):
+class UnexplainedNumericalChange(UnexplainedChange):
+    pass
+
+class UnexplainedSpecificChange(UnexplainedChange):
+    pass
+
+class PropertyChange(UnexplainedNumericalChange):
 
     def __init__(self, property_class, previous_value, final_value):
         self.property_class = property_class
@@ -17,7 +23,7 @@ class PropertyChange(UnexplainedChange):
     
     def __repr__(self): return f'PropertyChange({self.property_class.name()}: {self.previous_value} -> {self.final_value})'
 
-class Appearance(UnexplainedChange):
+class Appearance(UnexplainedSpecificChange):
 
     def __init__(self):
         pass
@@ -27,7 +33,7 @@ class Appearance(UnexplainedChange):
     
     def __repr__(self): return 'Appearance'
 
-class Disappearance(UnexplainedChange):
+class Disappearance(UnexplainedSpecificChange):
 
     def __init__(self):
         pass
@@ -37,7 +43,7 @@ class Disappearance(UnexplainedChange):
     
     def __repr__(self): return 'Disappearance'
 
-class Duplication(UnexplainedChange):
+class Duplication(UnexplainedSpecificChange):
 
     def __init__(self, from_obj):
         self.from_obj = from_obj

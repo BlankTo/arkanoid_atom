@@ -1,6 +1,9 @@
 from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 
-class SingleTargetEvent:
+class Event:
+    pass
+
+class SingleTargetEvent(Event):
 
     @staticmethod
     def check(previous, current, current_others) -> bool:

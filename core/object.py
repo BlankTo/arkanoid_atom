@@ -1,6 +1,6 @@
 class Object:
 
-    def __init__(self, frames_id, sequence, current_properties= None, unexplained= {}):
+    def __init__(self, frames_id, sequence, current_properties= None, unexplained= {}, explained_unexplained= {}):
 
         self.frames_id = [fid for fid in frames_id]
 
@@ -11,10 +11,12 @@ class Object:
 
         self.unexplained = {k: [ex.copy() for ex in v] for k, v in unexplained.items()}
 
+        self.explained_unexplained = {k: [ex.copy() for ex in v] for k, v in explained_unexplained.items()}
+
         self.prediction = self.compute_next()
 
     def copy(self):
-        return Object(self.frames_id, self.sequence, self.current_properties, self.unexplained)
+        return Object(self.frames_id, self.sequence, self.current_properties, self.unexplained, self.explained_unexplained)
 
     def compute_next(self):
 
@@ -39,15 +41,26 @@ class Object:
             if frame_id in self.unexplained.keys(): self.unexplained[frame_id].extend([ex.copy() for ex in unexplained])
             else: self.unexplained[frame_id] = [ex.copy() for ex in unexplained]
 
-#    def __eq__(self, other):
-#        
-#        match(type(other)):
-#            case Object:
-#                if self.frames_id != other.frames_id: return False
-#                if self.sequence != other.sequence: return False
-#                if self.unexplained != other.expla
-#                if self.current_properties == other.current_properties: return False
-#                return True
+    def explain(self, frame_id, explained):
+
+        to_explain = []
+        for unexpl in self.unexplained[frame_id]:
+            if any([expl.test(unexpl) for expl in explained]):
+                to_explain.append(unexpl)
+        
+        for unexpl in to_explain:
+            self.unexplained[frame_id].remove(unexpl)
+            if frame_id in self.explained_unexplained.keys(): self.explained_unexplained[frame_id].append(unexpl)
+            else: self.explained_unexplained[frame_id] = [unexpl]
+
+    def __eq__(self, other):
+        
+        if isinstance(other, Object):
+            if set(self.frames_id) != set(other.frames_id): return False
+            if set(self.sequence) != set(other.sequence): return False
+            if self.unexplained != other.unexplained: return False
+            if self.explained_unexplained != other.explained_unexplained: return False
+            return True
 
     def __repr__(self):
         ss = f'[{self.sequence[0].description}'
