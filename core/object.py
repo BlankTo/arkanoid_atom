@@ -50,6 +50,7 @@ class Object:
         
         for unexpl in to_explain:
             self.unexplained[frame_id].remove(unexpl)
+            if len(self.unexplained[frame_id]) == 0: self.unexplained.pop(frame_id)
             if frame_id in self.explained_unexplained.keys(): self.explained_unexplained[frame_id].append(unexpl)
             else: self.explained_unexplained[frame_id] = [unexpl]
 
@@ -69,8 +70,11 @@ class Object:
         ss += '] -> {'
         for prop_class, val in self.current_properties.items():
             ss += f'({prop_class.name()}: {val})'
-        ss += '} - {'
-        for frame_id, expl in self.unexplained.items():
+        ss += '} - unexpl: {'
+        for frame_id, unexpl in self.unexplained.items():
+            ss += f'{frame_id}: {unexpl} |'
+        ss += '} - expl: {'
+        for frame_id, expl in self.explained_unexplained.items():
             ss += f'{frame_id}: {expl} |'
         ss += '}'
         return ss

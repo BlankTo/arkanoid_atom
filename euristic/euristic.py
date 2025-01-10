@@ -12,7 +12,6 @@ from core.events import event_pool, Event
 import math
 import itertools
 
-
 def compute_diff(pred, patch):
 
     diff = 0
@@ -152,6 +151,13 @@ def rule_inference(population, present_objects, not_present_objects, events, rul
     new_events = {}
     new_rules = {}
 
+    #print('=======================')
+    #print('rule_inference')
+    #print('=======================')
+    #for obj_id, obj in present_objects.items():
+    #    print(f'obj_{obj_id}')
+    #    print(obj)
+
     all_objects = present_objects | not_present_objects
 
     for ind_id, ind in population.items():
@@ -234,6 +240,24 @@ def rule_inference(population, present_objects, not_present_objects, events, rul
                             if obj_id in present_objects.keys(): present_objects[new_obj_id] = new_obj
                             else: not_present_objects[new_obj_id] = new_obj
 
+                            #stop = False
+                            #for ff, unexpla in obj.unexplained.items():
+                            #    if len(unexpla) > 2: stop = True
+                            #for ff, expla in obj.explained_unexplained.items():
+                            #    if len(expla) > 2: stop = True
+                            #for ff, unexpla in new_obj.unexplained.items():
+                            #    if len(unexpla) > 2: stop = True
+                            #for ff, expla in new_obj.explained_unexplained.items():
+                            #    if len(expla) > 2: stop = True
+                            #if stop:
+                            #    print('=======================')
+                            #    print('initial:')
+                            #    print(f'obj_{obj_id}')
+                            #    print(obj)
+                            #    print('new:')
+                            #    print(new_obj)
+                            #    exit()
+
                             #here
 
                             new_events[new_ind_id] = {(fid, obid): [ev for ev in ev_list] for (fid, obid), ev_list in events_for_ind.items()}
@@ -259,17 +283,6 @@ def euristic_initialization(patches_per_frame, debug= False):
 
     #
 
-    if debug:
-        print(f'initial population: {population}')
-        print(f'initial present_objects:')
-        for obj_id, obj in present_objects.items():
-            print(f'\tobj_{obj_id}: {obj}')
-        print(f'initial not_present_objects:')
-        for obj_id, obj in not_present_objects.items():
-            print(f'\tobj_{obj_id}: {obj}')
-
-    #
-
     for frame_id, patches in enumerate(patches_per_frame):
         if frame_id == 0: continue
         print(f'\n{frame_id}/{len(patches_per_frame)} - population: {len(population.keys())}')
@@ -286,8 +299,8 @@ def euristic_initialization(patches_per_frame, debug= False):
             for obj_id, obj in not_present_objects.items():
                 print(f'\tobj_{obj_id}: {obj}')
 
-            print(f'unassigned_objects: {unassigned_objects}')
-            print(f'unassigned_patches: {unassigned_patches}')
+            #print(f'unassigned_objects: {unassigned_objects}')
+            #print(f'unassigned_patches: {unassigned_patches}')
 
         #
 
@@ -594,8 +607,14 @@ def euristic_initialization(patches_per_frame, debug= False):
 
         #here
 
-#        new_inds, new_events, new_rules = rule_inference(population, present_objects, not_present_objects, events, {}, frame_id, ind_id_generator, obj_id_generator)
-#
+        new_inds, new_events, new_rules = rule_inference(population, present_objects, not_present_objects, events, {}, frame_id, ind_id_generator, obj_id_generator)
+
+#        print('==========================')
+#        print(new_inds)
+#        print(new_events)
+#        print(new_rules)
+#        print('==========================')
+        
 #        population |= new_inds
 #        events |= new_events
 #        rules |= new_rules
@@ -619,13 +638,18 @@ def euristic_initialization(patches_per_frame, debug= False):
         best_score = math.inf
         scores = []
         for ind_id, ind in population.items():
-            score = 0
+            total_unexplained = 0
+            total_rules = 0
 
             ind_objects = [(obj_id, present_objects[obj_id] if obj_id in present_objects.keys() else not_present_objects[obj_id]) for obj_id in ind]
 
             for obj_id, obj in ind_objects:
                 for frame_id, unexpl in obj.unexplained.items():
-                    score += len(unexpl)
+                    total_unexplained += len(unexpl)
+
+                if (ind_id, obj_id) in rules.keys(): total_rules += len(rules[(ind_id, obj_id)])
+
+            score = total_unexplained + total_rules
             
             scores.append((ind_id, score))
             if score < best_score: best_score = score
