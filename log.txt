@@ -1,0 +1,5265 @@
+
+--------------
+ind_0:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1023
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_1:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1024
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_2:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1025
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_3:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1026
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_4:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1027
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_5:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1028
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_6:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1029
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_7:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1058
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_8:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1059
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_9:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1060
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_10:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1064
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_11:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1065
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_12:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1066
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_13:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_27
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1070
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_14:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1138
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_15:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1139
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_16:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1140
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_17:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1141
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_18:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1142
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_19:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1143
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_20:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1144
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_21:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1173
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_22:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1174
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_23:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1175
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_24:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1179
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_25:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1180
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_26:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1181
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_27:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_28
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(pos_x: 2 -> 3)]
+- explained: []
+- events: []
+
+obj_1185
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_28:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1023
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_29:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1024
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_30:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1025
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_31:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1026
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_32:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1027
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_33:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1028
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_34:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1029
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_35:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1058
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_36:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1059
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_37:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1060
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_38:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1064
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_39:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1065
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_40:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1066
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_41:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1070
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3410
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + -1]
+with effects: [vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_42:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1138
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_43:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1139
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_44:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1140
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_45:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1141
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_46:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1142
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_47:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1143
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_48:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1144
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_49:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1173
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_50:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1174
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_51:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1175
+
+rules: [rule
+with causes: [vy(i+1) = 0 * vy(i) + 1, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_52:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1179
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_53:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1180
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_54:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1181
+
+rules: [rule
+with causes: [pos_y(i+1) = 2 * pos_y(i) + 0, Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2
+--------------
+ind_55:
+--------------
+
+obj_2
+
+rules: []
+
+frame 0 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: [<class 'core.events.Contact_With_Something_L'>]
+frame 2 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(wall_a, [('pos_x', 6), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_1185
+
+rules: [rule
+with causes: [Contact_With_Something_R]
+with effects: [pos_x(i+1) = 1 * pos_x(i) + 1, pos_y(i+1) = 2 * pos_y(i) + 0, vx(i+1) = 0 * vx(i) + -1, vy(i+1) = 0 * vy(i) + 1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(ball_b, [('pos_x', 5), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(pos_x: 4 -> 5), PropertyChange(pos_y: 1 -> 2), PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> 1)]
+- events: [<class 'core.events.Contact_With_Something_R'>]
+frame 2 - patch: Patch(ball_b, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_b, [('pos_x', 3), ('pos_y', 4), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3411
+
+rules: [rule
+with causes: [vx(i+1) = 0 * vx(i) + -1]
+with effects: [vy(i+1) = 0 * vy(i) + -1]
+after 0 frames]
+
+frame 0 - patch: Patch(ball_a, [('pos_x', 4), ('pos_y', 3), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: [PropertyChange(vx: 0 -> -1), PropertyChange(vy: 0 -> -1)]
+- events: []
+frame 1 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 2), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(ball_a, [('pos_x', 2), ('pos_y', 1), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: [PropertyChange(vx: -1 -> 1)]
+- explained: []
+- events: []
+frame 3 - patch: Patch(ball_a, [('pos_x', 3), ('pos_y', 0), ('shape_x', 0), ('shape_y', 0)])
+- unexplained: []
+- explained: []
+- events: []
+
+obj_3
+
+rules: []
+
+frame 0 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 1 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 2 - patch: Patch(wall_b, [('pos_x', 1), ('pos_y', 2), ('shape_x', 0), ('shape_y', 1)])
+- unexplained: []
+- explained: []
+- events: []
+frame 3 - patch not present
+- unexplained: [Disappearance]
+- explained: []
+- events: []
+score: 2

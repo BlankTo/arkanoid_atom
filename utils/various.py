@@ -1,8 +1,4 @@
-import os
-import pickle
 
-from core.patch import Patch
-from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 
 class ID_generator:
 
@@ -16,41 +12,19 @@ class ID_generator:
     def copy(self): return ID_generator(self.prev_id)
 
 
+def compute_diff(pred, patch):
 
-# future update: a method to extract patches with properties from images instead of convert_properties 
+    diff = 0
 
-def convert_properties(elem_props):
+    for property_class, value in patch.properties.items():
+        diff += abs(pred[property_class] - value)
 
-    properties = {
-        Pos_x: elem_props['pos_x'],
-        Pos_y: elem_props['pos_y'],
-        Shape_x: elem_props['pos_x'] - elem_props['hitbox_tl_x'],
-        Shape_y: elem_props['pos_y'] - elem_props['hitbox_tl_y'],
-    }
+    return diff
 
-    return properties
-    
-def load_patches_per_frame(log_file_name= None, descriptions_to_exclude= ['environment']):
-
-    if log_file_name is None: # use last saved
-        log_files_name = os.listdir('logs/arkanoid_logs')
-        if not log_files_name: raise Exception('no saved logs')
-        log_file_name = sorted(log_files_name, reverse= True)[0]
-
-    log_file_path = f'logs/arkanoid_logs/{log_file_name}'
-    with open(log_file_path, 'rb') as log_file:
-        log = pickle.load(log_file)
-    print(f'{log_file_path} loaded')
-
-    patches_per_frame = []
-    for frame in log:
-
-        patches = []
-        for description, elem_props in frame['elements'].items():
-            if description in descriptions_to_exclude: continue
-            
-            patches.append(Patch(description, convert_properties(elem_props)))
-
-        patches_per_frame.append(patches)
-
-    return patches_per_frame
+def equal_collections(list1, list2):
+    if len(list1) != len(list2):
+        return False
+    for obj1 in list1:
+        if not any(obj1 == obj2 for obj2 in list2):
+            return False
+    return True

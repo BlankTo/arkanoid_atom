@@ -16,6 +16,10 @@ class SingleTargetEvent(Event):
     @staticmethod
     def id():
         raise NotImplementedError("Subclasses must implement this method.")
+    
+    @staticmethod
+    def copy():
+        raise NotImplementedError("Subclasses must implement this method.")
 
 class Contact_With_Something_T(SingleTargetEvent):
 
@@ -33,6 +37,9 @@ class Contact_With_Something_T(SingleTargetEvent):
     
     @staticmethod
     def id(): return 1
+    
+    @staticmethod
+    def copy(): return Contact_With_Something_T
 
 class Contact_With_Something_B(SingleTargetEvent):
 
@@ -51,6 +58,9 @@ class Contact_With_Something_B(SingleTargetEvent):
     
     @staticmethod
     def id(): return 2
+    
+    @staticmethod
+    def copy(): return Contact_With_Something_B
 
 class Contact_With_Something_L(SingleTargetEvent):
 
@@ -68,6 +78,9 @@ class Contact_With_Something_L(SingleTargetEvent):
     
     @staticmethod
     def id(): return 3
+    
+    @staticmethod
+    def copy(): return Contact_With_Something_L
 
 class Contact_With_Something_R(SingleTargetEvent):
 
@@ -85,5 +98,8 @@ class Contact_With_Something_R(SingleTargetEvent):
     
     @staticmethod
     def id(): return 4
+    
+    @staticmethod
+    def copy(): return Contact_With_Something_R
 
 event_pool = [Contact_With_Something_T, Contact_With_Something_B, Contact_With_Something_L, Contact_With_Something_R]
