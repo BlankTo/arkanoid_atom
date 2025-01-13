@@ -1,5 +1,6 @@
 from utils import load_patches_per_frame
 from euristic import euristic_initialization
+from utils import debug_patches_per_frame
 
 def main():
     
@@ -8,172 +9,10 @@ def main():
     log_file_name = None
     patches_per_frame = load_patches_per_frame(log_file_name)
 
-    ## Definition of possible sequences and euristic population
-
-    from core.patch import Patch
-    from core.property import Pos_x, Pos_y, Shape_x, Shape_y
-
-    debug_patches_per_frame_0 = [
-        [ # frame 0
-            Patch('ball', {
-                Pos_x: 3,
-                Pos_y: 1,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall', {
-                Pos_x: 5,
-                Pos_y: 3,
-                Shape_x: 0,
-                Shape_y: 2,
-            }),
-        ],
-        [ # frame 1
-            Patch('ball', {
-                Pos_x: 4,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall', {
-                Pos_x: 5,
-                Pos_y: 3,
-                Shape_x: 0,
-                Shape_y: 2,
-            }),
-        ],
-        [ # frame 2
-            Patch('ball', {
-                Pos_x: 3,
-                Pos_y: 3,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall', {
-                Pos_x: 5,
-                Pos_y: 3,
-                Shape_x: 0,
-                Shape_y: 2,
-            }),
-        ],
-        [ # frame 2
-            Patch('ball', {
-                Pos_x: 2,
-                Pos_y: 4,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall', {
-                Pos_x: 5,
-                Pos_y: 3,
-                Shape_x: 0,
-                Shape_y: 2,
-            }),
-        ],
-    ]
-
-    debug_patches_per_frame = [
-        [ # frame 0
-            Patch('ball_a', {
-                Pos_x: 4,
-                Pos_y: 3,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('ball_b', {
-                Pos_x: 4,
-                Pos_y: 1,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall_a', {
-                Pos_x: 6,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 1,
-            }),
-            Patch('wall_b', {
-                Pos_x: 1,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 1,
-            }),
-        ],
-        [ # frame 1
-            Patch('ball_a', {
-                Pos_x: 3,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('ball_b', {
-                Pos_x: 5,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall_a', {
-                Pos_x: 6,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 1,
-            }),
-            Patch('wall_b', {
-                Pos_x: 1,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 1,
-            }),
-        ],
-        [ # frame 2
-            Patch('ball_a', {
-                Pos_x: 2,
-                Pos_y: 1,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('ball_b', {
-                Pos_x: 4,
-                Pos_y: 3,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall_a', {
-                Pos_x: 6,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 1,
-            }),
-            Patch('wall_b', {
-                Pos_x: 1,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 1,
-            }),
-        ],
-        [ # frame 3
-            Patch('ball_a', {
-                Pos_x: 3,
-                Pos_y: 0,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('ball_b', {
-                Pos_x: 3,
-                Pos_y: 4,
-                Shape_x: 0,
-                Shape_y: 0,
-            }),
-            Patch('wall_a', {
-                Pos_x: 6,
-                Pos_y: 2,
-                Shape_x: 0,
-                Shape_y: 1,
-            }),
-        ],
-    ]
-    population = euristic_initialization(debug_patches_per_frame, debug= True)
+    #population = euristic_initialization(debug_patches_per_frame, debug= True)
+    #population = euristic_initialization(debug_patches_per_frame)
     #population = euristic_initialization(patches_per_frame[:100])
+    population = euristic_initialization(patches_per_frame[:100], debug= True)
     
     print('\n\n=====================================\ndebug_end\n=====================================\n')
 
@@ -223,6 +62,8 @@ def main():
 
     with open('log.txt', 'w') as f:
         f.write(out_string)
+
+    print(f'n° individuals: {len(population)}')
 
     return
 

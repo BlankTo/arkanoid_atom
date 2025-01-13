@@ -1,290 +1,25 @@
 from core.individual import Individual
 from core.object import Object
-from utils.various import ID_generator, compute_diff, equal_collections
+from utils.various import ID_generator, compute_diff
 from core.unexplained import (
     check_blink, check_disappearance, check_duplication,
     check_for_property0_changes, check_for_speed,
     check_multiple_holes_simple, check_multiple_holes_speed,
-    UnexplainedSpecificChange, UnexplainedNumericalChange, PropertyChange,
     )
-from core.events import event_pool, Event
+from core.rule import rule_trigger_and_check, rule_inference
 
 import math
-import itertools
-
-class Phenomenon:
-
-    def __init__(self, info):
-        pass
-
-    def test(self, phenomenon):
-        pass
-
-    def __repr__(self):
-        pass
-
-class SpecificUnexplainedPhenomenon(Phenomenon):
-
-    def __init__(self, info):
-        self.unexplained_class = info['unexplained_class']
-
-    def test(self, phenomenon):
-        return isinstance(phenomenon, self.unexplained_class)
-    
-    def __repr__(self):
-        return self.unexplained_class.__name__
-    
-    def __eq__(self, other):
-        if isinstance(other, SpecificUnexplainedPhenomenon): return self.unexplained_class == other.unexplained_class
-        else: return False
-
-class NumericalUnexplainedPhenomenon(Phenomenon):
-
-    def __init__(self, info):
-        self.property_class = info['property_class']
-        self.a = info['a']
-        self.b = info['b']
-
-    def test(self, phenomenon):
-        if isinstance(phenomenon, PropertyChange):
-            return (phenomenon.final_value == self.a * phenomenon.previous_value + self.b)
-        else: return False
-    
-    def __repr__(self):
-        return f'{self.property_class.name()}(i+1) = {self.a} * {self.property_class.name()}(i) + {self.b}'
-    
-    def __eq__(self, other):
-        if isinstance(other, NumericalUnexplainedPhenomenon): return (self.property_class == other.property_class and self.a == other.a and self.b == other.b)
-        else: return False
-
-class EventPhenomenon(Phenomenon):
-
-    def __init__(self, info):
-        self.event_class = info['event_class']
-
-    def test(self, phenomenon):
-        return isinstance(phenomenon, self.event_class)
-    
-    def __eq__(self, other):
-        if isinstance(other, EventPhenomenon): return self.event_class == other.event_class
-        else: return False
-    
-    def __repr__(self):
-        return self.event_class.__name__
-
-class Rule:
-
-    def __init__(self, cause_offset, causes, effects):
-        self.cause_offset = cause_offset  # Difference between effect frame and cause frame
-        self.causes = causes[:]           # List of generalized causes
-        self.effects = effects[:]         # List of effects categorized as numerical or specific
-
-    def __eq__(self, other):
-        if not (isinstance(other, Rule)): return False
-        if self.cause_offset != other.cause_offset: return False
-        if not equal_collections(self.causes, other.causes): return False
-        if not equal_collections(self.effects, other.effects): return False
-        return True
-
-    def __repr__(self):
-        return f'rule\nwith causes: {self.causes}\nwith effects: {self.effects}\nafter {self.cause_offset} frames'
-
-A_RANGE = [-1, 0, 1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6]
-B_RANGE = [-1, 0, 1]
-
-def convert_to_phenomenon(event_or_unexplained):
-
-    if isinstance(event_or_unexplained, UnexplainedSpecificChange):
-        return SpecificUnexplainedPhenomenon({'unexplained_class': event_or_unexplained.__class__})
-    elif isinstance(event_or_unexplained, UnexplainedNumericalChange):
-        previous = event_or_unexplained.previous_value
-        final = event_or_unexplained.final_value
-        if previous == 0:
-            a = 0
-            b = final
-        else:
-            perfect_a = None
-            for try_a in A_RANGE:
-                if final == try_a * previous:
-                    perfect_a = try_a
-                    break
-            if perfect_a:
-                a = perfect_a
-                b = 0
-            else:
-                perfect_pair = None
-                for try_a, try_b in itertools.product(A_RANGE, B_RANGE):
-                    if final == try_a * previous + try_b:
-                        perfect_pair = (try_a, try_b)
-                        break
-                if perfect_pair:
-                    a, b = perfect_pair
-                else:
-                    return None
-        return NumericalUnexplainedPhenomenon({'a': a, 'b': b, 'property_class': event_or_unexplained.property_class})
-    elif issubclass(event_or_unexplained, Event):
-        return EventPhenomenon({'event_class': event_or_unexplained})
-    else:
-        print('nah2')
-        exit(0)
-
-#def rule_inference(population, present_objects, not_present_objects, events, rules, frame_id, ind_id_generator, obj_id_generator):
-def rule_inference(population, present_objects, not_present_objects, frame_id, ind_id_generator, obj_id_generator):
-
-    new_inds = {}
-    #new_events = {}
-    #new_rules = {}
-
-    #print('=======================')
-    #print('rule_inference')
-    #print('=======================')
-    #for obj_id, obj in present_objects.items():
-    #    print(f'obj_{obj_id}')
-    #    print(obj)
-
-    all_objects = present_objects | not_present_objects
-
-    for ind_id, ind in population.items():
-
-        #events_for_ind = events[ind_id]
-
-        all_ind_objs = [(obj_id, present_objects[obj_id] if obj_id in present_objects.keys() else not_present_objects[obj_id]) for obj_id in ind]
-
-        for obj_id, obj in all_ind_objs:
-
-            possible_cause_subset_per_frame = {}
-            
-            for cF in [frame_id-4, frame_id-3, frame_id-2, frame_id-1, frame_id]:
-
-                possible_causes_per_frame = []
-
-                if cF in obj.unexplained.keys():
-                    for unexpl in obj.unexplained[cF]:
-                        phenomenon = convert_to_phenomenon(unexpl)
-                        if phenomenon: possible_causes_per_frame.append(phenomenon)
-                
-                #for (ev_fid, ev_oid), event_list in events_for_ind.items():
-                #    if ev_fid == cF and ev_oid == obj_id:
-                #        for event in event_list:
-                #            phenomenon = convert_to_phenomenon(event)
-                #            if phenomenon: possible_causes_per_frame.append(phenomenon)
-                if cF in obj.events.keys():
-                    for event in obj.events[cF]:
-                        phenomenon = convert_to_phenomenon(event)
-                        if phenomenon: possible_causes_per_frame.append(phenomenon)
-                
-                possible_cause_subset_per_frame[cF] = [list(comb) for r in range(1, len(possible_causes_per_frame) + 1) for comb in itertools.combinations(possible_causes_per_frame, r)]
-
-
-            for eF in [frame_id-2, frame_id-1, frame_id]:
-                possible_effects = []
-                if eF in obj.unexplained.keys():
-                    for unexpl in obj.unexplained[eF]:
-                        phenomenon = convert_to_phenomenon(unexpl)
-                        if phenomenon: possible_effects.append(phenomenon)
-                
-                for effect_subset in [list(comb) for r in range(1, len(possible_effects) + 1) for comb in itertools.combinations(possible_effects, r)]:
-
-                    for cF in [eF-2, eF-1, eF]:
-
-                        for cause_subset in possible_cause_subset_per_frame[cF]:
-                            if any([c.__eq__(e) for c in cause_subset for e in effect_subset]):
-                                continue
-
-                            #print('----------------')
-                            #print('testing')
-                            #print(f'causes: {cause_subset}')
-                            #print(f'effects: {effect_subset}')
-
-                            new_rule = Rule(eF - cF, cause_subset, effect_subset)
-
-#                            in_rules = False
-#                            if (ind_id, obj_id) in rules.keys():
-#                                in_rules = True
-#                                if new_rule in rules[(ind_id, obj_id)]:
-#                                    print(f'the rule already exist in rules: {new_rule}')
-#                                    continue
-#
-#                            if (ind_id, obj_id) in new_rules.keys():
-#                                if new_rule in new_rules[(ind_id, obj_id)]:
-#                                    print(f'the rule already exist in new_rules: {new_rule}')
-#                                    continue
-#
-#                            for iid, iind in population.items():
-#                                if iid != ind_id:
-#                                    if equal_collections([all_objects[i] for i in iind], [all_objects[i] for i in ind]):
-#                                        if (iid, obj_id) in rules.keys():
-#                                            if equal_collections(rules[(iid, obj_id)], rules[(ind_id, obj_id)] + [new_rule] if in_rules else [new_rule]):
-#                                                print(f'adding this rule would create a duplicate individual')
-#                                                exit(0)
-#                                                continue
-
-                            new_ind_id = ind_id_generator()
-                            new_obj_id = obj_id_generator()
-                            
-                            new_obj = obj.copy()
-                            new_obj.add_rule(new_rule)
-                            new_obj.explain(eF, effect_subset)
-                            new_ind = [obid for obid in ind if obid != obj_id] + [new_obj_id]
-
-#                            for iid, iind in population.items():
-#                                if equal_collections([all_objects[i] for i in iind], [all_objects[i] if i != new_obj_id else new_obj for i in new_ind]):
-#                                    if (iid, obj_id) in rules.keys():
-#                                        if equal_collections(rules[(iid, obj_id)], rules[(ind_id, obj_id)] + [new_rule] if in_rules else [new_rule]):
-#                                            print(f'adding this rule would create a duplicate individual')
-#                                            exit(0)
-#                                            continue
-                            for iid, iind in population.items():
-                                if equal_collections([all_objects[i] for i in iind], [all_objects[i] if i != new_obj_id else new_obj for i in new_ind]):
-                                    #print(f'adding this rule would create a duplicate individual')
-                                    #exit(0)
-                                    continue
-
-                            new_inds[new_ind_id] = new_ind
-                            if obj_id in present_objects.keys(): present_objects[new_obj_id] = new_obj
-                            else: not_present_objects[new_obj_id] = new_obj
-
-                            #stop = False
-                            #for ff, unexpla in obj.unexplained.items():
-                            #    if len(unexpla) > 2: stop = True
-                            #for ff, expla in obj.explained_unexplained.items():
-                            #    if len(expla) > 2: stop = True
-                            #for ff, unexpla in new_obj.unexplained.items():
-                            #    if len(unexpla) > 2: stop = True
-                            #for ff, expla in new_obj.explained_unexplained.items():
-                            #    if len(expla) > 2: stop = True
-                            #if stop:
-                            #    print('=======================')
-                            #    print('initial:')
-                            #    print(f'obj_{obj_id}')
-                            #    print(obj)
-                            #    print('new:')
-                            #    print(new_obj)
-                            #    exit()
-
-                            #here
-
-                            #new_events[new_ind_id] = {(fid, obid): [ev for ev in ev_list] for (fid, obid), ev_list in events_for_ind.items()}
-
-                            #base = rules[(ind_id, obj_id)][:] if in_rules else []
-                            #if (new_ind_id, obj_id) in new_rules.keys(): new_rules[(new_ind_id, obj_id)].extend(base + [new_rule])
-                            #else: new_rules[(ind_id, obj_id)] = base + [new_rule]
-        
-            #if frame_id == 2: exit(0)
-
-    #return new_inds, new_events, new_rules
-    return new_inds
 
 def euristic_initialization(patches_per_frame, debug= False):
 
     ind_id_generator = ID_generator()
     obj_id_generator = ID_generator()
 
+    # initialization with one object per patch in the first frame
+
     present_objects = {obj_id_generator(): Object([0], [patch]) for patch in patches_per_frame[0]} # dict obj_id: obj
     population = {ind_id_generator(): [obj_id for obj_id in present_objects.keys()]} # list of individual, each individual is a list of objects_id
     not_present_objects = {} # dict obj_id: obj
-    #events = {ind_id: {} for ind_id in population.keys()}
-    #rules = {}
 
     #
 
@@ -295,21 +30,18 @@ def euristic_initialization(patches_per_frame, debug= False):
         unassigned_objects = [obj_id for obj_id in present_objects.keys()] # all present objects of all individuals (some are shared between individuals)
         unassigned_patches = {ind_id: [p for p in patches] for ind_id in population.keys()} # list of unassigned patches for each individual
 
-        if debug:
-            print(f'population: {population}')
-            print(f'present_objects:')
-            for obj_id, obj in present_objects.items():
-                print(f'\tobj_{obj_id}: {obj}')
-#                for (iid, oid), rule_list in rules.items():
-#                    if oid == obj_id: print(f'rules: {rule_list}')
-#                    else: print('no rules')
-                print(f'rules: {obj.rules}')
-            print(f'not_present_objects:')
-            for obj_id, obj in not_present_objects.items():
-                print(f'\tobj_{obj_id}: {obj}')
-                print(f'rules: {obj.rules}')
-
-            #print(rules)
+        #if debug:
+        #    print(f'population: {population}')
+        #    print(f'present_objects:')
+        #    for obj_id, obj in present_objects.items():
+        #        print(f'\tobj_{obj_id}: {obj}')
+        #        print(f'\tn_rules: {len(obj.rules)}')
+        #        for rid, rule in enumerate(obj.rules): print(f'\t\trule_{rid}:\n\t\tcauses: {rule.causes}\n\t\teffects: {rule.effects}\n\t\toffset: {rule.cause_offset}')
+        #    print(f'not_present_objects:')
+        #    for obj_id, obj in not_present_objects.items():
+        #        print(f'\tobj_{obj_id}: {obj}')
+        #        print(f'\tn_rules: {len(obj.rules)}')
+        #        for rid, rule in enumerate(obj.rules): print(f'\t\trule_{rid}:\n\t\tcauses: {rule.causes}\n\t\teffects: {rule.effects}\n\t\toffset: {rule.cause_offset}')
 
             #print(f'unassigned_objects: {unassigned_objects}')
             #print(f'unassigned_patches: {unassigned_patches}')
@@ -318,7 +50,10 @@ def euristic_initialization(patches_per_frame, debug= False):
 
         # evaluate perfectly explainable patches (the ones that can be inferred from the current properties (for now: correct no speed, correct speed zero or correct speed))
 
-        for patch in patches:
+        if debug: print('\nperfect')
+
+        for pid, patch in enumerate(patches):
+            if debug: print(f'\rpatch {pid+1}/{len(patches)}', end= "")
             other_patches = [p for p in patches if p != patch]
 
             perfectly_assigned_objects = []
@@ -333,7 +68,7 @@ def euristic_initialization(patches_per_frame, debug= False):
                     if prediction[property_class] != value:
                         all_ok = False
                 
-                if all_ok:
+                if all_ok: # if an object prediction correctly identifies a patch, then that patch is assigned to the object and marked as assigned for the individuals with that object
 
                     present_objects[obj_id].update(frame_id, patch, prediction, other_patches)
                     perfectly_assigned_objects.append(obj_id)
@@ -342,18 +77,21 @@ def euristic_initialization(patches_per_frame, debug= False):
                         if obj_id in ind:
                             unassigned_patches[ind_id].remove(patch)
 
-                    #break #here
-
             for obj_id in perfectly_assigned_objects: unassigned_objects.remove(obj_id)
 
         #
 
         ## evaluate possible solution for Q1 changes (check if a first degree quantity can explain the diff, in that case the change happened in the frame before)
 
-        for patch in set([p for u_p in unassigned_patches.values() for p in u_p]):
+        if debug: print('\n\nQ1')
+
+        pset = set([p for u_p in unassigned_patches.values() for p in u_p]) # set of all the unassigned patches of all individuals
+        for pid, patch in enumerate(pset):
+            if debug: print(f'\rpatch {pid+1}/{len(pset)}', end= "")
             other_patches = [p for p in patches if p != patch]
 
             for obj_id in unassigned_objects:
+                #print(f'\nobj_{obj_id}\n')
                 current_obj = present_objects[obj_id]
 
                 possible_unexplained = []
@@ -380,11 +118,6 @@ def euristic_initialization(patches_per_frame, debug= False):
 
                             new_ind_id = ind_id_generator()
                             new_inds[new_ind_id] = [ob for ob in population[ind_id] if ob != obj_id] + [new_obj_id]
-                            #events[new_ind_id] = {(fid, new_obj_id if ob == obj_id else ob): v for (fid, ob), v in events[ind_id].items()}
-                            #for (iid, oid), rule_list in rules.items():
-                            #    if iid == ind_id:
-                            #        if oid == obj_id: rule_list[(new_ind_id, new_obj_id)] = rule_list[(ind_id, obj_id)]
-                            #        else: rule_list[(new_ind_id, oid)] = rule_list[(ind_id, oid)]
                             unassigned_patches[new_ind_id] = [p for p in unassigned_patches[ind_id] if p != patch]
 
                 population |= new_inds
@@ -396,10 +129,14 @@ def euristic_initialization(patches_per_frame, debug= False):
         # volendo qua si potrebbero valutare combinazioni per scomparsa/comparsa, ma forse esploderebbe
         # piu che altro occorrerebbe nel caso magari valutare anche la possibilita che un oggetto prima scomparso stia ricomparendo (oltre che il "nuovo oggetto compare")
 
+        if debug: print('\n\nremaining pairing')
+
         remaining_objects = {ind_id: [ob for ob in unassigned_objects if ob in ind] for ind_id, ind in population.items()}
 
         new_inds = {}
-        for ind_id, ind in population.items():
+        for ind_pid, (ind_id, ind) in enumerate(population.items()):
+            
+            if debug: print(f'\rind {ind_pid+1}/{len(population)}', end= "")
 
             op_diff = []
 
@@ -434,7 +171,6 @@ def euristic_initialization(patches_per_frame, debug= False):
 
                             population[ind_id] = [ob for ob in population[ind_id] if ob != obj_id] + [replacement_obj_id]
                             remaining_objects[ind_id] = [ob for ob in remaining_objects[ind_id] if ob != obj_id] + [replacement_obj_id]
-                            #events[ind_id] = {(fid, new_obj_id if ob == obj_id else ob): v for (fid, ob), v in events[ind_id].items()}
 
                     p0_did_change, unexplained_dict, properties = check_for_property0_changes(present_objects[obj_id], patch, frame_id)
 
@@ -449,9 +185,13 @@ def euristic_initialization(patches_per_frame, debug= False):
 
         # evaluate remaining patches or objects (only one type of the two should remain) (if there are patches left they are new object appeared or previously disappeared objects reappeared, else if there are object left they disappear)
 
+        if debug: print('\n\nremaining single')
+
         for ind_id, ind in population.items(): assert(not (remaining_objects[ind_id] and unassigned_patches[ind_id]))
 
-        for ind_id, ind in population.items():
+        for ind_pid, (ind_id, ind) in enumerate(population.items()):
+            
+            if debug: print(f'\rind {ind_pid+1}/{len(population)}', end= "")
 
             # disappearing objects
 
@@ -477,7 +217,7 @@ def euristic_initialization(patches_per_frame, debug= False):
 
             #
 
-            # appearing objects
+            # appearing objects (not yet tested)
 
             for patch in unassigned_patches[ind_id]:
 
@@ -537,11 +277,6 @@ def euristic_initialization(patches_per_frame, debug= False):
 
                         new_ind_id = ind_id_generator()
                         new_inds[new_ind_id] = [ob for ob in population[ind_id] if ob != obj_id] + [new_obj_id]
-                        #events[new_ind_id] = {k: v for k, v in events[ind_id]}
-                        #for (iid, oid), rule_list in rules.items():
-                        #    if iid == ind_id:
-                        #        if oid == obj_id: rule_list[(new_ind_id, new_obj_id)] = rule_list[(ind_id, obj_id)]
-                        #        else: rule_list[(new_ind_id, oid)] = rule_list[(ind_id, oid)]
 
                 #
 
@@ -571,11 +306,6 @@ def euristic_initialization(patches_per_frame, debug= False):
 
                     new_ind_id = ind_id_generator()
                     new_inds[new_ind_id] = [ob for ob in population[ind_id]] + [new_obj_id]
-                    #events[new_ind_id] = {k: v for k, v in events[ind_id]}
-                    #for (iid, oid), rule_list in rules.items():
-                    #    if iid == ind_id:
-                    #        if oid == obj_id: rule_list[(new_ind_id, new_obj_id)] = rule_list[(ind_id, obj_id)]
-                    #        else: rule_list[(new_ind_id, oid)] = rule_list[(ind_id, oid)]
 
                 #
 
@@ -590,45 +320,47 @@ def euristic_initialization(patches_per_frame, debug= False):
 
         #
 
-        # event detection
+        # existing rule trigger and check
 
-        
+        if debug: print('\n\nrule check')
+
+        objs_to_remove = rule_trigger_and_check(present_objects, not_present_objects)
+
+        for obj_id in objs_to_remove: # test the rules of each object, explain the unexplained that are effects of triggered rules and remove individuals with faulty rules
+            
+            if obj_id in present_objects: present_objects.pop(obj_id)
+            else: not_present_objects.pop(obj_id)
+
+            inds_to_remove = []
+            for ind_id, ind in population.items():
+                if obj_id in ind: inds_to_remove.append(ind_id)
+            
+            for ind_id in inds_to_remove:
+                population.pop(ind_id)
+                unassigned_patches.pop(ind_id)
 
         #
 
         # rule inference and check #here
 
         ## rule creation and maybe aggregation
-        # when a new unexplained is added
-        # 1) Check if a rule already explain it, if yes skip this part
-        # 2) Check for events in frames[-n:] and unexplained in frames[-n:-1] and create a rule with combinations of them as cause (each rule create a new individual with that rule)
-        # 3) Leave the default (no rule and unexplained unexplained) untouched (indipendently of previous individual creation)
-        # 4) (future) check rule equality between objects and form classes (if all the objects in two classes are the same, fuse them) with the common rules (rules in different classes could still count as one for the scoring)
+        # 1) Check for events, unexplaineds and explaineds in frames[-n:] and create a rule with combinations of them as cause (each rule create a new individual with that rule)
+        # 2) Leave the default (no rule and unexplained unexplained) untouched (indipendently of previous individual creation)
+        # (next) 3) check rule equality between objects and form classes (if all the objects in two classes are the same, fuse them) with the common rules (rules in different classes could still count as one for the scoring)
 
-        #here
+        if debug: print('rule inference')
 
-        #new_inds, new_events, new_rules = rule_inference(population, present_objects, not_present_objects, events, rules, frame_id, ind_id_generator, obj_id_generator)
-        new_inds = rule_inference(population, present_objects, not_present_objects, frame_id, ind_id_generator, obj_id_generator)
-
-#        print('==========================')
-#        print(new_inds)
-#        print(new_events)
-#        print(new_rules)
-#        print('==========================')
-        
+        new_inds = rule_inference(population, present_objects, not_present_objects, frame_id, ind_id_generator, obj_id_generator, debug= debug)
         population |= new_inds
-        #events |= new_events
-        #rules |= new_rules
-        #if frame_id == 2: exit()
         for new_ind_id in new_inds.keys(): unassigned_patches[new_ind_id] = []
 
         #
 
         # scoring and pruning (#here expand in order to use events and rules for scoring)
 
-        # score = n°(unexplained) - n°(unexplained explained by rules) - n°(rules)
+        # score = n°(unexplained) - n°(rules)
         # or
-        # score = (n°(unexplained) - n°(unexplained explained by rules), n°(rules))
+        # score = (n°(unexplained), n°(rules))
 
         ## think about leaving more space to the pruning
         # second chances or more
@@ -637,37 +369,41 @@ def euristic_initialization(patches_per_frame, debug= False):
         # or
         # evaluate the score in different ways (no rule n° malus, invert scoring rules unexplained, or similar)
 
+        # probablistic tournament 5 to 5 to 1
+
+        # for now it's similar to a beam search over frames
+
+        if debug: print('scoring')
+
         best_score = math.inf
         scores = []
         for ind_id, ind in population.items():
             total_unexplained = 0
-            #total_rules = 0
+            total_rules = 0
 
             ind_objects = [(obj_id, present_objects[obj_id] if obj_id in present_objects.keys() else not_present_objects[obj_id]) for obj_id in ind]
 
             for obj_id, obj in ind_objects:
                 for frame_id, unexpl in obj.unexplained.items():
                     total_unexplained += len(unexpl)
+                
+                for rule in obj.rules:
+                    total_rules += len(rule.effects) + 1
 
-                #if (ind_id, obj_id) in rules.keys(): total_rules += len(rules[(ind_id, obj_id)])
-
-            #score = total_unexplained + total_rules
-            score = total_unexplained + len(obj.rules)
+            score = total_unexplained + total_rules
             
             scores.append((ind_id, score))
             if score < best_score: best_score = score
+
+        # removal of pruned individuals
 
         ind_to_remove = [ind_id for ind_id, score in scores if score != best_score]
 
         for ind_id in ind_to_remove:
                 population.pop(ind_id)
-                #events.pop(ind_id)
                 unassigned_patches.pop(ind_id)
 
-        #pair_to_remove = []
-        #for (iid, oid), rule_list in rules.items():
-        #    if iid in ind_to_remove: pair_to_remove.append((iid, oid))
-        #for (iid, oid) in pair_to_remove: rules.pop((iid, oid))
+        # and of objects that are not in kept individuals
 
         objs_to_keep = []
         for ind in population.values():
@@ -691,16 +427,15 @@ def euristic_initialization(patches_per_frame, debug= False):
 
     #
 
+    ## conversion to Individual class
+
     all_obj = present_objects | not_present_objects
     final_population = []
     for ind_id, ind in population.items():
         object_dict = {}
-        #rules_dict = {}
         for obj_id, obj in all_obj.items():
             if obj_id in ind:
                 object_dict[obj_id] = obj
-                #if (ind_id, obj_id) in rules.keys(): rules_dict[obj_id] = rules[(ind_id, obj_id)]
-        #final_population.append(Individual(object_dict, events[ind_id], rules_dict, len(patches_per_frame)))
         final_population.append(Individual(object_dict, len(patches_per_frame)))
 
     return final_population

@@ -70,6 +70,40 @@ class Object:
             if frame_id in self.explained_unexplained.keys(): self.explained_unexplained[frame_id].append(unexpl)
             else: self.explained_unexplained[frame_id] = [unexpl]
 
+    def check_and_explain(self, frame_id, explained):
+
+        check = [False for _ in explained]
+
+        unexplained_to_explain = []
+        if frame_id in self.unexplained.keys():
+            for unexpl in self.unexplained[frame_id]:
+                for expl_idx, expl in enumerate(explained):
+                    if expl.test(unexpl):
+                        unexplained_to_explain.append(unexpl)
+                        check[expl_idx] = True # si potrebbe controllare che ogni expl spieghi un solo unexplained, ma servono altri cambiamenti prima
+                        break
+
+        already_explained = []
+        if frame_id in self.explained_unexplained.keys():
+            for expl_unexpl in self.explained_unexplained[frame_id]:
+                for expl_idx, expl in enumerate(explained):
+                    if expl.test(expl_unexpl):
+                        already_explained.append(expl_unexpl)
+                        check[expl_idx] = True
+                        break
+
+        if all(check) and check:
+        
+            for unexpl in unexplained_to_explain:
+                self.unexplained[frame_id].remove(unexpl)
+                if len(self.unexplained[frame_id]) == 0: self.unexplained.pop(frame_id)
+                if frame_id in self.explained_unexplained.keys(): self.explained_unexplained[frame_id].append(unexpl)
+                else: self.explained_unexplained[frame_id] = [unexpl]
+
+            return True
+
+        else: return False
+
     def add_rule(self, rule): self.rules.append(rule)
 
     def __eq__(self, other):
@@ -79,6 +113,8 @@ class Object:
             if not equal_collections(self.sequence, other.sequence): return False
             if not equal_collections(self.unexplained, other.unexplained): return False
             if not equal_collections(self.explained_unexplained, other.explained_unexplained): return False
+            if not equal_collections(self.events, other.events): return False
+            if not equal_collections(self.rules, other.rules): return False
             return True
 
     def __repr__(self):
@@ -94,5 +130,11 @@ class Object:
         ss += '} - expl: {'
         for frame_id, expl in self.explained_unexplained.items():
             ss += f'{frame_id}: {expl} |'
+        ss += '} - events: {'
+        for frame_id, ev in self.events.items():
+            ss += f'{frame_id}: {ev} |'
+        ss += '} - rules: {'
+        for ruid, ru in enumerate(self.rules):
+            ss += f'rule_{ruid}: {ru} |'
         ss += '}'
         return ss

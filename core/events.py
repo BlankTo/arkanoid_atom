@@ -28,7 +28,7 @@ class Contact_With_Something_T(SingleTargetEvent):
         hb1 = ((current.properties[Pos_x] - current.properties[Shape_x], current.properties[Pos_y] - current.properties[Shape_y]), (current.properties[Pos_x] + current.properties[Shape_x], current.properties[Pos_y] + current.properties[Shape_y]))
         for oe in current_others:
             hb2 = ((oe.properties[Pos_x] - oe.properties[Shape_x], oe.properties[Pos_y] - oe.properties[Shape_y]), (oe.properties[Pos_x] + oe.properties[Shape_x], oe.properties[Pos_y] + oe.properties[Shape_y]))
-            if (hb1[0][1] - 1 == hb2[1][1] and hb1[0][0] < hb2[1][0] and hb1[1][0] > hb2[0][0]):
+            if (hb1[0][1] - 1 == hb2[1][1] and hb1[0][0] <= hb2[1][0] and hb1[1][0] >= hb2[0][0]):
                 return True
         return False
 
@@ -48,7 +48,7 @@ class Contact_With_Something_B(SingleTargetEvent):
         hb1 = ((current.properties[Pos_x] - current.properties[Shape_x], current.properties[Pos_y] - current.properties[Shape_y]), (current.properties[Pos_x] + current.properties[Shape_x], current.properties[Pos_y] + current.properties[Shape_y]))
         for oe in current_others:
             hb2 = ((oe.properties[Pos_x] - oe.properties[Shape_x], oe.properties[Pos_y] - oe.properties[Shape_y]), (oe.properties[Pos_x] + oe.properties[Shape_x], oe.properties[Pos_y] + oe.properties[Shape_y]))
-            if (hb1[1][1] + 1 == hb2[0][1] and hb1[0][0] < hb2[1][0] and hb1[1][0] > hb2[0][0]):
+            if (hb1[1][1] + 1 == hb2[0][1] and hb1[0][0] <= hb2[1][0] and hb1[1][0] >= hb2[0][0]):
                 #print(f'contact between bottom side of {current}({hb1}) and {oe}({hb2})')
                 return True
         return False
@@ -69,7 +69,7 @@ class Contact_With_Something_L(SingleTargetEvent):
         hb1 = ((current.properties[Pos_x] - current.properties[Shape_x], current.properties[Pos_y] - current.properties[Shape_y]), (current.properties[Pos_x] + current.properties[Shape_x], current.properties[Pos_y] + current.properties[Shape_y]))
         for oe in current_others:
             hb2 = ((oe.properties[Pos_x] - oe.properties[Shape_x], oe.properties[Pos_y] - oe.properties[Shape_y]), (oe.properties[Pos_x] + oe.properties[Shape_x], oe.properties[Pos_y] + oe.properties[Shape_y]))
-            if (hb1[0][0] - 1 == hb2[1][0] and hb1[0][1] < hb2[1][1] and hb1[1][1] > hb2[0][1]):
+            if (hb1[0][0] - 1 == hb2[1][0] and hb1[0][1] <= hb2[1][1] and hb1[1][1] >= hb2[0][1]):
                 return True
         return False
 
@@ -89,7 +89,7 @@ class Contact_With_Something_R(SingleTargetEvent):
         hb1 = ((current.properties[Pos_x] - current.properties[Shape_x], current.properties[Pos_y] - current.properties[Shape_y]), (current.properties[Pos_x] + current.properties[Shape_x], current.properties[Pos_y] + current.properties[Shape_y]))
         for oe in current_others:
             hb2 = ((oe.properties[Pos_x] - oe.properties[Shape_x], oe.properties[Pos_y] - oe.properties[Shape_y]), (oe.properties[Pos_x] + oe.properties[Shape_x], oe.properties[Pos_y] + oe.properties[Shape_y]))
-            if (hb1[1][0] + 1 == hb2[0][0] and hb1[0][1] < hb2[1][1] and hb1[1][1] > hb2[0][1]):
+            if (hb1[1][0] + 1 == hb2[0][0] and hb1[0][1] <= hb2[1][1] and hb1[1][1] >= hb2[0][1]):
                 return True
         return False
 
