@@ -785,8 +785,8 @@ debug_patches_per_frame_1 = [
                 Shape_y: 1,
             }),
             Patch('ball_1', {
-                Pos_x: 4,
-                Pos_y: 2,
+                Pos_x: 2,
+                Pos_y: 4,
                 Shape_x: 0,
                 Shape_y: 0,
             }),
@@ -1696,4 +1696,4 @@ debug_patches_per_frame_1 = [
     ]
 
 
-debug_patches_per_frame = debug_patches_per_frame_0
+debug_patches_per_frame = debug_patches_per_frame_1

@@ -10,6 +10,34 @@ from core.rule import rule_trigger_and_check, rule_inference
 
 import math
 
+def remove_inds(population, unassigned_patches, unassigned_objects, present_objects, not_present_objects, inds_to_remove):
+
+    for ind_id in inds_to_remove:
+        population.pop(ind_id)
+        unassigned_patches.pop(ind_id)
+
+    # and of objects that are not in kept individuals
+
+    objs_to_keep = []
+    for ind in population.values():
+        objs_to_keep.extend(ind)
+    objs_to_keep = set(objs_to_keep)
+
+    present_to_remove = []
+    for obj_id in present_objects.keys():
+        if obj_id not in objs_to_keep: present_to_remove.append(obj_id)
+    for obj_id in present_to_remove:
+        present_objects.pop(obj_id)
+
+    not_present_to_remove = []
+    for obj_id in not_present_objects.keys():
+        if obj_id not in objs_to_keep: not_present_to_remove.append(obj_id)
+    for obj_id in not_present_to_remove:
+        not_present_objects.pop(obj_id)
+
+    for obj_id in present_to_remove + not_present_to_remove:
+        if obj_id in unassigned_objects: unassigned_objects.remove(obj_id)
+
 def euristic_initialization(patches_per_frame, debug= False):
 
     ind_id_generator = ID_generator()
@@ -20,6 +48,10 @@ def euristic_initialization(patches_per_frame, debug= False):
     present_objects = {obj_id_generator(): Object([0], [patch]) for patch in patches_per_frame[0]} # dict obj_id: obj
     population = {ind_id_generator(): [obj_id for obj_id in present_objects.keys()]} # list of individual, each individual is a list of objects_id
     not_present_objects = {} # dict obj_id: obj
+
+    potential_rules = {} # (obj_id, rule.my_hash()): times_found
+
+    survival_dict = {ind_id: 2 for ind_id in population.keys()} # ind_id: survival_ages_remaining
 
     #
 
@@ -57,6 +89,8 @@ def euristic_initialization(patches_per_frame, debug= False):
             other_patches = [p for p in patches if p != patch]
 
             perfectly_assigned_objects = []
+            assigned_patches = {}
+            inds_to_remove = []
 
             for obj_id in unassigned_objects:
 
@@ -75,7 +109,15 @@ def euristic_initialization(patches_per_frame, debug= False):
 
                     for ind_id, ind in population.items():
                         if obj_id in ind:
+                            if ind_id in assigned_patches.keys():
+                                if patch not in assigned_patches[ind_id]: assigned_patches[ind_id].append(patch)
+                                else:
+                                    inds_to_remove.append(ind_id)
+                                    continue
+                            else: assigned_patches[ind_id] = [patch]
                             unassigned_patches[ind_id].remove(patch)
+
+            remove_inds(population, unassigned_patches, unassigned_objects, present_objects, not_present_objects, inds_to_remove)
 
             for obj_id in perfectly_assigned_objects: unassigned_objects.remove(obj_id)
 
@@ -133,7 +175,9 @@ def euristic_initialization(patches_per_frame, debug= False):
 
         remaining_objects = {ind_id: [ob for ob in unassigned_objects if ob in ind] for ind_id, ind in population.items()}
 
-        new_inds = {}
+        # qua
+
+        op_best_assignments = {} # (obj_id, patch): (times_assigned, list_of_individuals)
         for ind_pid, (ind_id, ind) in enumerate(population.items()):
             
             if debug: print(f'\rind {ind_pid+1}/{len(population)}', end= "")
@@ -141,51 +185,136 @@ def euristic_initialization(patches_per_frame, debug= False):
             op_diff = []
 
             for obj_id in remaining_objects[ind_id]:
-                pred = present_objects[obj_id].prediction
+                current_object = present_objects[obj_id]
 
                 for patch in unassigned_patches[ind_id]:
-
-                    diff = compute_diff(pred, patch)
+                    diff = compute_diff(current_object.current_properties, patch) #here
 
                     op_diff.append((obj_id, patch, diff))
 
             op_diff = sorted(op_diff, key= lambda x: x[2])
+
+            object_with_best_assignment = []
+            patch_with_best_assigned = []
             
             for obj_id, patch, diff in op_diff:
-                if obj_id in remaining_objects[ind_id] and patch in unassigned_patches[ind_id]:
-                    
-                    inds_with_same_pair = []
-                    inds_with_different_patches = []
-                    for ind_id, ro in remaining_objects.items():
+                if obj_id not in object_with_best_assignment and patch not in patch_with_best_assigned:
 
-                        if obj_id in ro:
-                            if patch in unassigned_patches[ind_id]: inds_with_same_pair.append(ind_id)
-                            else: inds_with_different_patches.append(ind_id)
+                    object_with_best_assignment.append(obj_id)
+                    patch_with_best_assigned.append(patch)
 
-                    if inds_with_different_patches:
+                    if obj_id in op_best_assignments.keys():
+                        if patch in op_best_assignments[obj_id].keys():
+                            oba = op_best_assignments[obj_id][patch]
+                            op_best_assignments[obj_id][patch] = (oba[0] + 1, oba[1] + [ind_id])
+                        else:
+                            op_best_assignments[obj_id][patch] = (1, [ind_id])
+                    else:
+                        op_best_assignments[obj_id] = {patch: (1, [ind_id])}
+
+        all_remaining_objects = set()
+        for ro in remaining_objects.values(): all_remaining_objects.update(ro)
+
+        for obj_id in list(all_remaining_objects):
+            if obj_id in op_best_assignments.keys():
+                best_patch = None
+                best_times = 0
+                best_ind_list = None
+
+                for patch, (times, ind_list) in op_best_assignments[obj_id].items():
+                    if times > best_times:
+                        best_times = times
+                        best_patch = patch
+                        best_ind_list = ind_list
+
+                for patch, (times, ind_list) in op_best_assignments[obj_id].items():
+                    if patch != best_patch:
+
+                        # branching new object with that patch and q0 change, for all ind in ind_list
 
                         replacement_obj_id = obj_id_generator()
                         present_objects[replacement_obj_id] = present_objects[obj_id].copy()
 
-                        for ind_id in inds_with_different_patches:
+                        p0_did_change, unexplained_dict, properties = check_for_property0_changes(present_objects[replacement_obj_id], patch, frame_id)
 
+                        present_objects[replacement_obj_id].update(frame_id, patch, properties, [p for p in patches if p != patch])
+                        present_objects[replacement_obj_id].add_unexplained(unexplained_dict)
+
+                        for ind_id in ind_list:
                             population[ind_id] = [ob for ob in population[ind_id] if ob != obj_id] + [replacement_obj_id]
-                            remaining_objects[ind_id] = [ob for ob in remaining_objects[ind_id] if ob != obj_id] + [replacement_obj_id]
+                            remaining_objects[ind_id] = [ob for ob in remaining_objects[ind_id] if ob != obj_id]
+                            unassigned_patches[ind_id].remove(patch)
 
-                    p0_did_change, unexplained_dict, properties = check_for_property0_changes(present_objects[obj_id], patch, frame_id)
+                # update of original object with best_patch and q0 change
 
-                    present_objects[obj_id].update(frame_id, patch, properties, [p for p in patches if p != patch]) #here
-                    present_objects[obj_id].add_unexplained(unexplained_dict)
+                p0_did_change, unexplained_dict, properties = check_for_property0_changes(present_objects[obj_id], best_patch, frame_id)
 
-                    for ind_id in inds_with_same_pair:
-                        remaining_objects[ind_id].remove(obj_id)
-                        unassigned_patches[ind_id].remove(patch)
+                present_objects[obj_id].update(frame_id, best_patch, properties, [p for p in patches if p != best_patch])
+                present_objects[obj_id].add_unexplained(unexplained_dict)
+
+                for ind_id in best_ind_list:
+                    remaining_objects[ind_id].remove(obj_id)
+                    unassigned_patches[ind_id].remove(best_patch)
+
+        # end qua
+
+#
+#        new_inds = {}
+#        for ind_pid, (ind_id, ind) in enumerate(population.items()):
+#            
+#            if debug: print(f'\rind {ind_pid+1}/{len(population)}', end= "")
+#
+#            op_diff = []
+#
+#            for obj_id in remaining_objects[ind_id]:
+#                pred = present_objects[obj_id].prediction
+#
+#                for patch in unassigned_patches[ind_id]:
+#
+#                    #diff = compute_diff(pred, patch) #here
+#                    diff = compute_diff(present_objects[obj_id].current_properties, patch) #here
+#
+#                    op_diff.append((obj_id, patch, diff))
+#
+#            op_diff = sorted(op_diff, key= lambda x: x[2])
+#            
+#            for obj_id, patch, diff in op_diff:
+#                if obj_id in remaining_objects[ind_id] and patch in unassigned_patches[ind_id]:
+#                    
+#                    inds_with_same_pair = []
+#                    inds_with_different_patches = []
+#                    for ind_id, ro in remaining_objects.items():
+#
+#                        if obj_id in ro:
+#                            if patch in unassigned_patches[ind_id]: inds_with_same_pair.append(ind_id)
+#                            else: inds_with_different_patches.append(ind_id)
+#
+#                    if inds_with_different_patches:
+#
+#                        replacement_obj_id = obj_id_generator()
+#                        present_objects[replacement_obj_id] = present_objects[obj_id].copy()
+#
+#                        for ind_id in inds_with_different_patches:
+#
+#                            population[ind_id] = [ob for ob in population[ind_id] if ob != obj_id] + [replacement_obj_id]
+#                            remaining_objects[ind_id] = [ob for ob in remaining_objects[ind_id] if ob != obj_id] + [replacement_obj_id]
+#
+#                    p0_did_change, unexplained_dict, properties = check_for_property0_changes(present_objects[obj_id], patch, frame_id)
+#
+#                    present_objects[obj_id].update(frame_id, patch, properties, [p for p in patches if p != patch]) #here
+#                    present_objects[obj_id].add_unexplained(unexplained_dict)
+#
+#                    for ind_id in inds_with_same_pair:
+#                        remaining_objects[ind_id].remove(obj_id)
+#                        unassigned_patches[ind_id].remove(patch)
 
         #
 
         # evaluate remaining patches or objects (only one type of the two should remain) (if there are patches left they are new object appeared or previously disappeared objects reappeared, else if there are object left they disappear)
 
         if debug: print('\n\nremaining single')
+
+        new_inds = {}
 
         for ind_id, ind in population.items(): assert(not (remaining_objects[ind_id] and unassigned_patches[ind_id]))
 
@@ -203,13 +332,11 @@ def euristic_initialization(patches_per_frame, debug= False):
 
                 if it_disappeared:
 
-                    disappeared.append(obj_id)
-
                     disappearing_obj = present_objects.pop(obj_id)
-
                     disappearing_obj.add_unexplained(unexplained_dict)
-
                     not_present_objects[obj_id] = disappearing_obj
+
+                    disappeared.append(obj_id)
                     
             for obj_id in disappeared:
                 for ro in remaining_objects.values():
@@ -350,9 +477,37 @@ def euristic_initialization(patches_per_frame, debug= False):
 
         if debug: print('rule inference')
 
+#        for ind_id, ind in population.items():
+#                if len(ind) > 4:
+#                    print('_____________________________8_____________________________')
+#                    print(ind)
+#                    for obj_id, obj in (present_objects | not_present_objects).items():
+#                        if obj_id in ind:
+#                            print(obj)
+#                    exit()
+
         new_inds = rule_inference(population, present_objects, not_present_objects, frame_id, ind_id_generator, obj_id_generator, debug= debug)
         population |= new_inds
         for new_ind_id in new_inds.keys(): unassigned_patches[new_ind_id] = []
+
+#        print(f'population after rules: {population.keys()}')
+
+#        if 3827 in population.keys():
+#            for obj_id, obj in (present_objects | not_present_objects).items():
+#                if obj_id in population[3827]:
+#                    print(f'obj_{obj_id}')
+#                    print(obj)
+#                    print(obj.unexplained)
+#                    print(obj.explained_unexplained)
+
+#        for ind_id, ind in population.items():
+#                if len(ind) > 4:
+#                    print('_____________________________9_____________________________')
+#                    print(ind)
+#                    for obj_id, obj in (present_objects | not_present_objects).items():
+#                        if obj_id in ind:
+#                            print(obj)
+#                    exit()
 
         #
 
@@ -377,8 +532,11 @@ def euristic_initialization(patches_per_frame, debug= False):
 
         best_score = math.inf
         scores = []
+        tuple_score = []
+        ind_id_score_tuple = []
         for ind_id, ind in population.items():
             total_unexplained = 0
+            total_explained = 0
             total_rules = 0
 
             ind_objects = [(obj_id, present_objects[obj_id] if obj_id in present_objects.keys() else not_present_objects[obj_id]) for obj_id in ind]
@@ -386,48 +544,50 @@ def euristic_initialization(patches_per_frame, debug= False):
             for obj_id, obj in ind_objects:
                 for frame_id, unexpl in obj.unexplained.items():
                     total_unexplained += len(unexpl)
+                for frame_id, expl in obj.explained_unexplained.items():
+                    total_explained += len(expl)
                 
                 for rule in obj.rules:
-                    total_rules += len(rule.effects) + 1
+                    total_rules += 1
+                    #total_rules += len(rule.causes)
+                    #total_rules += len(rule.effects)
 
-            score = total_unexplained + total_rules
+            #score = (total_unexplained + total_explained) * 10 + total_rules - total_explained
+            score = 10 * total_unexplained + total_explained + total_rules
+            #tuple_score.append((total_unexplained + total_explained, total_unexplained, total_rules))
+            
+            tuple_score.append((total_unexplained + total_explained, total_unexplained))
+            #tuple_score.append(total_unexplained + total_explained) # gets correctly all the unexplaineds (no pos changes, only speed changes)
+            ind_id_score_tuple.append(ind_id)
             
             scores.append((ind_id, score))
             if score < best_score: best_score = score
 
+        sort_idx = sorted(range(len(tuple_score)), key=lambda i: tuple_score[i])
+        tuple_score = [tuple_score[i] for i in sort_idx]
+        ind_id_score_tuple = [ind_id_score_tuple[i] for i in sort_idx]
+
         # removal of pruned individuals
 
-        ind_to_remove = [ind_id for ind_id, score in scores if score != best_score]
+        #inds_to_remove = []
+        #inds_to_remove = ind_id_score_tuple[1000:]
+        #inds_to_remove = [ind_id_score_tuple[i] for i in range(len(ind_id_score_tuple)) if tuple_score[i] >= tuple_score[len(ind_id_score_tuple) // 2] and tuple_score[i] != tuple_score[0]]
+        inds_to_remove = [ind_id_score_tuple[i] for i in range(len(ind_id_score_tuple)) if tuple_score[i] > tuple_score[0]]
+        #inds_to_remove = [ind_id for ind_id, score in scores if score != best_score]
 
-        for ind_id in ind_to_remove:
-                population.pop(ind_id)
-                unassigned_patches.pop(ind_id)
+        #probabilistic survival of ind_to_remove
 
-        # and of objects that are not in kept individuals
+        #
 
-        objs_to_keep = []
-        for ind in population.values():
-            objs_to_keep.extend(ind)
-        objs_to_keep = set(objs_to_keep)
+        #
 
-        present_to_remove = []
-        for obj_id in present_objects.keys():
-            if obj_id not in objs_to_keep: present_to_remove.append(obj_id)
-        for obj_id in present_to_remove:
-            present_objects.pop(obj_id)
-
-        not_present_to_remove = []
-        for obj_id in not_present_objects.keys():
-            if obj_id not in objs_to_keep: not_present_to_remove.append(obj_id)
-        for obj_id in not_present_to_remove:
-            not_present_objects.pop(obj_id)
-
-        for obj_id in present_to_remove + not_present_to_remove:
-            if obj_id in unassigned_objects: unassigned_objects.remove(obj_id)
+        remove_inds(population, unassigned_patches, unassigned_objects, present_objects, not_present_objects, inds_to_remove)
 
     #
 
     ## conversion to Individual class
+
+    scores_dict = {ind_id_score_tuple[i]: tuple_score[i] for i in range(len(ind_id_score_tuple))}
 
     all_obj = present_objects | not_present_objects
     final_population = []
@@ -436,7 +596,7 @@ def euristic_initialization(patches_per_frame, debug= False):
         for obj_id, obj in all_obj.items():
             if obj_id in ind:
                 object_dict[obj_id] = obj
-        final_population.append(Individual(object_dict, len(patches_per_frame)))
+        final_population.append((Individual(object_dict, len(patches_per_frame)), scores_dict[ind_id]))
 
     return final_population
 

@@ -20,20 +20,34 @@ class Object:
 
         self.rules = rules[:]
 
-        self.prediction = self.compute_next()
+        self.prediction = self.compute_next(frames_id[-1])
 
     def copy(self):
         return Object(self.frames_id, self.sequence, self.current_properties, self.unexplained, self.explained_unexplained, self.events, self.rules)
 
-    def compute_next(self):
+    def compute_next(self, frame_id):
 
         new_properties = {property_class: value for property_class, value in self.current_properties.items()}
 
-        for property_class in self.current_properties.keys():
-            for prop_to_modify, change in property_class.effects(self.current_properties).items():
-                new_properties[prop_to_modify] += change
+        for rule in self.rules:
+            triggered, effects, offset = rule.trigger(self, frame_id - rule.cause_offset)
+            if triggered:
+                for effect in effects:
+                    p_class = effect.property_class
+                    if p_class not in new_properties.keys(): new_properties[p_class] = 0
+                    new_properties[p_class] = effect.a * new_properties[p_class] + effect.b
 
-        return new_properties
+        new_new_properties = {property_class: value for property_class, value in new_properties.items()}
+
+        #for property_class in self.current_properties.keys():
+        #    for prop_to_modify, change in property_class.effects(self.current_properties).items():
+        #        new_properties[prop_to_modify] += change
+
+        for property_class in new_properties.keys():
+            for prop_to_modify, change in property_class.effects(new_properties).items():
+                new_new_properties[prop_to_modify] += change
+
+        return new_new_properties
     
     def update(self, frame_id, patch, new_properties, other_patches):
 
@@ -50,7 +64,7 @@ class Object:
                 new_events.append(event)
         self.events[frame_id] = new_events
 
-        self.prediction = self.compute_next()
+        self.prediction = self.compute_next(frame_id)
 
     def add_unexplained(self, unexplained_dict):
         for frame_id, unexplained in unexplained_dict.items():

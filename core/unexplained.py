@@ -23,6 +23,13 @@ class PropertyChange(UnexplainedNumericalChange):
     
     def __repr__(self): return f'PropertyChange({self.property_class.name()}: {self.previous_value} -> {self.final_value})'
 
+    def __eq__(self, other):
+        if isinstance(other, PropertyChange): return self.property_class == other.property_class and self.final_value - self.previous_value == other.final_value - other.previous_value
+        else: return False
+
+    def my_hash(self):
+        return ('PropertyChange', self.property_class, self.final_value - self.previous_value)
+
 class Appearance(UnexplainedSpecificChange):
 
     def __init__(self):
@@ -33,6 +40,13 @@ class Appearance(UnexplainedSpecificChange):
     
     def __repr__(self): return 'Appearance'
 
+    def __eq__(self, other):
+        if isinstance(other, Appearance): return True
+        else: return False
+
+    def my_hash(self):
+        return ('Appearance', None, None)
+
 class Disappearance(UnexplainedSpecificChange):
 
     def __init__(self):
@@ -40,6 +54,13 @@ class Disappearance(UnexplainedSpecificChange):
 
     def copy(self):
         return Disappearance()
+
+    def __eq__(self, other):
+        if isinstance(other, Disappearance): return True
+        else: return False
+
+    def my_hash(self):
+        return ('Disappearance', None, None)
     
     def __repr__(self): return 'Disappearance'
 
@@ -52,6 +73,12 @@ class Duplication(UnexplainedSpecificChange):
         return Duplication(self.from_obj)
     
     def __repr__(self): return f'Duplication(from {self.from_obj})'
+
+    def __eq__(self, other):
+        if isinstance(other, Duplication): return self.from_obj == other.from_obj
+
+    def my_hash(self):
+        return ('Duplication', self.from_obj.id, None) # this is wrong and just a placeholder
 
 # change the dict keys to string
 # define Property as mother class and Property_0 and Property_1
