@@ -1,85 +1,15 @@
 from utils.various import equal_collections
 from core.unexplained import (
-    UnexplainedSpecificChange, UnexplainedNumericalChange, PropertyChange,
+    UnexplainedSpecificChange,
+    UnexplainedNumericalChange,
+    SpecificUnexplainedPhenomenon,
+    NumericalUnexplainedPhenomenon,
+    EventPhenomenon
     )
 from core.events import Event
 
-import itertools
-
-class Phenomenon:
-
-    def __init__(self, info):
-        pass
-
-    def test(self, phenomenon):
-        pass
-
-    def __repr__(self):
-        pass
-
-    def my_hash(self):
-        pass
-
-class SpecificUnexplainedPhenomenon(Phenomenon):
-
-    def __init__(self, info):
-        self.unexplained_class = info['unexplained_class']
-
-    def test(self, phenomenon):
-        return isinstance(phenomenon, self.unexplained_class)
-    
-    def __repr__(self):
-        return self.unexplained_class.__name__
-    
-    def __eq__(self, other):
-        if isinstance(other, SpecificUnexplainedPhenomenon): return self.unexplained_class == other.unexplained_class
-        else: return False
-
-    def my_hash(self):
-        return ('SpecificUnexplainedPhenomenon', self.unexplained_class, None, None)
-
-class NumericalUnexplainedPhenomenon(Phenomenon):
-
-    def __init__(self, info):
-        self.property_class = info['property_class']
-        self.a = info['a']
-        self.b = info['b']
-
-    def test(self, phenomenon):
-        if not isinstance(phenomenon, PropertyChange): return False
-        if self.property_class != phenomenon.property_class: return False
-        return (phenomenon.final_value == self.a * phenomenon.previous_value + self.b)
-    
-    def __repr__(self):
-        return f'{self.property_class.name()}(i+1) = {self.a} * {self.property_class.name()}(i) + {self.b}'
-    
-    def __eq__(self, other):
-        if isinstance(other, NumericalUnexplainedPhenomenon): return (self.property_class == other.property_class and self.a == other.a and self.b == other.b)
-        else: return False
-
-    def my_hash(self):
-        return ('NumericalUnexplainedPhenomenon', self.property_class, self.a, self.b)
-
-class EventPhenomenon(Phenomenon):
-
-    def __init__(self, info):
-        self.event_class = info['event_class']
-
-    def test(self, phenomenon):
-        if isinstance(phenomenon, EventPhenomenon): return self.event_class == phenomenon.event_class
-        if isinstance(phenomenon, type):
-            if issubclass(phenomenon, Event): return phenomenon is self.event_class
-        return False
-    
-    def __eq__(self, other):
-        if isinstance(other, EventPhenomenon): return self.event_class == other.event_class
-        else: return False
-    
-    def __repr__(self):
-        return self.event_class.__name__
-
-    def my_hash(self):
-        return ('EventPhenomenon', self.event_class, None, None)
+RULE_MIN_TIMES = 1
+CAUSE_EFFECT_MAX_OFFSET = 3
 
 class Rule:
 
@@ -109,18 +39,23 @@ class Rule:
         return True
     
     def my_hash(self):
-        return (self.cause_offset, frozenset(self.causes), frozenset(self.effects))
+        ss = f'{self.cause_offset}'
+        for cause_hash in sorted([cause.my_hash() for cause in self.causes]):
+            ss += cause_hash
+        for effect_hash in sorted([effect.my_hash() for effect in self.effects]):
+            ss += effect_hash
+        return ss
 
     def __repr__(self):
         return f'rule\nwith causes: {self.causes}\nwith effects: {self.effects}\nafter {self.cause_offset} frames'
 
-A_RANGE = [-1, 0, 1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6]
+A_RANGE = [-1, 0, 1, 2, -2]#, 3, -3, 4, -4, 5, -5, 6, -6]
 B_RANGE = [-1, 0, 1]
 
 def convert_to_phenomenon(event_or_unexplained):
 
     if isinstance(event_or_unexplained, UnexplainedSpecificChange):
-        return SpecificUnexplainedPhenomenon({'unexplained_class': event_or_unexplained.__class__})
+        return [SpecificUnexplainedPhenomenon({'unexplained_class': event_or_unexplained.__class__})]
     elif isinstance(event_or_unexplained, UnexplainedNumericalChange):
         previous = event_or_unexplained.previous_value
         final = event_or_unexplained.final_value
@@ -128,141 +63,101 @@ def convert_to_phenomenon(event_or_unexplained):
             a = 0
             b = final
         else:
-            perfect_a = None
-            for try_a in A_RANGE:
-                if final == try_a * previous:
-                    perfect_a = try_a
-                    break
-            if perfect_a:
-                a = perfect_a
-                b = 0
-            else:
-                perfect_pair = None
-                for try_a, try_b in itertools.product(A_RANGE, B_RANGE):
-                    if final == try_a * previous + try_b:
-                        perfect_pair = (try_a, try_b)
-                        break
-                if perfect_pair:
-                    a, b = perfect_pair
-                else:
-                    return None
-        return NumericalUnexplainedPhenomenon({'a': a, 'b': b, 'property_class': event_or_unexplained.property_class})
+            a, b = divmod(final, previous)
+        return [NumericalUnexplainedPhenomenon({'a': a, 'b': b, 'property_class': event_or_unexplained.property_class})]
     elif issubclass(event_or_unexplained, Event):
-        return EventPhenomenon({'event_class': event_or_unexplained})
+        return [EventPhenomenon({'event_class': event_or_unexplained}), EventPhenomenon({'event_class': event_or_unexplained.__base__})]
     else:
         print('nah2')
         exit(0)
 
-def rule_inference(population, present_objects, not_present_objects, frame_id, ind_id_generator, obj_id_generator, debug= False):
+def new_infer_rules(ind, present_objects, not_present_objects, frame_id, debug= False):
 
-    new_inds = {}
+    explained_score = 0
 
-    for ind_pid, (ind_id, ind) in enumerate(population.items()):
+    seen_rules = []
 
-        if debug: print(f'\rind {ind_pid}/{len(population)}', end= "")
+    all_ind_objs = {obj_id: present_objects[obj_id] if obj_id in present_objects.keys() else not_present_objects[obj_id] for obj_id in ind}
 
-        all_ind_objs = [(obj_id, present_objects[obj_id] if obj_id in present_objects.keys() else not_present_objects[obj_id]) for obj_id in ind]
+    for obj in all_ind_objs.values():
 
-        for obj_id, obj in all_ind_objs:
+        obj.reset_explained_and_rules()
 
-            possible_cause_subset_per_frame = {}
-            
-            for cF in [frame_id-4, frame_id-3, frame_id-2, frame_id-1, frame_id]:
+        obj_cause_effect_offset_times = {}
+        obj_cause_effect_offset_rule = {}
+        obj_cause_times = {}
 
-                possible_causes_per_frame = []
-
-#                if cF in obj.unexplained.keys():
-#                    for unexpl in obj.unexplained[cF]:
-#                        phenomenon = convert_to_phenomenon(unexpl)
-#                        if phenomenon: possible_causes_per_frame.append(phenomenon)
-#
-#                if cF in obj.explained_unexplained.keys():
-#                    for expl in obj.explained_unexplained[cF]:
-#                        phenomenon = convert_to_phenomenon(expl)
-#                        if phenomenon: possible_causes_per_frame.append(phenomenon)
-                
-                if cF in obj.events.keys():
-                    for event in obj.events[cF]:
-                        phenomenon = convert_to_phenomenon(event)
-                        if phenomenon: possible_causes_per_frame.append(phenomenon)
-                
-                possible_cause_subset_per_frame[cF] = [list(comb) for r in range(1, len(possible_causes_per_frame) + 1) for comb in itertools.combinations(possible_causes_per_frame, r)]
+        all_possible_causes = {}
+        frames_with_possible_causes = []
+        for ffid in range(0, frame_id + 1):
+            all_possible_causes_ffid = []
+            if ffid in obj.unexplained.keys(): all_possible_causes_ffid.extend(obj.unexplained[ffid])
+            if ffid in obj.events.keys(): all_possible_causes_ffid.extend(obj.events[ffid])
+            if all_possible_causes_ffid:
+                all_possible_causes[ffid] = all_possible_causes_ffid
+                frames_with_possible_causes.append(ffid)
 
 
-            for eF in [frame_id-2, frame_id-1, frame_id]:
-                possible_effects = []
-                if eF in obj.unexplained.keys():
-                    for unexpl in obj.unexplained[eF]:
-                        phenomenon = convert_to_phenomenon(unexpl)
-                        if phenomenon: possible_effects.append(phenomenon)
-                
-                for effect_subset in [list(comb) for r in range(1, len(possible_effects) + 1) for comb in itertools.combinations(possible_effects, r)]:
+        for cf in range(0, frame_id + 1):
+            #print(f'cf: {cf}')
 
-                    for cF in [eF-2, eF-1, eF]:
+            if cf in frames_with_possible_causes:
 
-                        for cause_subset in possible_cause_subset_per_frame[cF]:
-                            if any([c.__eq__(e) for c in cause_subset for e in effect_subset]):
-                                continue
-                            
-                            #ppp = False
-                            #if any([isinstance(c, EventPhenomenon) for c in cause_subset]) and any([isinstance(e, SpecificUnexplainedPhenomenon) for e in effect_subset]):
-                            #    ppp = True
-                            #    print('\ncauses')
-                            #    print(cause_subset)
-                            #    print([type(c) for c in cause_subset])
-                            #    print('effects')
-                            #    print(effect_subset)
-                            #    print([type(e) for e in effect_subset])
-                            #    print('\n\n')
+                for ev in all_possible_causes[cf]:
+                    causes = convert_to_phenomenon(ev)
+                    for cause in causes:
+                        cause_hash = cause.my_hash()
+                        #print(f'\t\tcause: {cause_hash}')
 
-                            new_rule = Rule(eF - cF, cause_subset, effect_subset)
+                        if cause_hash in obj_cause_times.keys(): obj_cause_times[cause_hash] += 1
+                        else: obj_cause_times[cause_hash] = 1
 
-                            new_ind_id = ind_id_generator()
-                            new_obj_id = obj_id_generator()
-                            
-                            new_obj = obj.copy()
-                            new_obj.add_rule(new_rule)
+                        for ef in range(cf, cf + CAUSE_EFFECT_MAX_OFFSET if cf + CAUSE_EFFECT_MAX_OFFSET <= frame_id else frame_id + 1):
+                            #print(f'\tef: {ef}')
+                            offset = ef - cf
 
-                            new_obj.explain(eF, effect_subset)
+                            effects_set = obj.unexplained | obj.explained_unexplained
+                            if ef in effects_set.keys():
+                                for un in effects_set[ef]:
+                                    effects = convert_to_phenomenon(un)
+                                    for effect in effects:
+                                        effect_hash = effect.my_hash()
+                                        #print(f'\t\t\teffect: {effect}')
+                                        if cause != effect:
 
-                            new_ind = [obid for obid in ind if obid != obj_id] + [new_obj_id]
-                            
-                            for ooid, oobj in (present_objects | not_present_objects).items():
-                                if new_obj == oobj:
+                                            rule = Rule(offset, [cause], [effect])
 
-                                    new_obj_id = ooid
-                                    new_obj = oobj
-                                    new_ind = [obid for obid in ind if obid != obj_id] + [ooid]
-                                    break
+                                            if (cause_hash, effect_hash, offset) in obj_cause_effect_offset_times.keys():
+                                                obj_cause_effect_offset_times[((cause_hash, effect_hash, offset))] += 1
+                                            else:
+                                                obj_cause_effect_offset_times[((cause_hash, effect_hash, offset))] = 1
+                                                obj_cause_effect_offset_rule[((cause_hash, effect_hash, offset))] = rule
 
-                            #if ppp:
-                            #    print(f'frame_{frame_id} new ind: {new_ind_id}\n\n')
+        potential_rules = []
+        cause_classes = []
 
-                            new_inds[new_ind_id] = new_ind
-                            if obj_id in present_objects.keys(): present_objects[new_obj_id] = new_obj
-                            else: not_present_objects[new_obj_id] = new_obj
+        obj_explained_score = 0
 
-    if debug: print()
+        for (cause_hash, effect_hash, offset), times in obj_cause_effect_offset_times.items():
+            if obj_cause_times[cause_hash] == times:
+                obj_explained_score -= times
+                rule = obj_cause_effect_offset_rule[((cause_hash, effect_hash, offset))]
+                rule_hash = rule.my_hash()
+                if rule_hash not in seen_rules: seen_rules.append(rule_hash)
+                potential_rules.append(rule)
+                if isinstance(rule.causes[0], EventPhenomenon): cause_classes.append(rule.causes[0].event_class)
+                else: cause_classes.append(None)
+        
+        explained_score += obj_explained_score
+        
+        new_potential_rules = []
+        for pr, cc in zip(potential_rules, cause_classes):
+            if cc is not None:
+                if cc.__base__ not in cause_classes: new_potential_rules.append(pr)
 
-    return new_inds
+        for rule in new_potential_rules:
+            obj.add_rule(rule)
 
-def rule_trigger_and_check(present_objects, not_present_objects):
+    return explained_score, len(seen_rules)
 
-    all_objects = present_objects | not_present_objects
-
-    objs_to_remove = []
-
-    for obj_id, obj in all_objects.items():
-        frame_length = len(obj.frames_id)
-        for rule in obj.rules:
-            for frame_id in range(frame_length):
-                if frame_id + rule.cause_offset < frame_length:# and frame_id > frame_length - 5:
-                    triggered, effects, offset = rule.trigger(obj, frame_id)
-                    if triggered:
-                        ok = obj.check_and_explain(frame_id + offset, effects)
-                        if not ok:
-                            objs_to_remove.append(obj_id)
-                            break
-            if obj_id in objs_to_remove: break
-
-    return objs_to_remove
+        

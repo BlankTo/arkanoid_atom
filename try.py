@@ -1,3 +1,12 @@
+from euristic.euristic import summarize_into_prototypes
+import pickle
+
+with open('best_individual.pkl', 'rb') as f:
+    ind = pickle.load(f)
+
+summarize_into_prototypes(ind)
+
+exit()
 
 from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 

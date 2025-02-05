@@ -20,13 +20,13 @@ debug_patches_per_frame_0 = [
                 Pos_x: 6,
                 Pos_y: 2,
                 Shape_x: 0,
-                Shape_y: 1,
+                Shape_y: 3,
             }),
             Patch('wall_b', {
                 Pos_x: 1,
                 Pos_y: 2,
                 Shape_x: 0,
-                Shape_y: 1,
+                Shape_y: 3,
             }),
         ],
         [ # frame 1
@@ -46,13 +46,13 @@ debug_patches_per_frame_0 = [
                 Pos_x: 6,
                 Pos_y: 2,
                 Shape_x: 0,
-                Shape_y: 1,
+                Shape_y: 3,
             }),
             Patch('wall_b', {
                 Pos_x: 1,
                 Pos_y: 2,
                 Shape_x: 0,
-                Shape_y: 1,
+                Shape_y: 3,
             }),
         ],
         [ # frame 2
@@ -72,13 +72,13 @@ debug_patches_per_frame_0 = [
                 Pos_x: 6,
                 Pos_y: 2,
                 Shape_x: 0,
-                Shape_y: 1,
+                Shape_y: 3,
             }),
             Patch('wall_b', {
                 Pos_x: 1,
                 Pos_y: 2,
                 Shape_x: 0,
-                Shape_y: 1,
+                Shape_y: 3,
             }),
         ],
         [ # frame 3
@@ -98,7 +98,7 @@ debug_patches_per_frame_0 = [
                 Pos_x: 6,
                 Pos_y: 2,
                 Shape_x: 0,
-                Shape_y: 1,
+                Shape_y: 3,
             }),
         ],
     ]

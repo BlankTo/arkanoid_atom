@@ -2,12 +2,10 @@
 
 class Individual:
 
-    #def __init__(self, object_dict, events, rules, last_frame_id):
     def __init__(self, object_dict, last_frame_id):
 
         self.object_dict = {obj_id: obj for obj_id, obj in object_dict.items()}
 
-        #self.rules = rules
         self.rules = {obj_id: obj.rules for obj_id, obj in object_dict.items()}
 
         self.object_info = {}
@@ -18,10 +16,7 @@ class Individual:
                     'present': bool(frame_id in current_obj.frames_id),
                     'unexplained': current_obj.unexplained[frame_id] if frame_id in current_obj.unexplained.keys() else [],
                     'explained_unexplained': current_obj.explained_unexplained[frame_id] if frame_id in current_obj.explained_unexplained.keys() else [],
-                    #'events': events[(frame_id, obj_id)] if (frame_id, obj_id) in events.keys() else [],
                     'events': current_obj.events[frame_id] if frame_id in current_obj.events.keys() else [],
                     'patch': object_dict[obj_id].sequence[object_dict[obj_id].frames_id.index(frame_id)]if frame_id in current_obj.frames_id else None,
                     }
             self.object_info[obj_id] = frame_dict
-
-    def objects_id(self): return self.object_dict.keys()

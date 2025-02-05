@@ -8,8 +8,7 @@ from .events import (
     Event
 )
 from .object import Object
-#from .individual import Individual
+from .individual import Individual
 from .property import Property, Speed_x, Speed_y
-#from .rule import Rule
 from .unexplained import UnexplainedNumericalChange, UnexplainedSpecificChange, check_for_speed, check_blink, check_disappearance, check_duplication, check_for_property0_changes, check_multiple_holes_simple, check_multiple_holes_speed
-from .rule import rule_trigger_and_check, rule_inference
+from .rule import new_infer_rules

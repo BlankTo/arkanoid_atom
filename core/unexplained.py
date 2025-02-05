@@ -1,6 +1,81 @@
-from core.object import Object
-from core.property import Pos_x, Pos_y, Speed_x, Speed_y
+from core.property import Speed_x, Speed_y
 from core.patch import Patch
+from core.events import Event
+
+class Phenomenon:
+
+    def __init__(self, info):
+        pass
+
+    def test(self, phenomenon):
+        pass
+
+    def __repr__(self):
+        pass
+
+    def my_hash(self):
+        pass
+
+class SpecificUnexplainedPhenomenon(Phenomenon):
+
+    def __init__(self, info):
+        self.unexplained_class = info['unexplained_class']
+
+    def test(self, phenomenon):
+        return isinstance(phenomenon, self.unexplained_class)
+    
+    def __repr__(self):
+        return self.unexplained_class.__name__
+    
+    def __eq__(self, other):
+        if isinstance(other, SpecificUnexplainedPhenomenon): return self.unexplained_class == other.unexplained_class
+        else: return False
+
+    def my_hash(self):
+        return self.unexplained_class.__name__
+
+class NumericalUnexplainedPhenomenon(Phenomenon):
+
+    def __init__(self, info):
+        self.property_class = info['property_class']
+        self.a = info['a']
+        self.b = info['b']
+
+    def test(self, phenomenon):
+        if not isinstance(phenomenon, PropertyChange): return False
+        if self.property_class != phenomenon.property_class: return False
+        return (phenomenon.final_value == self.a * phenomenon.previous_value + self.b)
+    
+    def __repr__(self):
+        return f'{self.property_class.name()}(i+1) = {self.a} * {self.property_class.name()}(i) + {self.b}'
+    
+    def __eq__(self, other):
+        if isinstance(other, NumericalUnexplainedPhenomenon): return (self.property_class == other.property_class and self.a == other.a and self.b == other.b)
+        else: return False
+
+    def my_hash(self):
+        return f'{self.property_class}{self.a}{self.b}'
+
+class EventPhenomenon(Phenomenon):
+
+    def __init__(self, info):
+        self.event_class = info['event_class']
+
+    def test(self, phenomenon):
+        if isinstance(phenomenon, EventPhenomenon): return self.event_class == phenomenon.event_class
+        if isinstance(phenomenon, type):
+            if issubclass(phenomenon, Event): return phenomenon is self.event_class
+        return False
+    
+    def __eq__(self, other):
+        if isinstance(other, EventPhenomenon): return self.event_class == other.event_class
+        else: return False
+    
+    def __repr__(self):
+        return self.event_class.__name__
+
+    def my_hash(self):
+        return self.event_class.__name__
 
 class UnexplainedChange:
     pass
@@ -87,14 +162,14 @@ class Duplication(UnexplainedSpecificChange):
 # Property_0's effect return the same value
 # Property_1's effect return the change and in which property
 # then modify the function to test possible combinations Property_1's changes that could explain the diff and return all possible list of unexplaineds
-def check_for_speed(obj, patch, frame_id):
+def check_for_speed(obj, patch, frame_id, next_patches):
 
     last_patch = obj.sequence[-1]
-    last_properties = {k: v for k, v in obj.current_properties.items()}
-    last_properties[Speed_x] = Speed_x.compute(last_patch, patch)
-    last_properties[Speed_y] = Speed_y.compute(last_patch, patch)
+    current_properties = {fid: {k: v for k, v in prop.items()} for fid, prop in obj.properties.items()}
+    current_properties[frame_id - 1][Speed_x] = Speed_x.compute(last_patch, patch)
+    current_properties[frame_id - 1][Speed_y] = Speed_y.compute(last_patch, patch)
 
-    dummy_object = Object([obj.frames_id[-1]], [last_patch], last_properties)
+    dummy_object = obj.create_dummy([obj.frames_id[-1]], [last_patch], current_properties, obj.rules)
 
     all_ok = True
     for property_class, value in patch.properties.items():
@@ -102,42 +177,69 @@ def check_for_speed(obj, patch, frame_id):
             all_ok = False
             break
 
-    if all_ok:
-        unexplained = []
-        if Speed_x in obj.current_properties.keys():
-            if obj.current_properties[Speed_x] != last_properties[Speed_x]:
-                unexplained.append(PropertyChange(Speed_x, obj.current_properties[Speed_x], last_properties[Speed_x]))
-        else: unexplained.append(PropertyChange(Speed_x, 0, last_properties[Speed_x]))
-        if Speed_y in obj.current_properties.keys():
-            if obj.current_properties[Speed_y] != last_properties[Speed_y]:
-                unexplained.append(PropertyChange(Speed_y, obj.current_properties[Speed_y], last_properties[Speed_y]))
-        else: unexplained.append(PropertyChange(Speed_y, 0, last_properties[Speed_y]))
-        if not unexplained: return False, None, None
-        return True, {frame_id - 1: unexplained}, dummy_object.prediction
-    else: return False, None, None
+    if not all_ok: return False, False, None, None
+
+    unexplained_dict = {}
+
+    current_properties[frame_id] = dummy_object.prediction
+
+    q1_unexplained = []
+    if Speed_x in obj.properties[frame_id - 1].keys():
+        if obj.properties[frame_id - 1][Speed_x] != current_properties[frame_id][Speed_x]:
+            q1_unexplained.append(PropertyChange(Speed_x, obj.properties[frame_id - 1][Speed_x], current_properties[frame_id][Speed_x]))
+    else: q1_unexplained.append(PropertyChange(Speed_x, 0, current_properties[frame_id][Speed_x]))
+    if Speed_y in obj.properties[frame_id - 1].keys():
+        if obj.properties[frame_id - 1][Speed_y] != current_properties[frame_id][Speed_y]:
+            q1_unexplained.append(PropertyChange(Speed_y, obj.properties[frame_id - 1][Speed_y], current_properties[frame_id][Speed_y]))
+    else: q1_unexplained.append(PropertyChange(Speed_y, 0, current_properties[frame_id][Speed_y]))
+
+    if not q1_unexplained: return False, False, None, None
+
+    if frame_id - 1 in unexplained_dict.keys(): unexplained_dict[frame_id - 1].extend(q1_unexplained)
+    else: unexplained_dict[frame_id - 1] = q1_unexplained
+
+    dummy_object = obj.create_dummy([frame_id], [patch], current_properties, obj.rules)
+    new_pred = dummy_object.prediction
+
+    confirmed = False
+    if next_patches:
+        for np in next_patches:
+            all_ok = True
+            for property_class, value in np.properties.items():
+                if new_pred[property_class] != value:
+                    all_ok = False
+                    break
+            if all_ok:
+                confirmed = True
+                break
+    else: confirmed = True
+
+    if confirmed: return True, True, unexplained_dict, current_properties
+    else: return True, False, unexplained_dict, current_properties
 
 def check_for_property0_changes(obj, patch, frame_id):
 
     unexplained = []
-    new_properties = {k: v for k, v in obj.prediction.items()}
+    current_properties = {fid: {k: v for k, v in prop.items()} for fid, prop in obj.properties.items()}
+    current_properties[frame_id] = obj.prediction
 
     for property_class, value in patch.properties.items():
-        if obj.prediction[property_class] != value:
-            unexplained.append(PropertyChange(property_class, obj.current_properties[property_class], value))
-            new_properties[property_class] = value
+        if current_properties[frame_id][property_class] != value:
+            unexplained.append(PropertyChange(property_class, obj.properties[frame_id - 1][property_class], value))
+            current_properties[frame_id][property_class] = value
 
-    if unexplained: return True, {frame_id: unexplained}, new_properties
-    else: return False, {}, new_properties
+    if unexplained: return True, {frame_id: unexplained}, current_properties
+    else: return False, {}, current_properties
 
 
 def check_disappearance(obj, frame_id):
-    return True, {frame_id: [Disappearance()]}, obj.current_properties
+    return True, {frame_id: [Disappearance()]}, obj.properties[obj.frames_id[-1]]
 
 # same for this one
 def check_multiple_holes_simple(obj, patch, frame_id):
 
     starting_frame_id = obj.frames_id[-1]
-    dummy_object = Object([obj.frames_id[-1]], [obj.sequence[-1]], obj.current_properties)
+    dummy_object = obj.create_dummy([obj.frames_id[-1]], [obj.sequence[-1]], obj.properties, obj.rules)
 
     for i in range(starting_frame_id + 1, frame_id):
 
@@ -155,11 +257,11 @@ def check_multiple_holes_simple(obj, patch, frame_id):
 # same for this one
 def check_multiple_holes_speed(obj, patch, frame_id):
 
-    dummy_object = Object([obj.frames_id[-1]], [obj.sequence[-1]], obj.current_properties)
+    dummy_object = obj.create_dummy([obj.frames_id[-1]], [obj.sequence[-1]], obj.properties, obj.rules)
 
     starting_frame_id = obj.frames_id[-1]
     last_patch = obj.sequence[-1]
-    last_properties = {k: v for k, v in obj.current_properties.items()}
+    last_properties = {k: v for k, v in obj.properties[obj.frames_id[-1]].items()}
     last_properties[Speed_x] = Speed_x.compute(last_patch, patch) / (frame_id - starting_frame_id)
     last_properties[Speed_y] = Speed_y.compute(last_patch, patch) / (frame_id - starting_frame_id)
 
@@ -173,14 +275,14 @@ def check_multiple_holes_speed(obj, patch, frame_id):
             all_ok = False
             break
 
-    if all_ok: return True, {starting_frame_id: [PropertyChange(Speed_x, obj.current_properties[Speed_x], dummy_object.prediction[Speed_x]), PropertyChange(Speed_y, obj.current_properties[Speed_y], dummy_object.prediction[Speed_y])], frame_id: Appearance()}, dummy_object.prediction
+    if all_ok: return True, {starting_frame_id: [PropertyChange(Speed_x, obj.properties[obj.frames_id[-1]][Speed_x], dummy_object.prediction[Speed_x]), PropertyChange(Speed_y, obj.properties[obj.frames_id[-1]][Speed_y], dummy_object.prediction[Speed_y])], frame_id: Appearance()}, dummy_object.prediction
     else: return False, None, None
 
 
 # same
 def check_blink(obj, patch, frame_id):
 
-    last_properties = {k: v for k, v in obj.current_properties.items()}
+    last_properties = {k: v for k, v in obj.properties[obj.frames_id[-1]].items()}
 
     for property_class, value in patch.properties.items():
         last_properties[property_class] = value
@@ -190,7 +292,7 @@ def check_blink(obj, patch, frame_id):
 # same
 def check_duplication(obj, patch, frame_id):
 
-    last_properties = {k: v for k, v in obj.current_properties.items()}
+    last_properties = {k: v for k, v in obj.properties[obj.frames_id[-1]].items()}
 
     for property_class, value in patch.properties.items():
         last_properties[property_class] = value

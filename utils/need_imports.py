@@ -35,7 +35,7 @@ def load_patches_per_frame(log_file_name= None, descriptions_to_exclude= ['envir
 
         patches = []
         for description, elem_props in frame['elements'].items():
-            if description in descriptions_to_exclude: continue
+            if description in descriptions_to_exclude or elem_props['existence'] == False: continue
             
             patches.append(Patch(description, convert_properties(elem_props)))
 

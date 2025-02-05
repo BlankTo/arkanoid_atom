@@ -3,25 +3,46 @@ from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 class Event:
     pass
 
+class NoTargetEvent(Event):
+
+    def __init__(self, name):
+        self.name = name
+
+    @staticmethod
+    def check() -> bool:
+        return True
+
+class GlobalEvent(NoTargetEvent):
+
+    def __init__(self, name):
+        self.name = name
+
+    @staticmethod
+    def check() -> bool:
+        return True
+
+class CommandEvent(NoTargetEvent):
+
+    def __init__(self, name):
+        self.name = name
+
+    @staticmethod
+    def check() -> bool:
+        return True
+
 class SingleTargetEvent(Event):
 
     @staticmethod
     def check(previous, current, current_others) -> bool:
         raise NotImplementedError("Subclasses must implement this method.")
 
+class Contact(Event):
+
     @staticmethod
-    def name():
-        raise NotImplementedError("Subclasses must implement this method.")
-    
-    @staticmethod
-    def id():
-        raise NotImplementedError("Subclasses must implement this method.")
-    
-    @staticmethod
-    def copy():
+    def check(previous, current, current_others) -> bool:
         raise NotImplementedError("Subclasses must implement this method.")
 
-class Contact_With_Something_T(SingleTargetEvent):
+class Contact_With_Something_T(Contact):
 
     @staticmethod
     def check(previous, current, current_others) -> bool:
@@ -32,16 +53,7 @@ class Contact_With_Something_T(SingleTargetEvent):
                 return True
         return False
 
-    @staticmethod
-    def name(): return 'contact_top'
-    
-    @staticmethod
-    def id(): return 1
-    
-    @staticmethod
-    def copy(): return Contact_With_Something_T
-
-class Contact_With_Something_B(SingleTargetEvent):
+class Contact_With_Something_B(Contact):
 
     @staticmethod
     def check(previous, current, current_others) -> bool:
@@ -53,16 +65,7 @@ class Contact_With_Something_B(SingleTargetEvent):
                 return True
         return False
 
-    @staticmethod
-    def name(): return 'contact_bottom'
-    
-    @staticmethod
-    def id(): return 2
-    
-    @staticmethod
-    def copy(): return Contact_With_Something_B
-
-class Contact_With_Something_L(SingleTargetEvent):
+class Contact_With_Something_L(Contact):
 
     @staticmethod
     def check(previous, current, current_others) -> bool:
@@ -73,16 +76,7 @@ class Contact_With_Something_L(SingleTargetEvent):
                 return True
         return False
 
-    @staticmethod
-    def name(): return 'contact_left'
-    
-    @staticmethod
-    def id(): return 3
-    
-    @staticmethod
-    def copy(): return Contact_With_Something_L
-
-class Contact_With_Something_R(SingleTargetEvent):
+class Contact_With_Something_R(Contact):
 
     @staticmethod
     def check(previous, current, current_others) -> bool:
@@ -92,14 +86,5 @@ class Contact_With_Something_R(SingleTargetEvent):
             if (hb1[1][0] + 1 == hb2[0][0] and hb1[0][1] <= hb2[1][1] and hb1[1][1] >= hb2[0][1]):
                 return True
         return False
-
-    @staticmethod
-    def name(): return 'contact_right'
-    
-    @staticmethod
-    def id(): return 4
-    
-    @staticmethod
-    def copy(): return Contact_With_Something_R
 
 event_pool = [Contact_With_Something_T, Contact_With_Something_B, Contact_With_Something_L, Contact_With_Something_R]
