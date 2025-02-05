@@ -7,6 +7,8 @@ class NoTargetEvent(Event):
 
     def __init__(self, name):
         self.name = name
+    
+    def copy(self): NoTargetEvent(self.name)
 
     @staticmethod
     def check() -> bool:
@@ -16,6 +18,8 @@ class GlobalEvent(NoTargetEvent):
 
     def __init__(self, name):
         self.name = name
+    
+    def copy(self): NoTargetEvent(self.name)
 
     @staticmethod
     def check() -> bool:

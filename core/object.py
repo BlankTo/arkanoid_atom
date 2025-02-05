@@ -16,7 +16,7 @@ class Object:
 
         self.explained_unexplained = {fid: [ex.copy() for ex in v_list] for fid, v_list in explained_unexplained.items()}
 
-        self.events = {fid: [ex.copy() for ex in v_list] for fid, v_list in events.items()}
+        self.events = {fid: [ev for ev in v_list] for fid, v_list in events.items()}
 
         self.rules = rules[:]
 
