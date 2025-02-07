@@ -8,6 +8,62 @@ summarize_into_prototypes(ind)
 
 exit()
 
+import pickle
+
+with open('best_population.pkl', 'rb') as f:
+    population = pickle.load(f)
+
+print(len(population[0].object_dict.keys()) == len(population[1].object_dict.keys()))
+
+always_found = True
+for obj_0 in population[0].object_dict.values():
+    exact = False
+
+    for obj_1 in population[1].object_dict.values():
+        if obj_0.__eq__(obj_1):
+            exact = True
+            break
+    
+    if not exact:
+
+        print(f'\n=======================\n{obj_0.sequence[0].description}\n=======================\n')
+
+        obj_1 = None
+        for obj in population[1].object_dict.values():
+            if obj.sequence[0].description == obj_0.sequence[0].description:
+                obj_1 = obj
+                break
+        
+        if obj_1 is None:
+            print('fuck')
+            exit()
+
+        for frame_id in range(obj_0.frames_id[-1]):
+            if frame_id in obj_0.unexplained.keys() and frame_id in obj_1.unexplained.keys():
+                if set([unexpl.my_hash() for unexpl in obj_0.unexplained[frame_id]]) != set([unexpl.my_hash() for unexpl in obj_1.unexplained[frame_id]]):
+                    print(f'\n---------\nframe_{frame_id}')
+                    print('obj_0_unexplained')
+                    print([unexpl.my_hash() for unexpl in obj_0.unexplained[frame_id]])
+                    print('obj_1_unexplained')
+                    print([unexpl.my_hash() for unexpl in obj_1.unexplained[frame_id]])
+            elif frame_id in obj_0.unexplained.keys():
+                print(f'\n---------\nframe_{frame_id}')
+                print('obj_0_unexplained')
+                print([unexpl.my_hash() for unexpl in obj_0.unexplained[frame_id]])
+            elif frame_id in obj_1.unexplained.keys():
+                print(f'\n---------\nframe_{frame_id}')
+                print('obj_1_unexplained')
+                print([unexpl.my_hash() for unexpl in obj_1.unexplained[frame_id]])
+
+        always_found = False
+
+print(always_found)
+
+
+    
+
+exit()
+
 from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 
 def check_general_contact(hitbox_A, hitbox_B):

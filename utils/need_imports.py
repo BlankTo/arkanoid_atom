@@ -4,6 +4,8 @@ import pickle
 from core.patch import Patch
 from core.property import Pos_x, Pos_y, Shape_x, Shape_y
 
+from core.events import GlobalEvent, CommandEvent
+
 
 # future update: a method to extract patches with properties from images instead of convert_properties 
 
@@ -31,6 +33,7 @@ def load_patches_per_frame(log_file_name= None, descriptions_to_exclude= ['envir
     print(f'{log_file_path} loaded')
 
     patches_per_frame = []
+    global_events_per_frame = []
     for frame in log:
 
         patches = []
@@ -41,4 +44,9 @@ def load_patches_per_frame(log_file_name= None, descriptions_to_exclude= ['envir
 
         patches_per_frame.append(patches)
 
-    return patches_per_frame
+        global_events = [CommandEvent(com) for com in frame['commands']]
+        global_events.extend([GlobalEvent(ev['description']) for ev in frame['events']])
+
+        global_events_per_frame.append(global_events)
+
+    return patches_per_frame, global_events_per_frame

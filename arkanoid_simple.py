@@ -491,12 +491,16 @@ game_running = False
 element_log, event_log = game.get_log()
 
 frame_id = 0
-frames = [{
+frames = []
+frames.append({
     'frame_id': frame_id,
     'commands': [],
     'elements': deepcopy(element_log),
-    'events': []
-}]
+    'events': [{
+        'description': 'game_start',
+        'subject': 0
+    }]
+})
 frame_id += 1
 
 while screen_running:
@@ -536,39 +540,16 @@ while screen_running:
             refresh_rate += refresh_rate / 2
             print(refresh_rate)
 
-#        if keys_down.count(pygame.K_LEFT) > keys_up.count(pygame.K_LEFT):
-#            paddle_left = True
-#        elif keys_down.count(pygame.K_LEFT) < keys_up.count(pygame.K_LEFT):
-#            paddle_left = False
-#
-#        if keys_down.count(pygame.K_RIGHT) > keys_up.count(pygame.K_RIGHT):
-#            paddle_right = True
-#        elif keys_down.count(pygame.K_RIGHT) < keys_up.count(pygame.K_RIGHT):
-#            paddle_right = False
-#
-#        if (not paddle_left and not paddle_right):
-#            command_log.append(('paddle_stop'))
-#            game.set_paddle_speed(0)
-#        elif paddle_left:
-#            command_log.append(('paddle_left'))
-#            game.set_paddle_speed(-1)
-#        elif paddle_right:
-#            command_log.append(('paddle_right'))
-#            game.set_paddle_speed(1)
-#        else:
-#            command_log.append(('paddle_stop'))
-#            game.set_paddle_speed(0)
-
         if game_running:
 
             element_log, event_log, end_game = game.update()
 
-            if first_time_run:
-                event_log.append({
-                    'description': 'game_start',
-                    'subject': 0
-                })
-                first_time_run = False
+            #if first_time_run:
+            #    event_log.append({
+            #        'description': 'game_start',
+            #        'subject': 0
+            #    })
+            #    first_time_run = False
 
             if event_log:
                 print(frame_id)

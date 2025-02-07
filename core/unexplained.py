@@ -77,6 +77,26 @@ class EventPhenomenon(Phenomenon):
     def my_hash(self):
         return self.event_class.__name__
 
+class GlobalEventPhenomenon(Phenomenon):
+
+    def __init__(self, info):
+        self.name = info['name']
+
+    def test(self, phenomenon):
+        if isinstance(phenomenon, GlobalEventPhenomenon): return self.name == phenomenon.name
+        if isinstance(phenomenon, str): return phenomenon == self.name
+        return False
+    
+    def __eq__(self, other):
+        if isinstance(other, GlobalEventPhenomenon): return self.name == other.name
+        else: return False
+    
+    def __repr__(self):
+        return self.name
+
+    def my_hash(self):
+        return self.name
+
 class UnexplainedChange:
     pass
 
@@ -164,6 +184,10 @@ class Duplication(UnexplainedSpecificChange):
 # then modify the function to test possible combinations Property_1's changes that could explain the diff and return all possible list of unexplaineds
 def check_for_speed(obj, patch, frame_id, next_patches):
 
+    ##
+    #return False, False, None, None
+    ##
+
     last_patch = obj.sequence[-1]
     current_properties = {fid: {k: v for k, v in prop.items()} for fid, prop in obj.properties.items()}
     current_properties[frame_id - 1][Speed_x] = Speed_x.compute(last_patch, patch)
@@ -187,16 +211,22 @@ def check_for_speed(obj, patch, frame_id, next_patches):
     if Speed_x in obj.properties[frame_id - 1].keys():
         if obj.properties[frame_id - 1][Speed_x] != current_properties[frame_id][Speed_x]:
             q1_unexplained.append(PropertyChange(Speed_x, obj.properties[frame_id - 1][Speed_x], current_properties[frame_id][Speed_x]))
-    else: q1_unexplained.append(PropertyChange(Speed_x, 0, current_properties[frame_id][Speed_x]))
+    elif current_properties[frame_id][Speed_x] != 0:
+        q1_unexplained.append(PropertyChange(Speed_x, 0, current_properties[frame_id][Speed_x]))
     if Speed_y in obj.properties[frame_id - 1].keys():
         if obj.properties[frame_id - 1][Speed_y] != current_properties[frame_id][Speed_y]:
             q1_unexplained.append(PropertyChange(Speed_y, obj.properties[frame_id - 1][Speed_y], current_properties[frame_id][Speed_y]))
-    else: q1_unexplained.append(PropertyChange(Speed_y, 0, current_properties[frame_id][Speed_y]))
+    elif current_properties[frame_id][Speed_y] != 0:
+        q1_unexplained.append(PropertyChange(Speed_y, 0, current_properties[frame_id][Speed_y]))
 
     if not q1_unexplained: return False, False, None, None
 
     if frame_id - 1 in unexplained_dict.keys(): unexplained_dict[frame_id - 1].extend(q1_unexplained)
     else: unexplained_dict[frame_id - 1] = q1_unexplained
+
+    ##
+    return True, False, unexplained_dict, current_properties
+    ##
 
     dummy_object = obj.create_dummy([frame_id], [patch], current_properties, obj.rules)
     new_pred = dummy_object.prediction
@@ -243,7 +273,7 @@ def check_multiple_holes_simple(obj, patch, frame_id):
 
     for i in range(starting_frame_id + 1, frame_id):
 
-        dummy_object.update(i, Patch('dummy', dummy_object.prediction), dummy_object.prediction)
+        dummy_object.update(i, Patch('dummy', dummy_object.prediction), dummy_object.prediction, [])
 
     all_ok = True
     for property_class, value in patch.properties.items():
@@ -267,7 +297,7 @@ def check_multiple_holes_speed(obj, patch, frame_id):
 
     for i in range(starting_frame_id + 1, frame_id):
 
-        dummy_object.update(i, Patch('dummy', dummy_object.prediction), dummy_object.prediction)
+        dummy_object.update(i, Patch('dummy', dummy_object.prediction), dummy_object.prediction, [])
 
     all_ok = True
     for property_class, value in patch.properties.items():

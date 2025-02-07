@@ -4,7 +4,7 @@ from core.events import event_pool
 
 class Object:
 
-    def __init__(self, frames_id, sequence, properties= {}, unexplained= {}, explained_unexplained= {}, events= {}, rules= []):
+    def __init__(self, frames_id, sequence, properties= {}, unexplained= {}, explained_unexplained= {}, events= {}, global_events= {}, rules= []):
 
         self.frames_id = frames_id[:]
 
@@ -17,6 +17,8 @@ class Object:
         self.explained_unexplained = {fid: [ex.copy() for ex in v_list] for fid, v_list in explained_unexplained.items()}
 
         self.events = {fid: [ev for ev in v_list] for fid, v_list in events.items()}
+
+        self.global_events = {fid: [ev.copy() for ev in v_list] for fid, v_list in global_events.items()}
 
         self.rules = rules[:]
 
@@ -34,10 +36,10 @@ class Object:
         self.explained_unexplained = {}
 
     def copy(self):
-        return Object(self.frames_id, self.sequence, self.properties, self.unexplained, self.explained_unexplained, self.events, self.rules)
+        return Object(self.frames_id, self.sequence, self.properties, self.unexplained, self.explained_unexplained, self.events, self.global_events, self.rules)
     
     def create_dummy(self, frames_id, sequence, properties, rules):
-        return Object(frames_id, sequence, properties, {}, {}, {}, rules)
+        return Object(frames_id, sequence, properties, {}, {}, {}, {}, rules)
 
     def compute_next(self, frame_id):
 
@@ -65,7 +67,7 @@ class Object:
 
         return new_new_properties, predicted_explained
     
-    def update(self, frame_id, patch, new_properties, other_patches):
+    def update(self, frame_id, patch, new_properties, other_patches, global_events):
 
         self.frames_id.append(frame_id)
         self.sequence.append(patch)
@@ -79,6 +81,8 @@ class Object:
             if event.check(previous_patch, current_patch, other_patches):
                 new_events.append(event)
         self.events[frame_id] = new_events
+
+        self.global_events[frame_id] = [ev.copy() for ev in global_events]
 
         self.prediction, self.predicted_explained = self.compute_next(frame_id)
 
@@ -99,6 +103,7 @@ class Object:
         if isinstance(other, Object):
             if set(self.frames_id) != set(other.frames_id): return False
             if not equal_collections(self.sequence, other.sequence): return False
+            #if not equal_collections(self.unexplained, other.unexplained): return False
             if not equal_collections(self.events, other.events): return False
             if not equal_collections(self.rules, other.rules): return False
             return True
@@ -118,6 +123,9 @@ class Object:
             ss += f'{frame_id}: {expl} |'
         ss += '}\nevents: {'
         for frame_id, ev in self.events.items():
+            ss += f'{frame_id}: {ev} |'
+        ss += '}\nglobal events: {'
+        for frame_id, ev in self.global_events.items():
             ss += f'{frame_id}: {ev} |'
         ss += '}\nrules: {'
         for ruid, ru in enumerate(self.rules):

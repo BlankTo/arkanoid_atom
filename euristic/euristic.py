@@ -7,10 +7,11 @@ from core.unexplained import (
     check_multiple_holes_simple, check_multiple_holes_speed,
     )
 from core.rule import new_infer_rules
+from core.property import Shape_x, Shape_y
 
 import math
 
-SURVIVAL_TIME = 1
+SURVIVAL_TIME = 2
 
 def remove_inds(population, unassigned_patches, unassigned_objects, present_objects, not_present_objects, survival_dict, inds_to_remove):
 
@@ -41,7 +42,7 @@ def remove_inds(population, unassigned_patches, unassigned_objects, present_obje
     for obj_id in present_to_remove + not_present_to_remove:
         if obj_id in unassigned_objects: unassigned_objects.remove(obj_id)
 
-def euristic_initialization(patches_per_frame, resume_population= None, debug= False):
+def euristic_initialization(patches_per_frame, global_events_per_frame, resume_population= None, debug= False):
 
     if resume_population is None:
 
@@ -50,7 +51,7 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
 
         # initialization with one object per patch in the first frame
 
-        present_objects = {obj_id_generator(): Object([0], [patch], {0: patch.properties}) for patch in patches_per_frame[0]} # dict obj_id: obj
+        present_objects = {obj_id_generator(): Object(frames_id= [0], sequence= [patch], properties= {0: patch.properties}, global_events= {0: global_events_per_frame[0]}) for patch in patches_per_frame[0]} # dict obj_id: obj
         population = {ind_id_generator(): [obj_id for obj_id in present_objects.keys()]} # list of individual, each individual is a list of objects_id
         not_present_objects = {} # dict obj_id: obj
 
@@ -98,11 +99,11 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
     survival_dict = {ind_id: SURVIVAL_TIME for ind_id in population.keys()} # ind_id: survival_ages_remaining
 
     #
-
-    for frame_id_enum, patches in enumerate(patches_per_frame[starting_frame_id:]):
+    if not debug: print('\n\n\n')
+    for frame_id_enum, (patches, global_events) in enumerate(zip(patches_per_frame[starting_frame_id:], global_events_per_frame[starting_frame_id:])):
         frame_id = frame_id_enum + starting_frame_id
-        print('\n\n---------------------------------------')
-        print(f'frame: {frame_id}/{len(patches_per_frame)} - population: {len(population.keys())}')
+        if debug: print(f'\n\n---------------------------------------\nframe: {frame_id}/{len(patches_per_frame)} - population: {len(population.keys())}')
+        else: print(f'\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\n\n---------------------------------------\nframe: {frame_id}/{len(patches_per_frame)} - population: {len(population.keys())}')
 
         unassigned_objects = [obj_id for obj_id in present_objects.keys()] # all present objects of all individuals (some are shared between individuals)
         unassigned_patches = {ind_id: [p for p in patches] for ind_id in population.keys()} # list of unassigned patches for each individual
@@ -135,7 +136,7 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
                     
                     new_properties = {fid: {k: v for k, v in prop.items()} for fid, prop in current_obj.properties.items()}
                     new_properties[frame_id] = prediction
-                    current_obj.update(frame_id, patch, new_properties, other_patches)
+                    current_obj.update(frame_id, patch, new_properties, other_patches, global_events)
                     current_obj.add_explained({frame_id - 1: predicted_explained})
                     perfectly_assigned_objects.append(obj_id)
 
@@ -193,7 +194,7 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
                             for ind_id in inds_to_branch:
                                 population[ind_id] = [ob for ob in population[ind_id] if ob != obj_id] + [replacement_obj_id]
 
-                        current_obj.update(frame_id, patch, new_properties, other_patches)
+                        current_obj.update(frame_id, patch, new_properties, other_patches, global_events)
                         current_obj.add_unexplained(unexplained_dict)
                         assigned_objects.append(obj_id)
 
@@ -204,7 +205,7 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
 
                         new_obj_id = obj_id_generator()
                         new_obj = current_obj.copy()
-                        new_obj.update(frame_id, patch, new_properties, other_patches)
+                        new_obj.update(frame_id, patch, new_properties, other_patches, global_events)
                         new_obj.add_unexplained(unexplained_dict)
                         present_objects[new_obj_id] = new_obj
 
@@ -294,7 +295,7 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
 
                         p0_did_change, unexplained_dict, new_properties = check_for_property0_changes(present_objects[replacement_obj_id], patch, frame_id)
 
-                        present_objects[replacement_obj_id].update(frame_id, patch, new_properties, [p for p in patches if p != patch])
+                        present_objects[replacement_obj_id].update(frame_id, patch, new_properties, [p for p in patches if p != patch], global_events)
                         present_objects[replacement_obj_id].add_unexplained(unexplained_dict)
 
                         for ind_id in ind_list:
@@ -306,7 +307,7 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
 
                 p0_did_change, unexplained_dict, new_properties = check_for_property0_changes(present_objects[obj_id], best_patch, frame_id)
 
-                present_objects[obj_id].update(frame_id, best_patch, new_properties, [p for p in patches if p != best_patch])
+                present_objects[obj_id].update(frame_id, best_patch, new_properties, [p for p in patches if p != best_patch], global_events)
                 present_objects[obj_id].add_unexplained(unexplained_dict)
 
                 for ind_id in best_ind_list:
@@ -457,7 +458,7 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
         # rules
         ind_rule_score = {}
         for ind_id, ind in population.items(): ind_rule_score[ind_id] = new_infer_rules(ind, present_objects, not_present_objects, frame_id)
-
+        #print(ind_rule_score)
         #
 
         # scoring and pruning
@@ -477,7 +478,10 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
                     total_unexplained += len(unexpl)
             
             explained_score, rule_score = ind_rule_score[ind_id]
-            tuple_score.append((total_unexplained, explained_score, rule_score))
+            #tuple_score.append((total_unexplained, explained_score, rule_score))
+            #tuple_score.append((explained_score, total_unexplained, rule_score))
+            #tuple_score.append((explained_score + total_unexplained, rule_score))
+            tuple_score.append((explained_score + total_unexplained + rule_score))
             ind_id_score_tuple.append(ind_id)
 
         sort_idx = sorted(range(len(tuple_score)), key=lambda i: tuple_score[i])
@@ -504,14 +508,14 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
         
         #
 
-        #if frame_id == 33:#14:
+        #if frame_id == 20:
         #    for ind_id, ind in population.items():
+        #        print(f'ind_{ind_id}')
         #        for obj_id in ind:
         #            current_obj = present_objects[obj_id] if obj_id in present_objects.keys() else not_present_objects[obj_id]
-        #            if all(p.description == 'ball_1' for p in current_obj.sequence):
+        #            if all('paddle' in p.description for p in current_obj.sequence):
         #                print(f'\n----\nind_{ind_id}\n')
         #                print(current_obj.sequence[0].description)
-        #                print([p.description for p in current_obj.sequence])
         #                print('unexplained')
         #                for ffid, something in current_obj.unexplained.items():
         #                    print(f'frame_{ffid}: {something}')
@@ -520,6 +524,9 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
         #                    print(f'frame_{ffid}: {something}')
         #                print('events')
         #                for ffid, something in current_obj.events.items():
+        #                    print(f'frame_{ffid}: {something}')
+        #                print('global_events')
+        #                for ffid, something in current_obj.global_events.items():
         #                    print(f'frame_{ffid}: {something}')
         #                print('rules')
         #                for rule in current_obj.rules:
@@ -544,28 +551,35 @@ def euristic_initialization(patches_per_frame, resume_population= None, debug= F
 
 def summarize_into_prototypes(final_individual):
     """
-    Raggruppa gli oggetti contenuti nell'individuo finale in prototipi utilizzando i seguenti criteri:
-      - Regole: gli oggetti devono avere esattamente lo stesso insieme di regole.
-      - Comportamento delle proprietà: per ogni proprietà, si distingue se essa è 
-        costante oppure variabile lungo la storia dell'oggetto.
-      
-    La funzione stampa in maniera leggibile i prototipi trovati, mostrando per ogni prototipo:
-      - La firma delle regole (basata sui valori di my_hash, usata per il raggruppamento)
-      - Le regole originali (presi dall'oggetto, considerando che in ciascun prototipo sono identici)
-      - La firma del comportamento delle proprietà (per ogni proprietà, se è "const" o "var")
-      - La lista degli ID degli oggetti appartenenti al prototipo.
-    """
-    prototypes = {}
+    Groups objects contained in the final individual into prototypes based on:
+      1) The exact same set of rules (hashed by my_hash).
+      2) The "const" or "var" behavior of each property across the object's frames.
     
-    # Raggruppa gli oggetti in base alle regole (my_hash) e al comportamento delle proprietà.
+    Then, it refines each prototype by checking the shapes (Shape_x, Shape_y) of the 
+    objects in it, specifically in the object's last frame:
+      - If all have the same shape and >1 objects, mark same_shape=True.
+      - If all have the same shape and exactly 1 object, same_shape=None.
+      - If all have distinct shapes, keep them together as one prototype with same_shape=True.
+      - If there are subgroups with the same shape (some repeated shapes, some not),
+        split the prototype into smaller prototypes by shape:
+          * Each subgroup of size > 1 => same_shape=True
+          * Each subgroup of size = 1 => same_shape=None
+      - Remove the original prototype entry, and add the newly created ones.
+
+    Finally, prints out each prototype in a human-readable way.
+    """
+
+    # --- STEP 1: Build the initial prototypes by (rules_signature, property_behavior_signature)
+    prototypes = {}  # Dict[(rules_signature, prop_behavior_signature), list_of_obj_ids]
+    
     for obj_id, obj in final_individual.object_dict.items():
-        # --- 1. Calcola la firma delle regole (basata su my_hash) ---
+        # 1. Compute rules_signature
         if hasattr(obj, 'rules') and obj.rules:
             rules_signature = tuple(sorted(rule.my_hash() for rule in obj.rules))
         else:
             rules_signature = tuple()
         
-        # --- 2. Analizza il comportamento delle proprietà ---
+        # 2. Compute property behavior signature
         frames = sorted(obj.properties.keys())
         all_props = set()
         for fid in frames:
@@ -573,7 +587,10 @@ def summarize_into_prototypes(final_individual):
         
         prop_behavior = {}
         for prop in all_props:
-            values = [obj.properties[fid].get(prop) for fid in frames if prop in obj.properties[fid]]
+            values = []
+            for fid in frames:
+                if prop in obj.properties[fid]:
+                    values.append(obj.properties[fid][prop])
             behavior = 'const' if values and all(v == values[0] for v in values) else 'var'
             try:
                 prop_name = prop.name()
@@ -583,26 +600,96 @@ def summarize_into_prototypes(final_individual):
         
         prop_behavior_signature = tuple(sorted(prop_behavior.items()))
         
-        # --- 3. Raggruppa per chiave (firma delle regole, firma delle proprietà) ---
         key = (rules_signature, prop_behavior_signature)
         if key not in prototypes:
             prototypes[key] = []
         prototypes[key].append(obj_id)
     
-    # --- Stampa dei prototipi in maniera leggibile ---
-    print("\n--- Prototipi Raggruppati ---\n")
-    for proto_idx, (key, obj_ids) in enumerate(prototypes.items(), start=1):
-        rules_signature, prop_behavior_signature = key
-        print(f"Prototipo {proto_idx}:")
+    # --- STEP 2: Refine each prototype by shape
+    #     We'll build a new dict that replaces or subdivides prototypes based on shape grouping.
+    refined_prototypes = {}
+    proto_counter = 1  # just for display/enumeration
+    
+    for (rules_sig, prop_sig), obj_ids in prototypes.items():
+        # Gather each object's final shape
+        shape_dict = {}  # (shape_x_val, shape_y_val) -> list of obj_ids
+        for oid in obj_ids:
+            obj = final_individual.object_dict[oid]
+            last_fid = obj.frames_id[-1]
+            sx = obj.properties[last_fid][Shape_x]
+            sy = obj.properties[last_fid][Shape_y]
+            shape_val = (sx, sy)
+            if shape_val not in shape_dict:
+                shape_dict[shape_val] = []
+            shape_dict[shape_val].append(oid)
         
-        # Per le regole, recupera le regole originali da uno degli oggetti appartenenti al prototipo.
-        # Poiché la firma è identica per tutti, è sufficiente usare il primo oggetto.
+        # Decide how to handle
+        if len(shape_dict) == 1:
+            # All objects have exactly the same shape
+            shape_val = next(iter(shape_dict.keys()))  # the single key
+            grp = shape_dict[shape_val]
+            if len(grp) > 1:
+                # multiple objects, same shape
+                same_shape_flag = True
+            else:
+                # single object
+                same_shape_flag = None
+            
+            # Keep them as one prototype
+            refined_prototypes[proto_counter] = {
+                'rules_signature': rules_sig,
+                'prop_behavior_signature': prop_sig,
+                'obj_ids': grp,
+                'same_shape': same_shape_flag
+            }
+            proto_counter += 1
+        
+        elif len(shape_dict) == len(obj_ids):
+            # Each object has a distinct shape
+            # => keep them all in one prototype, same_shape=True
+            refined_prototypes[proto_counter] = {
+                'rules_signature': rules_sig,
+                'prop_behavior_signature': prop_sig,
+                'obj_ids': obj_ids,
+                'same_shape': True
+            }
+            proto_counter += 1
+        
+        else:
+            # We have subgroups of repeated shapes, but not all are the same shape.
+            # => Split each shape subgroup into its own prototype.
+            for shape_val, group_obj_ids in shape_dict.items():
+                if len(group_obj_ids) > 1:
+                    ss_flag = True
+                else:
+                    ss_flag = None
+                
+                refined_prototypes[proto_counter] = {
+                    'rules_signature': rules_sig,
+                    'prop_behavior_signature': prop_sig,
+                    'obj_ids': group_obj_ids,
+                    'same_shape': ss_flag
+                }
+                proto_counter += 1
+    
+    # --- STEP 3: Print the refined prototypes in a readable way.
+    print("\n--- Prototipi Raggruppati (Refined by Shape) ---\n")
+    for pid in sorted(refined_prototypes.keys()):
+        proto_data = refined_prototypes[pid]
+        
+        rules_signature = proto_data['rules_signature']
+        prop_behavior_signature = proto_data['prop_behavior_signature']
+        obj_ids = proto_data['obj_ids']
+        same_shape_flag = proto_data['same_shape']
+        
+        print(f"Prototipo {pid}:")
+        
+        # Print original rules from one sample object
         sample_obj_id = obj_ids[0]
         sample_obj = final_individual.object_dict[sample_obj_id]
         
         print("  Regole (originali):")
         if hasattr(sample_obj, 'rules') and sample_obj.rules:
-            # Ordina le regole in base all'hash per una stampa consistente
             sorted_rules = sorted(sample_obj.rules, key=lambda r: r.my_hash())
             for rule in sorted_rules:
                 print(f"    - {repr(rule)}")
@@ -622,5 +709,6 @@ def summarize_into_prototypes(final_individual):
         else:
             print("    (Nessuna proprietà)")
         
-        print("  Oggetti appartenenti:", obj_ids)
+        print(f"  Oggetti appartenenti: {obj_ids}")
+        print(f"  same_shape = {same_shape_flag}")
         print("-" * 50)

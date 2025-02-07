@@ -17,6 +17,7 @@ class Individual:
                     'unexplained': current_obj.unexplained[frame_id] if frame_id in current_obj.unexplained.keys() else [],
                     'explained_unexplained': current_obj.explained_unexplained[frame_id] if frame_id in current_obj.explained_unexplained.keys() else [],
                     'events': current_obj.events[frame_id] if frame_id in current_obj.events.keys() else [],
+                    'global_events': current_obj.global_events[frame_id] if frame_id in current_obj.global_events.keys() else [],
                     'patch': object_dict[obj_id].sequence[object_dict[obj_id].frames_id.index(frame_id)]if frame_id in current_obj.frames_id else None,
                     }
             self.object_info[obj_id] = frame_dict

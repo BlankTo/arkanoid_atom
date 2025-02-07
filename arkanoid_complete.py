@@ -464,8 +464,7 @@ class Game:
     def get_grid(self):
         return np.transpose(np.stack([self.r, self.g, self.b]), (1, 2, 0))
 
-
-# Main
+####
 
 save_log = True
 
@@ -482,6 +481,11 @@ window.blit(screen, (0, 0))
 t = time.time()
 keys_down = []
 keys_up = []
+
+# [NEW] Two booleans track whether left/right arrow is held down
+leftArrowHeld = False
+rightArrowHeld = False
+
 paddle_left = False
 paddle_right = False
 first_time_run = True
@@ -491,32 +495,43 @@ game_running = False
 element_log, event_log = game.get_log()
 
 frame_id = 0
-frames = [{
+frames = []
+frames.append({
     'frame_id': frame_id,
     'commands': [],
     'elements': deepcopy(element_log),
-    'events': []
-}]
+    'events': [{
+        'description': 'game_start',
+        'subject': 0
+    }]
+})
 frame_id += 1
 
 while screen_running:
 
     for e in pygame.event.get():
-
         if e == pygame.QUIT:
             screen_running = False
 
         if e.type == pygame.KEYDOWN:
             keys_down.append(e.key)
-            keydown = True
+            # [NEW] If the user pressed LEFT or RIGHT, mark it as held
+            if e.key == pygame.K_LEFT:
+                leftArrowHeld = True
+            elif e.key == pygame.K_RIGHT:
+                rightArrowHeld = True
 
         if e.type == pygame.KEYUP:
             keys_up.append(e.key)
-            keyup = True
+            # [NEW] If the user released LEFT or RIGHT, unmark it as held
+            if e.key == pygame.K_LEFT:
+                leftArrowHeld = False
+            elif e.key == pygame.K_RIGHT:
+                rightArrowHeld = False
 
     new_t = time.time()
     if new_t - t > refresh_rate:
-        
+
         command_log = []
 
         if first_time_run:
@@ -529,53 +544,43 @@ while screen_running:
         if pygame.K_s in keys_down:
             game_running = not game_running
 
-        if pygame.K_UP in keys_down:
-            refresh_rate -= refresh_rate / 2
-            print(refresh_rate)
-        if pygame.K_DOWN in keys_down:
-            refresh_rate += refresh_rate / 2
-            print(refresh_rate)
+        # [CHANGED] Instead of counting keys_down vs. keys_up, we rely on booleans
+        paddle_left = leftArrowHeld
+        paddle_right = rightArrowHeld
 
-        if keys_down.count(pygame.K_LEFT) > keys_up.count(pygame.K_LEFT):
-            paddle_left = True
-        elif keys_down.count(pygame.K_LEFT) < keys_up.count(pygame.K_LEFT):
-            paddle_left = False
-
-        if keys_down.count(pygame.K_RIGHT) > keys_up.count(pygame.K_RIGHT):
-            paddle_right = True
-        elif keys_down.count(pygame.K_RIGHT) < keys_up.count(pygame.K_RIGHT):
-            paddle_right = False
-
-        if (not paddle_left and not paddle_right):
-            command_log.append(('paddle_stop'))
+        # [CHANGED] The logic below is now based on whether leftArrowHeld/rightArrowHeld are True
+        if not paddle_left and not paddle_right:
             game.set_paddle_speed(0)
-        elif paddle_left:
-            command_log.append(('paddle_left'))
+            #command_log.append(('nothing_pressed'))
+        elif paddle_left and not paddle_right:
             game.set_paddle_speed(-1)
-        elif paddle_right:
-            command_log.append(('paddle_right'))
+            command_log.append(('left_arrow_pressed'))
+        elif paddle_right and not paddle_left:
             game.set_paddle_speed(1)
+            command_log.append(('right_arrow_pressed'))
         else:
-            command_log.append(('paddle_stop'))
+            # if both are pressed, do whatever you want:
             game.set_paddle_speed(0)
+            #command_log.append(('nothing_pressed'))
 
+        # (Everything else remains the same)
         if game_running:
-
             element_log, event_log, end_game = game.update()
 
-            if first_time_run:
-                event_log.append({
-                    'description': 'game_start',
-                    'subject': 0
-                })
-                first_time_run = False
+            #if first_time_run:
+            #    first_time_run = False
+            #    event_log.append({
+            #        'description': 'game_start',
+            #        'subject': 0
+            #    })
 
+            if frame_id > 0: frames[-1]['commands'].extend(deepcopy(command_log))
             frames.append({
                 'frame_id': frame_id,
-                'commands': [c for c in command_log],
+                'commands': [],
                 'elements': deepcopy(element_log),
                 'events': event_log
-                })
+            })
             frame_id += 1
 
             grid = pygame.surfarray.make_surface(game.get_grid())
@@ -585,24 +590,22 @@ while screen_running:
             if end_game:
                 game_running = False
                 screen_running = False
-    
+
         t = new_t
+
+        # [CHANGED] Still safe to reset these each frame;
+        # leftArrowHeld/rightArrowHeld store the actual "held" state.
         keys_down = []
         keys_up = []
 
-    # Refresh the display
     pygame.display.flip()
 
-#frames.append({
-#    'frame_id': frame_id,
-#    'commands': [],
-#    'elements': {},
-#    'events': [{'description': 'game_end', 'subject': 0}]
-#    })
-
+# (Log saving, pygame.quit, and sys.exit remain unchanged)
 if save_log:
-    
-    with open(f'logs/arkanoid_logs/arkanoid_log{datetime.now().strftime("_%Y_%m_%d_%H_%M_%S")}.pkl', 'wb') as logfile:
+    with open(
+        f'logs/arkanoid_logs/arkanoid_log{datetime.now().strftime("_%Y_%m_%d_%H_%M_%S")}.pkl',
+        'wb'
+    ) as logfile:
         pickle.dump(frames, logfile)
 
 pygame.quit()

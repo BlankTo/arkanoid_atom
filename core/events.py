@@ -8,18 +8,25 @@ class NoTargetEvent(Event):
     def __init__(self, name):
         self.name = name
     
-    def copy(self): NoTargetEvent(self.name)
+    def copy(self):
+        raise NotImplementedError("Subclasses must implement this method.")
+    
+    def __repr__(self):
+        raise NotImplementedError("Subclasses must implement this method.")
 
     @staticmethod
     def check() -> bool:
-        return True
+        return False
 
 class GlobalEvent(NoTargetEvent):
 
     def __init__(self, name):
         self.name = name
     
-    def copy(self): NoTargetEvent(self.name)
+    def copy(self): return GlobalEvent(self.name)
+    
+    def __repr__(self):
+        return self.name
 
     @staticmethod
     def check() -> bool:
@@ -29,6 +36,11 @@ class CommandEvent(NoTargetEvent):
 
     def __init__(self, name):
         self.name = name
+    
+    def copy(self): return CommandEvent(self.name)
+    
+    def __repr__(self):
+        return self.name
 
     @staticmethod
     def check() -> bool:
